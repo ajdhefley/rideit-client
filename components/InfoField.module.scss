@@ -1,0 +1,25 @@
+$stat-icon-width: 25px;
+$stat-icon-margin: 5px;
+
+.statSection {
+    margin: 10px 0px;
+
+    .statIcon {
+        text-align: right;
+        width: $stat-icon-width;
+        margin-right: $stat-icon-margin;
+        display: inline-block;
+    }
+    
+    .statLabel {
+        vertical-align: top;
+        font-weight: bold;
+        width: calc(40% - #{$stat-icon-width / 2 + $stat-icon-margin / 2});
+        display: inline-block;
+    }
+    
+    .statValue {
+        width: calc(60% - #{$stat-icon-width / 2 + $stat-icon-margin / 2});
+        display: inline-block;
+    }
+}

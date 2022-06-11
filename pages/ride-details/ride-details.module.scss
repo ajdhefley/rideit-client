@@ -1,0 +1,225 @@
+$page-margin: 10vw;
+$pic-margin: 5px;
+$pic-border-radius: 10px;
+$pic-size: 250px;
+
+.icon {
+    width: 25px;
+    height: 25px;
+}
+
+.coasterPageContainer {
+    margin: 0% $page-margin;
+}
+
+.titleContainer {
+    padding: 5px 10vw;
+    margin: 0% (-$page-margin);
+}
+
+.subTitleContainer {
+    margin-top: 15px;
+}
+
+.picsContainer {
+    margin: -$pic-margin;
+    padding: 25px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    height: $pic-size;
+}
+
+.mainPodContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.titleLarge {
+    font-size: 3rem;
+    margin: 0 15px 0 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.titleMedium {
+    font-size: 1.5rem;
+    margin: 0 0 0 15px;
+    padding-top: 15px;
+    opacity: 0.66;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.titleSmall {
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.pod {
+    padding: 30px 0px;
+}
+
+.podHeader {
+    font-size: 1.5rem;
+}
+
+.statPod {
+    width: 50%;
+}
+
+.statPodSeparator {
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+}
+
+.infoPod {
+    width: 50%;
+}
+
+.othersLikedPod {
+    width: 33.33%;
+}
+
+.otherParkPod {
+    width: 33.33%;
+}
+
+.similarRidesPod {
+    width: 33.33%;
+}
+
+.ratingsPod, .seatsPod {
+    width: 50%;
+    display: inline-block;
+}
+
+.commentsPod {
+
+}
+
+.comment {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+
+    .commentAvatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: grey;
+    }
+
+    .commentText {
+        margin-top: 2.5px;
+    }
+
+    .commentUsername {
+        cursor: pointer;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    .commentTextWrapper {
+        width: calc(100% - 52px);
+        padding: 10px;
+    }
+
+    .commentTimestamp {
+        opacity: 0.5;
+        font-size: 0.75rem;
+        display: inline-block;
+        margin-left: 7.5px;
+        cursor: default;
+    }
+
+    .commentFooter {
+        cursor: default;
+        margin-top: 5px;
+
+        .commentLikeButton {
+            cursor: pointer;
+            opacity: 0.5;
+
+            &.toggled {
+                opacity: 1;
+            }
+        }
+
+        .commentReplyButton {
+            margin-left: 7.5px;
+            cursor: pointer;
+        }
+    }
+}
+
+.ratingStatsContainer {
+    font-size: 2rem;
+}
+
+.ratingStatsDescription {
+    font-size: 1rem;
+    margin-left: -2px;
+}
+
+.ratingTagContainer {
+    margin-top: 20px;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ratingTag {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.ratingTagName {
+    display: inline-block;
+    width: 120px;
+}
+
+.ratingTagPerc {
+    display: inline-block;
+    width: 55px;
+}
+
+.ratingTagLine {
+    display: inline-block;
+    height: 3px;
+    background: #aaa;
+    box-shadow: 0px 0px 2px -1px #333;
+}
+
+.showMoreComments {
+    font-size: 1.25rem;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.pic {
+    cursor: pointer;
+    flex-grow: 1;
+    margin: $pic-margin;
+    box-shadow: 1px 2px 3px -2px rgb(0, 0, 0, 0.5), -1px -1px 3px -2px rgb(0, 0, 0, 0.5);
+    opacity: 0.9;
+    width: $pic-size;
+    height: $pic-size;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:first-child {
+        border-top-left-radius: $pic-border-radius;
+        border-bottom-left-radius: $pic-border-radius;
+    }
+
+    &:last-child {
+        border-top-right-radius: $pic-border-radius;
+        border-bottom-right-radius: $pic-border-radius;
+    }
+}

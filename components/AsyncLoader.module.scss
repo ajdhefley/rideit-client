@@ -1,0 +1,22 @@
+@keyframes loader-block-animation {
+    0% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 1;
+    }
+}
+
+.asyncLoaderBlock {
+    background: #ddd;
+    animation: loader-block-animation;
+    animation-iteration-count: infinite;
+    animation-duration: 2000ms;
+    color: #e1e1e1;
+    letter-spacing: -1px;
+}

@@ -1,0 +1,45 @@
+@import "../styles/variables";
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #4287f5;
+}
+
+a {
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+      text-decoration: underline;
+  }
+}
+
+.mainContent {
+  margin-top: $header-height;
+  background: #fff;
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+}
+
+.headerContainer {
+  position: fixed;
+  width: 100%;
+  height: $header-height;
+  margin-top: -$header-height;
+  z-index: 1;
+}
+
+.footerContainer {
+  height: $footer-height;
+}
+
+.headerContainer, .footerContainer {
+  background: #4287f5;
+  color: #f1f1f1;
+}
