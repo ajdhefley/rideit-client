@@ -1,7 +1,7 @@
-import { CoasterPageModel } from '../../models/CoasterPageModel'
+import { CoasterPageModel } from '../../../models/CoasterPageModel'
 import classes from './coasterTrainViewer.module.scss'
 
-export default function CoasterPageSeatViewer({
+export function CoasterTrainViewer({
     coaster,
     primaryColor,
     secondaryColor

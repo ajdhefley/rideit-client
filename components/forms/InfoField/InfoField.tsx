@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import AsyncLoader from './AsyncLoader'
-import classes from './IinfoField.module.scss'
+import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
+import classes from './InfoField.module.scss'
 
-export default function CoasterPageField({
+export function InfoField({
     icon,
     label,
     value,

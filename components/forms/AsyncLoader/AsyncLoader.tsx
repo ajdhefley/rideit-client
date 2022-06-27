@@ -1,6 +1,6 @@
 import classes from './AsyncLoader.module.scss'
 
-export default function AsyncLoader({
+export function AsyncLoader({
     size
 }: {
     size: number

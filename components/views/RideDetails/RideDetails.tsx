@@ -3,14 +3,14 @@ import Image from 'next/image'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUser, faComment, faAngleDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { CoasterPageModel } from '../../models/CoasterPageModel'
-import InfoField from '../../components/forms/InfoField/InfoField'
-import AsyncLoader from '../../components/forms/asyncLoader'
-import Separator from '../../components/forms/Separator/Separator'
-import CoasterTrainViewer from '../../components/coaster/coasterTrainViewer'
-import classes from './index.module.scss'
+import { CoasterPageModel } from '../../../models/CoasterPageModel'
+import { InfoField } from '../../forms/InfoField/InfoField'
+import { AsyncLoader } from '../../forms/AsyncLoader/AsyncLoader'
+import { Separator } from '../../forms/Separator/Separator'
+import { CoasterTrainViewer } from '../../coaster/CoasterTrainViewer/CoasterTrainViewer'
+import classes from './RideDetails.module.scss'
 
-export default function CoasterDetails({
+export function RideDetailsPage({
     coaster,
     coasterAge
 }: {
@@ -163,39 +163,4 @@ export default function CoasterDetails({
             </div>
         </div>
     </>
-}
-
-export async function getStaticPaths() {
-    // Pre-renders coaster page for each entry
-
-    const res = await fetch('http://localhost:4040/coasters')
-    const json = await res.json()
-
-    return {
-        paths: json.map(c => ({
-            params: { url: c.Url.toString() }
-        })),
-        fallback: false
-    }
-}
-
-export async function getStaticProps({ params }) {
-    // Pre-fetches coaster page details for each entry
-
-    const res = await fetch(`http://localhost:4040/coasters/${params.url}`)
-    const json = await res.json()
-
-    const age = (() => {
-         const opened = moment(json.OpeningDate, json.OpeningDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
-         const closed = json.CloseDate ? moment(json.CloseDate, json.CloseDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
-         const duration = moment.duration(closed.diff(opened))
-         return Math.floor(duration.asYears())
-    })()
-
-    return {
-        props: {
-            coaster: json,
-            coasterAge: age
-        }
-    }
 }
