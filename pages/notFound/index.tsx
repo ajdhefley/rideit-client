@@ -1,4 +1,4 @@
-import classes from './not-found.module.scss'
+import classes from './index.module.scss'
 
 function NotFoundPage() {
     return <div>Not Found</div>

@@ -1,22 +1,28 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import AsyncLoader from './AsyncLoader'
-import classes from './InfoField.module.scss'
+import classes from './IinfoField.module.scss'
 
 export default function CoasterPageField({
     icon,
     label,
     value,
     unit,
+    async = false,
     visible = true,
 }: {
     icon?: IconProp,
     label: string,
     value: string | number,
     unit?: string,
+    async?: boolean,
     visible?: boolean
 }): JSX.Element {
     function getUnloadedField() {
+        if (!async) {
+            return <></>;
+        }
+        
         if (typeof(value) != 'undefined') {
             return <></>;
         }

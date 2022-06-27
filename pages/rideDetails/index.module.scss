@@ -208,6 +208,7 @@ $pic-size: 250px;
     opacity: 0.9;
     width: $pic-size;
     height: $pic-size;
+    position: relative;
 
     &:hover {
         opacity: 1;

@@ -5,9 +5,9 @@ export default function AsyncLoader({
 }: {
     size: number
 }): JSX.Element {
-    return (
+    return <>
         <span className={classes.asyncLoaderBlock}>
             {[...Array(size)].map(() => String.fromCharCode(9608)).join('')}
         </span>
-    )
+    </>
 }

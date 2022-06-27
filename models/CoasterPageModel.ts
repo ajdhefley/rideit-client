@@ -1,8 +1,8 @@
-import moment from 'moment';
+import { CoasterImage } from './CoasterImage';
 import { CoasterPageComment } from './CoasterPageComment';
-import { CoasterTrain } from './CoasterTrain';
 
 export class CoasterPageModel {
+    ImgList: CoasterImage[];
     Name: string;
     Park: string;
     HeightInFt: number;
@@ -19,22 +19,26 @@ export class CoasterPageModel {
     CloseDate: string;
     Location: string;
     AgeInYears: number;
+    CarsPerTrain: number;
+    RowsPerCar: number;
+    InsideSeatsPerRow: number;
+    OutsideSeatsPerRow: number;
+    EntrySide: 'right' | 'left';
 
-    // get AgeInYears() {
-    //     const opened = moment(this.OpeningDate, this.OpeningDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY');
-    //     const closed = this.CloseDate ? moment(this.CloseDate, this.CloseDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment();
-    //     const duration = moment.duration(closed.diff(opened));
-    //     return Math.floor(duration.asYears());
-    // }
+    get TotalRows() {
+        return this.CarsPerTrain * this.RowsPerCar;
+    }
+    
+    get TotalSeats() {
+        return this.TotalRows * (this.InsideSeatsPerRow + this.OutsideSeatsPerRow);
+    }
 
     // TODO
     AngleInDegrees: number;
-    imgSrcList: Array<string>;
     ratingAverage: number;
     ratingCount: number;
     rank: number;
     goldenTicketAwards: string;
     userRating: number;
-    train: CoasterTrain;
     comments: CoasterPageComment[];
 }

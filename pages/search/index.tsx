@@ -1,13 +1,13 @@
-import classes from './search.module.scss'
+import classes from './index.module.scss'
 
 function SearchResults(): JSX.Element {
     const searchParams = {} as any
 
     const searchInput = 'TODO'
 
-    return <>
+    return <div>
         searched {searchInput}
-    </>
+    </div>
 }
 
 export default SearchResults

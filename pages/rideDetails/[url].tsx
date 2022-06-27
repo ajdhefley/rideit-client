@@ -1,21 +1,23 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUser, faComment, faAngleDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { CoasterPageModel } from '../../models/CoasterPageModel'
-import AsyncImage from '../../components/AsyncImage'
-import InfoField from '../../components/InfoField'
-import AsyncLoader from '../../components/AsyncLoader'
-import Separator from '../../components/Separator'
-import CoasterTrainViewer from '../../components/CoasterTrainViewer'
-import classes from './ride-details.module.scss'
-import asyncImageClasses from '../../components/AsyncImage.module.scss'
+import InfoField from '../../components/forms/InfoField/InfoField'
+import AsyncLoader from '../../components/forms/asyncLoader'
+import Separator from '../../components/forms/Separator/Separator'
+import CoasterTrainViewer from '../../components/coaster/coasterTrainViewer'
+import classes from './index.module.scss'
 
 export default function CoasterDetails({
-    coaster
+    coaster,
+    coasterAge
 }: {
-    coaster: CoasterPageModel
+    coaster: CoasterPageModel,
+    coasterAge: number
 }) {
-    const ratingTagLineMaxWidth = 100;
+    const ratingTagLineMaxWidth = 100
 
     let ratingTags = [
         { name: 'Roughness', value: 67 },
@@ -27,11 +29,11 @@ export default function CoasterDetails({
     ]
 
     function scrollToRatings() {
-        document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
     }
 
     function scrollToComments() {
-        document.getElementById('commentsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        document.getElementById('commentsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
     }
 
     return <>
@@ -40,11 +42,11 @@ export default function CoasterDetails({
         </Head>
         <div className={classes.coasterPageContainer}>
             <div className={classes.titleContainer}>
-                <p className={classes.titleLarge}>{coaster.Name || (<AsyncLoader size={5} />)}</p>
+                <p className={classes.titleLarge}>{coaster.Name}</p>
                 <Separator />
-                <p className={classes.titleMedium}>{coaster.Park || (<AsyncLoader size={15} />)}</p>
+                <p className={classes.titleMedium}>{coaster.Park}</p>
             </div>
-            <div className={classes.subTitleContainer} style={{ display: coaster.ratingAverage ? 'initial' : 'none' }}>
+            <div className={classes.subTitleContainer}>
                 <span className={classes.titleSmall} title={`Rated ${coaster.ratingAverage} out of 5`} onClick={scrollToRatings}>
                     <FontAwesomeIcon icon={faStar} className={classes.icon} /> {coaster.ratingAverage} 
                 </span>
@@ -54,32 +56,23 @@ export default function CoasterDetails({
                 <span className={classes.titleSmall} title={`${coaster.comments?.length} comments`} onClick={scrollToComments}>
                     <FontAwesomeIcon icon={faComment} className={classes.icon} /> {coaster.comments?.length}
                 </span>
-                { coaster.rank!! &&
                 <span className={classes.titleSmall}>
                     <Separator /> <a>Ranked #{coaster.rank}</a>
-                </span>}
+                </span>
                 { coaster.goldenTicketAwards!! &&
                 <span className={classes.titleSmall}>
                     <Separator /> <a>Won {coaster.goldenTicketAwards} awards</a>
                 </span>}
             </div>
-            <div className={classes.subTitleContainer} style={{ display: coaster.ratingAverage ? 'none' : 'initial' }}>
-                <AsyncLoader size={15} />
-            </div>
             <div className={classes.picsContainer}>
-                {coaster.imgSrcList?.slice(0, 4).map((imgSrc) => (
-                    <AsyncImage className={classes.pic} src={imgSrc} key={imgSrc} />
+                {coaster.ImgList.slice(0, 4).map((img) => (
+                    <div key={img.ImageUrl} className={classes.pic}>
+                        <Image className={classes.pic} src={img.ImageUrl} blurDataURL={img.Base64} placeholder="blur" 
+                        layout='fill'
+                        width={250}
+                        height={250} />
+                    </div>
                 ))}
-                {
-                    !coaster.imgSrcList && (
-                        <>
-                            <div className={`${asyncImageClasses.loader} ${classes.pic}`}></div>
-                            <div className={`${asyncImageClasses.loader} ${classes.pic}`}></div>
-                            <div className={`${asyncImageClasses.loader} ${classes.pic}`}></div>
-                            <div className={`${asyncImageClasses.loader} ${classes.pic}`}></div>
-                        </>
-                    )
-                }
             </div>
             <div className={classes.mainPodContainer}>
                 <div className={`${classes.pod} ${classes.statPod}`}>
@@ -99,7 +92,8 @@ export default function CoasterDetails({
                     <InfoField label="Manufacturer" value={coaster.Manufacturer} />
                     <InfoField label="Model" value={coaster.Model} />
                     <InfoField label="Location" value={coaster.Location} />
-                    <InfoField label="Age" value={coaster.AgeInYears} unit="years" />
+                    <InfoField label="Opened" value={moment(coaster.OpeningDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
+                    <InfoField label="Age" value={coasterAge} unit="years" />
                 </div>
                 {/* <div className={`${classes.pod} ${classes.othersLikedPod}`} style={{ display: coaster.park ? 'initial' : 'none' }}>
                     <div className={classes.podHeader}>Others who liked this also liked</div>
@@ -148,7 +142,7 @@ export default function CoasterDetails({
                 </div>
             </div>
             <div className={`${classes.pod} ${classes.seatsPod}`}>
-                <CoasterTrainViewer train={coaster.train} primaryColor={coaster.ColorPrimary} secondaryColor={coaster.ColorSecondary} />
+                <CoasterTrainViewer coaster={coaster} primaryColor={coaster.ColorPrimary} secondaryColor={coaster.ColorSecondary} />
             </div>
             {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<a>Update</a></span> : <a>Review this coaster</a>}
             <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
@@ -179,7 +173,7 @@ export async function getStaticPaths() {
 
     return {
         paths: json.map(c => ({
-            params: { id: c.CoasterId.toString() }
+            params: { url: c.Url.toString() }
         })),
         fallback: false
     }
@@ -188,12 +182,20 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     // Pre-fetches coaster page details for each entry
 
-    const res = await fetch(`http://localhost:4040/coasters/${params.id}`)
+    const res = await fetch(`http://localhost:4040/coasters/${params.url}`)
     const json = await res.json()
+
+    const age = (() => {
+         const opened = moment(json.OpeningDate, json.OpeningDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
+         const closed = json.CloseDate ? moment(json.CloseDate, json.CloseDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
+         const duration = moment.duration(closed.diff(opened))
+         return Math.floor(duration.asYears())
+    })()
 
     return {
         props: {
-            coaster: json
+            coaster: json,
+            coasterAge: age
         }
     }
 }
