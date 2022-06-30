@@ -1,7 +1,7 @@
 import { CoasterImage } from './CoasterImage';
-import { CoasterPageComment } from './CoasterPageComment';
+import { CoasterComment } from './CoasterComment';
 
-export class CoasterPageModel {
+export class Coaster {
     ImgList: CoasterImage[];
     CoasterId: number;
     Name: string;
@@ -42,5 +42,5 @@ export class CoasterPageModel {
     rank: number;
     goldenTicketAwards: string;
     userRating: number;
-    comments: CoasterPageComment[];
+    comments: CoasterComment[];
 }

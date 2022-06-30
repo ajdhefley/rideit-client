@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { NextPage } from 'next';
-import { CoasterPageModel } from '../../../models/CoasterPageModel'
+import { Coaster } from '../../../models/Coaster'
 import classes from './SearchResults.module.scss'
 
 /**
@@ -13,7 +13,7 @@ interface SearchResultsPageProps {
     /**
      * 
      **/
-    coasters: CoasterPageModel[];
+    coasters: Coaster[];
 }
 
 /**

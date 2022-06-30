@@ -1,5 +1,5 @@
 import React from 'react';
-import { CoasterPageModel } from '../../../models/CoasterPageModel'
+import { Coaster } from '../../../models/Coaster'
 import classes from './CoasterTrainViewer.module.scss'
 
 /**
@@ -9,7 +9,7 @@ import classes from './CoasterTrainViewer.module.scss'
     /**
      * 
      **/
-    coaster: CoasterPageModel;
+    coaster: Coaster;
 
     /**
      * 

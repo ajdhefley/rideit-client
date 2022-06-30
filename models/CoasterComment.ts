@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export class CoasterPageComment {
+export class CoasterComment {
     commentId: number;
     author: string;
     body: string;

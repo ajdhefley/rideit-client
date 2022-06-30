@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUser, faComment, faAngleDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { CoasterPageModel } from '../../../models/CoasterPageModel'
+import { Coaster } from '../../../models/Coaster'
 import { InfoField } from '../../forms/InfoField/InfoField'
 import { AsyncLoader } from '../../forms/AsyncLoader/AsyncLoader'
 import { Separator } from '../../forms/Separator/Separator'
@@ -18,7 +18,7 @@ interface RideDetailsPageProps {
     /**
      * 
      **/
-    coaster: CoasterPageModel;
+    coaster: Coaster;
 
     /**
      * 
