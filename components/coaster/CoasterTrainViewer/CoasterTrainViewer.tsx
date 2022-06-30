@@ -1,15 +1,31 @@
+import React from 'react';
 import { CoasterPageModel } from '../../../models/CoasterPageModel'
-import classes from './coasterTrainViewer.module.scss'
+import classes from './CoasterTrainViewer.module.scss'
 
-export function CoasterTrainViewer({
-    coaster,
-    primaryColor,
-    secondaryColor
-}: {
-    coaster: CoasterPageModel,
-    primaryColor: string,
-    secondaryColor: string
-}): JSX.Element {
+/**
+ * 
+ **/
+ interface CoasterTrainViewerProps {
+    /**
+     * 
+     **/
+    coaster: CoasterPageModel;
+
+    /**
+     * 
+     **/
+    primaryColor: string;
+    
+    /**
+     * 
+     **/
+    secondaryColor: string;
+}
+
+/**
+ * 
+ **/
+export const CoasterTrainViewer: React.FC<CoasterTrainViewerProps> = ({ coaster, primaryColor, secondaryColor }) => {
     const carContainerStyle = { 
         gridTemplateColumns: Array.from({ length: coaster?.CarsPerTrain }).map(() => 'auto').join(' ')
     }
@@ -59,5 +75,5 @@ export function CoasterTrainViewer({
                 </div>
             )}
         </div>
-    </>;
+    </>
 }

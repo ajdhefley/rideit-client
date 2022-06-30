@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { NextPage } from 'next'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUser, faComment, faAngleDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
@@ -10,23 +11,26 @@ import { Separator } from '../../forms/Separator/Separator'
 import { CoasterTrainViewer } from '../../coaster/CoasterTrainViewer/CoasterTrainViewer'
 import classes from './RideDetails.module.scss'
 
-export function RideDetailsPage({
-    coaster,
-    coasterAge
-}: {
-    coaster: CoasterPageModel,
-    coasterAge: number
-}) {
-    const ratingTagLineMaxWidth = 100
+/**
+ * 
+ **/
+interface RideDetailsPageProps {
+    /**
+     * 
+     **/
+    coaster: CoasterPageModel;
 
-    let ratingTags = [
-        { name: 'Roughness', value: 67 },
-        { name: 'Head Banging', value: 74 },
-        { name: 'Laterals', value: 56 },
-        { name: 'Air Time', value: 23 },
-        { name: 'Low Capacity', value: 43 },
-        { name: 'Head Choppers', value: 54 },
-    ]
+    /**
+     * 
+     **/
+    coasterAge: number;
+}
+
+/**
+ * 
+ **/
+export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coasterAge }) => {
+    const RatingTagLineMaxWidth = 100
 
     function scrollToRatings() {
         document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
@@ -63,6 +67,10 @@ export function RideDetailsPage({
                 <span className={classes.titleSmall}>
                     <Separator /> <a>Won {coaster.goldenTicketAwards} awards</a>
                 </span>}
+                <div style={{ float: 'right' }}>
+                    <a>Share</a>
+                </div>
+                <div style={{ clear: 'both' }}></div>
             </div>
             <div className={classes.picsContainer}>
                 {coaster.ImgList.slice(0, 4).map((img) => (
@@ -133,11 +141,18 @@ export function RideDetailsPage({
                     <FontAwesomeIcon icon={faUser} className={classes.icon} /> {coaster.ratingCount} <span className={classes.ratingStatsDescription}>ratings</span>
                 </div>
                 <div className={classes.ratingTagContainer}>
-                    {ratingTags.map((ratingTag) => (
+                    {[
+                        { name: 'Roughness', value: 67 },
+                        { name: 'Head Banging', value: 74 },
+                        { name: 'Laterals', value: 56 },
+                        { name: 'Air Time', value: 23 },
+                        { name: 'Low Capacity', value: 43 },
+                        { name: 'Head Choppers', value: 54 },
+                    ].map((ratingTag) => (
                     <div className={classes.ratingTag} key={ratingTag.toString()}>
                         <div className={classes.ratingTagName}>{ratingTag.name}</div>
                         <div className={classes.ratingTagPerc}>({ratingTag.value}%)</div>
-                        <div className={classes.ratingTagLine} style={{ width: `${ratingTag.value / 100 * ratingTagLineMaxWidth}px` }}></div>
+                        <div className={classes.ratingTagLine} style={{ width: `${ratingTag.value / 100 * RatingTagLineMaxWidth}px` }}></div>
                     </div>))}
                 </div>
             </div>

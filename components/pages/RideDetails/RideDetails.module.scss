@@ -13,7 +13,7 @@ $pic-size: 250px;
 }
 
 .titleContainer {
-    padding: 5px 10vw;
+    padding: 20px 10vw 0px;
     margin: 0% (-$page-margin);
 }
 
@@ -23,7 +23,7 @@ $pic-size: 250px;
 
 .picsContainer {
     margin: -$pic-margin;
-    padding: 25px 0px;
+    padding: 50px 0px;
     display: flex;
     flex-wrap: wrap;
     height: $pic-size;

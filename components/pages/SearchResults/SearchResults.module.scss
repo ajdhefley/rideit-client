@@ -1,0 +1,42 @@
+.sidePanel {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.searchResult {
+    cursor: pointer;
+    display: block;
+    padding: 0 10vw;
+    margin: 35px 0px;
+    opacity: 0.9;
+
+    &:hover {
+        opacity: 1.0;
+    }
+
+    .searchResultImg {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+
+        img {
+            border-radius: 5px;
+        }
+    }
+
+    .searchResultText {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0px 10px;
+
+        .searchResultTitle {
+            font-size: 1.5rem;
+        }
+    
+        .searchResultSubTitle {
+            font-size: 1.25rem;
+        }
+    }
+}

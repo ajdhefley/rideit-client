@@ -3,6 +3,7 @@ import { CoasterPageComment } from './CoasterPageComment';
 
 export class CoasterPageModel {
     ImgList: CoasterImage[];
+    CoasterId: number;
     Name: string;
     Park: string;
     HeightInFt: number;
@@ -24,6 +25,7 @@ export class CoasterPageModel {
     InsideSeatsPerRow: number;
     OutsideSeatsPerRow: number;
     EntrySide: 'right' | 'left';
+    Url: string;
 
     get TotalRows() {
         return this.CarsPerTrain * this.RowsPerCar;
