@@ -3,13 +3,15 @@ import Image from 'next/image'
 import { NextPage } from 'next'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faUser, faComment, faAngleDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faUser, faComment } from '@fortawesome/free-solid-svg-icons'
 import { Coaster } from '../../../models/Coaster'
-import { InfoField } from '../../forms/InfoField/InfoField'
-import { AsyncLoader } from '../../forms/AsyncLoader/AsyncLoader'
-import { Separator } from '../../forms/Separator/Separator'
-import { CoasterTrainViewer } from '../../coaster/CoasterTrainViewer/CoasterTrainViewer'
+import { InfoField } from '../../elements/InfoField/InfoField'
+import { AsyncLoader } from '../../elements/AsyncLoader/AsyncLoader'
+import { Separator } from '../../elements/Separator/Separator'
+import { CoasterTrainViewer } from '../../elements/CoasterTrainViewer/CoasterTrainViewer'
 import classes from './RideDetails.module.scss'
+import { CoasterCommentSection } from '../../elements/CoasterCommentSection/CoasterCommentSection'
+import { CoasterComment } from '../../../models/CoasterComment'
 
 /**
  * 
@@ -24,6 +26,11 @@ interface RideDetailsPageProps {
      * 
      **/
     coasterAge: number;
+
+    /**
+     * 
+     **/
+    comments: CoasterComment[];
 }
 
 /**
@@ -76,7 +83,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 {coaster.ImgList.slice(0, 4).map((img) => (
                     <div key={img.ImageUrl} className={classes.pic}>
                         <Image className={classes.pic} src={img.ImageUrl} blurDataURL={img.Base64} placeholder="blur" 
-                        layout='fill'
+                        layout="fill"
                         width={250}
                         height={250} />
                     </div>
@@ -161,20 +168,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
             </div>
             {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<a>Update</a></span> : <a>Review this coaster</a>}
             <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
-                {coaster.comments?.map((comment) => (
-                <div className={classes.comment} key={comment.commentId}>
-                    <div className={classes.commentAvatar}></div>
-                    <div className={classes.fcommentTextWrapper}>
-                        <div className={classes.commentUsername}>{comment.author}</div>
-                        <div className={classes.commentTimestamp} title={comment.timestampStr}>{comment.timestampFromNow}</div>
-                        <div className={classes.commentText}>{comment.body}</div>
-                        <div className={classes.commentFooter}>
-                            <FontAwesomeIcon icon={faThumbsUp} className={`${classes.commentLikeButton} ${classes.icon}`} /> {comment.likeCount}
-                            <span className={classes.commentReplyButton}>Reply</span>
-                        </div>
-                    </div>
-                </div>))}
-                <FontAwesomeIcon icon={faAngleDown} className={`${classes.showMoreComments} ${classes.icon}`} title="Show more comments" />
+                <CoasterCommentSection coasterId={coaster.CoasterId} />
             </div>
         </div>
     </>

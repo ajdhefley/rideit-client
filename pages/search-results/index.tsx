@@ -8,7 +8,7 @@ export default SearchResultsPage
  **/
 export async function getServerSideProps({ query }) {
     const q = query['q']
-    const res = await fetch(`${process.env.API_URL}/coasters?filter=${q}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/coasters?filter=${q}`)
     const json = await res.json()
 
     return {

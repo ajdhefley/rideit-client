@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { RideDetailsPage } from '../../components/pages/RideDetails/RideDetails'
 
 export default RideDetailsPage
@@ -7,11 +8,23 @@ export default RideDetailsPage
  * Determines all coaster detail pages, at build time.
  **/
 export async function getStaticPaths() {
-    const res = await fetch(`${process.env.API_URL}/coasters`)
-    const json = await res.json()
+    const client = new ApolloClient({
+        uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+        cache: new InMemoryCache()
+    })
+
+    const { data } = await client.query({
+        query: gql`
+            query {
+                coasters {
+                    Url
+                }
+            }
+        `
+    })
 
     return {
-        paths: json.map(c => ({
+        paths: data.coasters.map(c => ({
             params: { url: c.Url.toString() }
         })),
         fallback: false
@@ -22,19 +35,53 @@ export async function getStaticPaths() {
  * Fetches static data and pre-renders each coaster detail page, at build time.
  **/
 export async function getStaticProps({ params }) {
-    const res = await fetch(`${process.env.API_URL}/coasters/${params.url}`)
-    const json = await res.json()
+    const client = new ApolloClient({
+        uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+        cache: new InMemoryCache()
+    })
+
+    const { data } = await client.query({
+        query: gql`
+            query {
+                coaster(url: "${params.url}") {
+                    Name,
+                    Park,
+                    Type,
+                    Model,
+                    OpeningDate,
+                    Manufacturer,
+                    HeightInFt,
+                    DropInFt,
+                    LengthInFt,
+                    SpeedInMph,
+                    Inversions,
+                    ColorPrimary,
+                    ColorSecondary,
+                    Url,
+                    CarsPerTrain,
+                    RowsPerCar,
+                    InsideSeatsPerRow,
+                    OutsideSeatsPerRow,
+                    ImgList {
+                        CoasterId,
+                        ImageUrl,
+                        Base64
+                    }
+                }
+            }
+        `
+    })
 
     const age = (() => {
-        const opened = moment(json.OpeningDate, json.OpeningDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
-        const closed = json.CloseDate ? moment(json.CloseDate, json.CloseDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
+        const opened = moment(data.coaster.OpeningDate, data.coaster.OpeningDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
+        const closed = data.coaster.CloseDate ? moment(data.coaster.CloseDate, data.coaster.CloseDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
         const duration = moment.duration(closed.diff(opened))
         return Math.floor(duration.asYears())
     })()
 
     return {
         props: {
-            coaster: json,
+            coaster: data.coaster,
             coasterAge: age
         }
     }
