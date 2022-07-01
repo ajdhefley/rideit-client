@@ -1,3 +1,4 @@
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
 import { SearchResultsPage } from '../../components/pages/SearchResults/SearchResults'
 
 export default SearchResultsPage
@@ -7,13 +8,46 @@ export default SearchResultsPage
  * can be displayed with the rest of the content on page load.
  **/
 export async function getServerSideProps({ query }) {
-    const q = query['q']
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/coasters?filter=${q}`)
-    const json = await res.json()
+    const client = new ApolloClient({
+        uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+        cache: new InMemoryCache()
+    })
+
+    const { data } = await client.query({
+        query: gql`
+            query {
+                coasterFilter(name: "${query.q}") {
+                    Name,
+                    Park,
+                    Type,
+                    Model,
+                    OpeningDate,
+                    Manufacturer,
+                    HeightInFt,
+                    DropInFt,
+                    LengthInFt,
+                    SpeedInMph,
+                    Inversions,
+                    ColorPrimary,
+                    ColorSecondary,
+                    Url,
+                    CarsPerTrain,
+                    RowsPerCar,
+                    InsideSeatsPerRow,
+                    OutsideSeatsPerRow,
+                    ImgList {
+                        CoasterId,
+                        ImageUrl,
+                        Base64
+                    }
+                }
+            }
+        `
+    })
 
     return {
         props: {
-            coasters: json
+            coasters: data.coasterFilter
         }
     }
 }
