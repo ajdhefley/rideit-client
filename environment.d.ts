@@ -6,4 +6,10 @@ declare global {
     }
 }
 
+declare module 'next' {
+    export declare type NextPage<P = {}, IP = P> = NextComponentType<NextPageContext, IP, P> & {
+        getLayout: (component: NextComponentType) => JSX.Element;
+    };
+}
+
 export {}

@@ -1,6 +1,9 @@
 import moment from 'moment'
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { RideDetailsPage } from '../../components/pages/RideDetails/RideDetails'
+import { getMainLayout } from '../../components/layouts/MainLayout/MainLayout';
+
+RideDetailsPage.getLayout = getMainLayout
 
 export default RideDetailsPage
 

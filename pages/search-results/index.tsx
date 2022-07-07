@@ -1,5 +1,8 @@
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
+import { getMainLayout } from '../../components/layouts/MainLayout/MainLayout'
 import { SearchResultsPage } from '../../components/pages/SearchResults/SearchResults'
+
+SearchResultsPage.getLayout = getMainLayout
 
 export default SearchResultsPage
 

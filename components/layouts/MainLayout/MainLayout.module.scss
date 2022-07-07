@@ -1,0 +1,25 @@
+@import "../../../styles/variables";
+
+.mainContent {
+  background: #fff;
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+}
+
+.headerContainer {
+  width: 100%;
+  height: $header-height;
+  z-index: 1;
+}
+
+.footerContainer {
+  height: $footer-height;
+}
+
+.headerContainer, .footerContainer {
+  margin: 0 10vw;
+  color: #111;
+}
