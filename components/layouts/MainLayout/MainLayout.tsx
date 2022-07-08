@@ -1,8 +1,8 @@
-import { faBars, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faMagnifyingGlass, faUser, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import classes from './MainLayout.module.scss'
 
 /**
@@ -10,10 +10,26 @@ import classes from './MainLayout.module.scss'
  **/
 function MainLayout({ children }) {
     const [searchValue, setSearchValue] = useState('')
+    const [searchFocused, setSearchFocused] = useState(false)
+    const [searchClearVisible, setSearchClearVisible] = useState(false)
     const router = useRouter()
 
+    useEffect(() => {
+        setSearchClearVisible(searchFocused && searchValue.length > 0)
+    }, [searchValue])
+
+    useEffect(() => {
+        setSearchClearVisible(searchFocused && searchValue.length > 0)
+    }, [searchFocused])
+
+    function clearSearch() {
+        setSearchValue('')
+    }
+
     function executeSearch() {
-        router.push(`/search-results?q=${searchValue}`)
+        if (searchValue.length > 0) {
+            router.push(`/search-results?q=${searchValue}`)
+        }
     }
 
     return <>
@@ -24,7 +40,16 @@ function MainLayout({ children }) {
                         <div className={classes.headerMenuIcon}><FontAwesomeIcon icon={faBars} /></div>
                     </div>
                     <div className={classes.headerSearchContainer}>
-                        <input type="text" className={classes.headerSearchBar} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                        {searchClearVisible && <div onClick={clearSearch} className={classes.searchCancel}>
+                            <FontAwesomeIcon icon={faX} />
+                        </div>}
+                        <input type="text"
+                            className={classes.headerSearchBar}
+                            value={searchValue}
+                            onKeyDown={(e) => e.keyCode == 13 ? executeSearch() : null}
+                            onChange={(e) => setSearchValue(e.target.value)}
+                            onFocus={() => setSearchFocused(true)}
+                            onBlur={() => setSearchFocused(false)} />
                         <button className={classes.headerSearchButton} onClick={executeSearch}>
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>

@@ -1,9 +1,12 @@
 @import "../../../styles/variables";
 
+$search-btn-color: #dadada;
+
 .mainContent {
     background: #fff;
     min-height: calc(100vh - 150px);
     overflow: hidden;
+    margin-top: $header-height;
 }
 
 .headerSearchContainer {
@@ -13,6 +16,7 @@
     max-width: 500px;
     height: 100%;
     width: 33%;
+    position: relative;
 }
 
 .headerMenuContainer {
@@ -46,38 +50,57 @@
 }
 
 .headerSearchButton {
+    z-index: 1;
+    cursor: pointer;
     font-size: 1.25rem;
-    border: 1px solid #d3d3d3;
-    background: #ddd;
+    border: 1px solid darken($search-btn-color, 10%);
+    background: $search-btn-color;
     color: #444;
-    margin-left: 1px;
-    padding: 0px 42px 0px 25px;
+    margin-left: -1px;
+    padding: 0px 34px 0px 15px;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     width: 20px;
-    height: 75%;
+    height: 60%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+
+    &:hover {
+        background: darken($search-btn-color, 5%);
+    }
+
+    &:active {
+        background: darken($search-btn-color, 10%);
+    }
 }
 
 .headerSearchBar {
-    border: 0;
-    font-size: 1.1rem;
-    height: 75%;
+    z-index: 2;
+    font-size: 1rem;
+    padding: 5px;
+    height: 60%;
     width: calc(100% - 20px - 20px - 20px);
     box-shadow: 0px 0px 2px -1px #000;
+    border: 1px solid #bbb;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+
+    &:focus {
+        border: 0;
+    }
 }
 
 .headerContainer {
+    position: fixed;
     display: flex;
     align-items: center;
+    top: 0;
     width: 100%;
     height: $header-height;
     z-index: 1;
+    background: $background-color;
 }
 
 .footerContainer {
@@ -97,4 +120,11 @@
 
 .headerContainer, .footerContainer {
     color: #111;
+}
+
+.searchCancel {
+    cursor: pointer;
+    position: absolute;
+    z-index: 3;
+    right: 70px;
 }
