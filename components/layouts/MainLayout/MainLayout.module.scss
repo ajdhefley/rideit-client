@@ -3,6 +3,7 @@
 .mainContent {
     background: #fff;
     min-height: calc(100vh - 150px);
+    overflow: hidden;
 }
 
 .headerSearchContainer {
@@ -69,11 +70,6 @@
     border-bottom-left-radius: 2px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-
-    &:focus {
-        outline-width: 1px;
-        outline-style: solid;
-    }
 }
 
 .headerContainer {

@@ -1,0 +1,20 @@
+.fbButton {
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color .3s,border-color .3s;
+    background-color: #4c69ba;
+    border: calc(0.06887vw + 0.67769px) solid #4c69ba;
+    padding: 10px;
+    width: 100%;
+
+    svg {
+        margin-left: -55px;
+        padding-right: 80px;
+        font-size: 1rem;
+    }
+}
