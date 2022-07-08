@@ -1,6 +1,4 @@
-> ### Frontend web application (Next.js, React, GraphQL) for a roller coaster ranking platform.
-
-----------
+Frontend web application [Next.js, React, GraphQL] for a roller coaster ranking platform.
 
 # Getting started
 
