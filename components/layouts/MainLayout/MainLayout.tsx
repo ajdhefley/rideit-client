@@ -38,7 +38,14 @@ function MainLayout({ children }) {
                 <div className={classes.mainContent}>{children}</div>
             </main>
             <footer>
-                <div className={classes.footerContainer}>footer</div>
+                <div className={classes.footerContainer}>
+                    <ul>
+                        <li><a>About</a></li>
+                        <li><a>Terms</a></li>
+                        <li><a>Contact</a></li>
+                    </ul>
+                    <p>&copy; 2022 Ashton Hefley. All Rights Reserved.</p>
+                </div>
             </footer>
         </div>
     </>

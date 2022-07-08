@@ -85,9 +85,19 @@
 
 .footerContainer {
     height: $footer-height;
+    text-align: center;
+
+    ul > li {
+        display: inline-block;
+        list-style-type: none;
+
+        &:not(:last-child)::after {
+            content: ' | ';
+            padding: 0px 10px;
+        }
+    }
 }
 
 .headerContainer, .footerContainer {
-    //margin: 0 10vw;
     color: #111;
 }
