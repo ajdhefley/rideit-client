@@ -7,6 +7,7 @@
     height: 30px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .formContainer {
@@ -42,4 +43,11 @@
 
 .orDivider {
     margin: 20px 0px;
+}
+
+.validationMessage {
+    font-size: 1.5rem;
+    color: #c73e34;
+    text-align: center;
+    padding: 40px 0px 0px;
 }
