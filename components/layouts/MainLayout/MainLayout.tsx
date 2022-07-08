@@ -1,16 +1,37 @@
+import { faBars, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import classes from './MainLayout.module.scss'
 
 /**
  * 
  **/
 function MainLayout({ children }) {
+    const [searchValue, setSearchValue] = useState('')
+    const router = useRouter()
+
+    function executeSearch() {
+        router.push(`/search-results?q=${searchValue}`)
+    }
+
     return <>
         <div className="app">
             <header>
                 <div className={classes.headerContainer}>
-                <div className={classes.headerTop}><a>top header</a></div>
-                <div>bottom header</div>
+                    <div className={classes.headerMenuContainer}>
+                        <div className={classes.headerMenuIcon}><FontAwesomeIcon icon={faBars} /></div>
+                    </div>
+                    <div className={classes.headerSearchContainer}>
+                        <input type="text" className={classes.headerSearchBar} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                        <button className={classes.headerSearchButton} onClick={executeSearch}>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
+                    </div>
+                    <div className={classes.headerAccountContainer}>
+                        <div className={classes.headerAccountIcon}><FontAwesomeIcon icon={faUser} /></div>
+                    </div>
                 </div>
             </header>
             <main>
@@ -24,6 +45,5 @@ function MainLayout({ children }) {
 }
 
 export function getMainLayout(page: NextPage, props?: { }) {
-    console.log('get ma');
     return <MainLayout {...props}>{page}</MainLayout>
 }
