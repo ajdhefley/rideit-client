@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 import { Coaster } from '../../../models/Coaster'
 import classes from './SearchResults.module.scss'
+import { PageTitle } from '../../elements/PageTitle/PageTitle';
 
 /**
  * 
@@ -23,9 +24,7 @@ export const SearchResultsPage: NextPage<SearchResultsPageProps> = ({ coasters }
     const router = useRouter()
 
     return <>
-        <Head>
-            <title>{router.query['q']} - RideIt</title>
-        </Head>
+        <PageTitle>{router.query['q'] as string}</PageTitle>
         <div className={classes.sidePanel} style={{ width: '66.66%' }}>
             {coasters.map((coaster) => (
                 <Link key={coaster.CoasterId} href={`/ride-details/${coaster.Url}`}>

@@ -5,6 +5,8 @@ import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
 import { AuthFacebook } from '../../elements/AuthFacebook/AuthFacebook'
 import { AuthGoogle } from '../../elements/AuthGoogle/AuthGoogle'
 import classes from './SignIn.module.scss'
+import Head from 'next/head'
+import { PageTitle } from '../../elements/PageTitle/PageTitle'
 
 /**
  * 
@@ -43,6 +45,7 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
     }
     
     return <>
+        <PageTitle>Sign In</PageTitle>
         <div className={classes.formContainer}>
             <div className={classes.formInner}>
                 <h2 className={classes.center}>Sign In</h2>

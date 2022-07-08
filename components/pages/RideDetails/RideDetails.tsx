@@ -12,6 +12,7 @@ import { CoasterTrainViewer } from '../../elements/CoasterTrainViewer/CoasterTra
 import classes from './RideDetails.module.scss'
 import { CoasterCommentSection } from '../../elements/CoasterCommentSection/CoasterCommentSection'
 import { CoasterComment } from '../../../models/CoasterComment'
+import { PageTitle } from '../../elements/PageTitle/PageTitle'
 
 /**
  * 
@@ -48,9 +49,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
     }
 
     return <>
-        <Head>
-            <title>{coaster.Name} ({coaster.Park}) - RideIt</title>
-        </Head>
+        <PageTitle>{`${coaster.Name} (${coaster.Park})`}</PageTitle>
         <div className={classes.coasterPageContainer}>
             <div className={classes.titleContainer}>
                 <p className={classes.titleLarge}>{coaster.Name}</p>
