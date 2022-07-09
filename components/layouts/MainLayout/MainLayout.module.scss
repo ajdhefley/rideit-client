@@ -112,7 +112,7 @@ $search-btn-color: #dadada;
         list-style-type: none;
 
         &:not(:last-child)::after {
-            content: ' | ';
+            content: " | ";
             padding: 0px 10px;
         }
     }

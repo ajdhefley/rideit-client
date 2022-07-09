@@ -1,7 +1,7 @@
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Script from 'next/script'
-import ReactFacebookLoginWithButton from 'react-facebook-login';
+import ReactFacebookLoginWithButton from 'react-facebook-login'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 import classes from './AuthFacebook.module.scss'
 
 /**

@@ -1,0 +1,22 @@
+$padding-vertical: 25px;
+$padding-horizontal: 50px;
+$width: 100px;
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.25);
+
+    .loadingIndicator {
+        position: absolute;
+        top: calc(50% - #{$padding-vertical/2});
+        left: calc(50% - #{$width/2} - #{$padding-horizontal/2});
+        width: $width;
+        background: #f1f1f1;
+        text-align: center;
+        padding: $padding-vertical $padding-horizontal;
+    }
+}

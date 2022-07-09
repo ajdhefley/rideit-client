@@ -103,6 +103,6 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
                 <AuthFacebook />
             </div>
         </div>
-        <p className={classes.center}>Don't have an account? Sign up <Link href="/signup"><a>here</a></Link>.</p>
+        <p className={classes.center}>Don&apos;t have an account? Sign up <Link href="/signup"><a>here</a></Link>.</p>
     </>
 }
