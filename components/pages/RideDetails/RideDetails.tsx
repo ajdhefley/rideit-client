@@ -166,7 +166,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
             </div>
             {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<a>Update</a></span> : <a>Review this coaster</a>}
             <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
-                <CoasterCommentSection coasterId={coaster.coasterId} />
+                <CoasterCommentSection coasterUrl={coaster.url} />
             </div>
         </div>
     </>

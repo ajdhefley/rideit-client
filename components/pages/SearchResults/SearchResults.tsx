@@ -1,11 +1,11 @@
-import Head from 'next/head';
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router';
-import { NextPage } from 'next';
+import { useRouter } from 'next/router'
+import { NextPage } from 'next'
 import { Coaster } from '../../../models/Coaster'
+import { PageTitle } from '../../elements/PageTitle/PageTitle'
 import classes from './SearchResults.module.scss'
-import { PageTitle } from '../../elements/PageTitle/PageTitle';
 
 /**
  * 

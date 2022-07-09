@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Coaster } from '../../../models/Coaster'
 import classes from './CoasterTrainViewer.module.scss'
 

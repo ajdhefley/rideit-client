@@ -1,5 +1,5 @@
-import { CoasterImage } from './CoasterImage';
-import { CoasterComment } from './CoasterComment';
+import { CoasterImage } from './CoasterImage'
+import { CoasterComment } from './CoasterComment'
 
 export class Coaster {
     coasterId: number;

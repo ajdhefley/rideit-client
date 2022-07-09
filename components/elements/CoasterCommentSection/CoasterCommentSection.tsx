@@ -1,7 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import classes from './CoasterCommentSection.module.scss';
-import { CoasterComment } from '../../../models/CoasterComment';
+import { CoasterComment } from '../../../models/CoasterComment'
+import classes from './CoasterCommentSection.module.scss'
+import { gql, useQuery } from '@apollo/client';
 
 /**
  * 
@@ -10,17 +11,24 @@ interface CoasterCommentSectionProps {
     /**
      * 
      **/
-    coasterId: number;
+    coasterUrl: string;
 }
 
 /**
  * 
  **/
-export const CoasterCommentSection: React.FC<CoasterCommentSectionProps> = ({ coasterId }) => {
-    const comments: Array<CoasterComment> = []; // TODO
+export const CoasterCommentSection: React.FC<CoasterCommentSectionProps> = ({ coasterUrl }) => {
+    const { loading, error, data } = useQuery(gql`
+        query {
+            comments(coasterUrl: "${coasterUrl}") {
+                body,
+                timestamp
+            }
+        }
+    `)
 
     return <>
-        {comments?.map((comment) => (
+        {data?.comments?.map((comment) => (
         <div className={classes.comment} key={comment.commentId}>
             <div className={classes.commentAvatar}></div>
             <div className={classes.fcommentTextWrapper}>
