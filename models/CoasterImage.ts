@@ -1,4 +1,4 @@
 export class CoasterImage {
-    ImageUrl: string;
-    Base64: string;
+    imageUrl: string;
+    base64: string;
 }

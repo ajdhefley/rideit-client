@@ -27,11 +27,11 @@ export const SearchResultsPage: NextPage<SearchResultsPageProps> = ({ coasters }
         <PageTitle>{router.query['q'] as string}</PageTitle>
         <div className={classes.sidePanel} style={{ width: '66.66%' }}>
             {coasters.map((coaster) => (
-                <Link key={coaster.CoasterId} href={`/ride-details/${coaster.Url}`}>
+                <Link key={coaster.coasterId} href={`/ride-details/${coaster.url}`}>
                     <a className={classes.searchResult}>
                         <div className={classes.searchResultImg}>
                             <Image
-                                className={classes.pic} src={coaster.ImgList[0].ImageUrl} blurDataURL={coaster.ImgList[0].Base64}
+                                className={classes.pic} src={coaster.imgList[0].imageUrl} blurDataURL={coaster.imgList[0].base64}
                                 placeholder="blur" 
                                 layout="fill"
                                 width={250}
@@ -39,8 +39,8 @@ export const SearchResultsPage: NextPage<SearchResultsPageProps> = ({ coasters }
                             />
                         </div>
                         <div className={classes.searchResultText}>
-                            <div className={classes.searchResultTitle}>{coaster.Name}</div>
-                            <div className={classes.searchResultSubTitle}>{coaster.Park}</div>
+                            <div className={classes.searchResultTitle}>{coaster.name}</div>
+                            <div className={classes.searchResultSubTitle}>{coaster.park}</div>
                         </div>
                     </a>
                 </Link>

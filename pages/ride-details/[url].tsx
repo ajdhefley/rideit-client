@@ -20,7 +20,7 @@ export async function getStaticPaths() {
         query: gql`
             query {
                 coasters {
-                    Url
+                    url
                 }
             }
         `
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 
     return {
         paths: data.coasters.map(c => ({
-            params: { url: c.Url.toString() }
+            params: { url: c.url.toString() }
         })),
         fallback: false
     }
@@ -47,28 +47,28 @@ export async function getStaticProps({ params }) {
         query: gql`
             query {
                 coaster(url: "${params.url}") {
-                    Name,
-                    Park,
-                    Type,
-                    Model,
-                    OpeningDate,
-                    Manufacturer,
-                    HeightInFt,
-                    DropInFt,
-                    LengthInFt,
-                    SpeedInMph,
-                    Inversions,
-                    ColorPrimary,
-                    ColorSecondary,
-                    Url,
-                    CarsPerTrain,
-                    RowsPerCar,
-                    InsideSeatsPerRow,
-                    OutsideSeatsPerRow,
-                    ImgList {
-                        CoasterId,
-                        ImageUrl,
-                        Base64
+                    name,
+                    park,
+                    type,
+                    model,
+                    openingDate,
+                    manufacturer,
+                    heightInFt,
+                    dropInFt,
+                    lengthInFt,
+                    speedInMph,
+                    inversions,
+                    colorPrimary,
+                    colorSecondary,
+                    url,
+                    carsPerTrain,
+                    rowsPerCar,
+                    insideSeatsPerRow,
+                    outsideSeatsPerRow,
+                    imgList {
+                        coasterId,
+                        imageUrl,
+                        base64
                     }
                 }
             }
@@ -76,8 +76,8 @@ export async function getStaticProps({ params }) {
     })
 
     const age = (() => {
-        const opened = moment(data.coaster.OpeningDate, data.coaster.OpeningDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
-        const closed = data.coaster.CloseDate ? moment(data.coaster.CloseDate, data.coaster.CloseDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
+        const opened = moment(data.coaster.openingDate, data.coaster.openingDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
+        const closed = data.coaster.closeDate ? moment(data.coaster.closeDate, data.coaster.closeDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
         const duration = moment.duration(closed.diff(opened))
         return Math.floor(duration.asYears())
     })()

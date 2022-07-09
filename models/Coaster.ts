@@ -2,41 +2,40 @@ import { CoasterImage } from './CoasterImage';
 import { CoasterComment } from './CoasterComment';
 
 export class Coaster {
-    ImgList: CoasterImage[];
-    CoasterId: number;
-    Name: string;
-    Park: string;
-    HeightInFt: number;
-    DropInFt: number;
-    LengthInFt: number;
-    SpeedInMph: number;
-    Inversions: number;
-    ColorPrimary: string;
-    ColorSecondary: string;
-    Type: string;
-    Manufacturer: string;
-    Model: string;
-    OpeningDate: string;
-    CloseDate: string;
-    Location: string;
-    AgeInYears: number;
-    CarsPerTrain: number;
-    RowsPerCar: number;
-    InsideSeatsPerRow: number;
-    OutsideSeatsPerRow: number;
-    EntrySide: 'right' | 'left';
-    Url: string;
+    coasterId: number;
+    name: string;
+    park: string;
+    heightInFt: number;
+    dropInFt: number;
+    lengthInFt: number;
+    speedInMph: number;
+    inversions: number;
+    colorPrimary: string;
+    colorSecondary: string;
+    type: string;
+    manufacturer: string;
+    model: string;
+    openingDate: string;
+    closeDate: string;
+    location: string;
+    ageInYears: number;
+    carsPerTrain: number;
+    rowsPerCar: number;
+    insideSeatsPerRow: number;
+    outsideSeatsPerRow: number;
+    url: string;
+    imgList: CoasterImage[];
 
-    get TotalRows() {
-        return this.CarsPerTrain * this.RowsPerCar;
+    get totalRows() {
+        return this.carsPerTrain * this.rowsPerCar;
     }
     
-    get TotalSeats() {
-        return this.TotalRows * (this.InsideSeatsPerRow + this.OutsideSeatsPerRow);
+    get totalSeats() {
+        return this.totalRows * (this.insideSeatsPerRow + this.outsideSeatsPerRow);
     }
 
     // TODO
-    AngleInDegrees: number;
+    angleInDegrees: number;
     ratingAverage: number;
     ratingCount: number;
     rank: number;

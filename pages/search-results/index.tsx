@@ -20,28 +20,28 @@ export async function getServerSideProps({ query }) {
         query: gql`
             query {
                 coasterFilter(name: "${query.q}") {
-                    Name,
-                    Park,
-                    Type,
-                    Model,
-                    OpeningDate,
-                    Manufacturer,
-                    HeightInFt,
-                    DropInFt,
-                    LengthInFt,
-                    SpeedInMph,
-                    Inversions,
-                    ColorPrimary,
-                    ColorSecondary,
-                    Url,
-                    CarsPerTrain,
-                    RowsPerCar,
-                    InsideSeatsPerRow,
-                    OutsideSeatsPerRow,
-                    ImgList {
-                        CoasterId,
-                        ImageUrl,
-                        Base64
+                    name,
+                    park,
+                    type,
+                    model,
+                    openingDate,
+                    manufacturer,
+                    heightInFt,
+                    dropInFt,
+                    lengthInFt,
+                    speedInMph,
+                    inversions,
+                    colorPrimary,
+                    colorSecondary,
+                    url,
+                    carsPerTrain,
+                    rowsPerCar,
+                    insideSeatsPerRow,
+                    outsideSeatsPerRow,
+                    imgList {
+                        coasterId,
+                        imageUrl,
+                        base64
                     }
                 }
             }
