@@ -38,8 +38,7 @@ export async function getServerSideProps({ query }) {
                     rowsPerCar,
                     insideSeatsPerRow,
                     outsideSeatsPerRow,
-                    imgList {
-                        coasterId,
+                    images {
                         imageUrl,
                         base64
                     }
@@ -49,8 +48,6 @@ export async function getServerSideProps({ query }) {
     })
 
     return {
-        props: {
-            coasters: data.coasterFilter
-        }
+        props: { coasters: data.coasterFilter }
     }
 }

@@ -25,13 +25,14 @@ export const SearchResultsPage: NextPage<SearchResultsPageProps> = ({ coasters }
 
     return <>
         <PageTitle>{router.query['q'] as string}</PageTitle>
-        <div className={classes.sidePanel} style={{ width: '66.66%' }}>
+        <div className={classes.searchContainer}>
+            {coasters.length == 0 && <p>No results found.</p>}
             {coasters.map((coaster) => (
                 <Link key={coaster.coasterId} href={`/ride-details/${coaster.url}`}>
                     <a className={classes.searchResult}>
                         <div className={classes.searchResultImg}>
                             <Image
-                                className={classes.pic} src={coaster.imgList[0].imageUrl} blurDataURL={coaster.imgList[0].base64}
+                                className={classes.pic} src={coaster.images[0].imageUrl} blurDataURL={coaster.images[0].base64}
                                 placeholder="blur" 
                                 layout="fill"
                                 width={250}
@@ -45,9 +46,6 @@ export const SearchResultsPage: NextPage<SearchResultsPageProps> = ({ coasters }
                     </a>
                 </Link>
             ))}
-        </div>
-        <div className={classes.sidePanel} style={{ width: '33.33%', background: '#aaa', position: 'fixed' }}>
-            map here
         </div>
     </>
 }

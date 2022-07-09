@@ -47,6 +47,7 @@ $search-btn-color: #dadada;
     color: #333;
     text-align: center;
     box-shadow: 0px 1px 6px -2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 .headerSearchButton {
@@ -127,4 +128,10 @@ $search-btn-color: #dadada;
     position: absolute;
     z-index: 3;
     right: 70px;
+}
+
+.accountMenu {
+    position: absolute;
+    right: 0;
+    top: $header-height;
 }

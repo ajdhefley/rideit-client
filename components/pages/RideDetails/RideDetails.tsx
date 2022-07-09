@@ -78,7 +78,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 <div style={{ clear: 'both' }}></div>
             </div>
             <div className={classes.picsContainer}>
-                {coaster.imgList.slice(0, 4).map((img) => (
+                {coaster.images.slice(0, 4).map((img) => (
                     <div key={img.ImageUrl} className={classes.pic}>
                         <Image className={classes.pic} src={img.imageUrl} blurDataURL={img.base64} placeholder="blur" 
                         layout="fill"

@@ -41,7 +41,7 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
             return setValidationMessage('Password is required.')
         }
 
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/account/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

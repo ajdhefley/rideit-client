@@ -12,6 +12,7 @@ function MainLayout({ children }) {
     const [searchValue, setSearchValue] = useState('')
     const [searchFocused, setSearchFocused] = useState(false)
     const [searchClearVisible, setSearchClearVisible] = useState(false)
+    const [accountMenuOpen, setAccountMenuOpen] = useState(false)
     const router = useRouter()
 
     useEffect(() => {
@@ -30,6 +31,21 @@ function MainLayout({ children }) {
         if (searchValue.length > 0) {
             router.push(`/search-results?q=${searchValue}`)
         }
+    }
+
+    function toggleAccountMenu() {
+        setAccountMenuOpen(!accountMenuOpen);
+    }
+
+    function openProfile() {
+        setAccountMenuOpen(false)
+        router.push('/profile')
+    }
+
+    function signOut() {
+        setAccountMenuOpen(false);
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/account/logout`, { method: 'POST' })
+            .then(() => router.push('/signin'))
     }
 
     return <>
@@ -55,9 +71,13 @@ function MainLayout({ children }) {
                         </button>
                     </div>
                     <div className={classes.headerAccountContainer}>
-                        <div className={classes.headerAccountIcon}><FontAwesomeIcon icon={faUser} /></div>
+                        <div className={classes.headerAccountIcon} onClick={toggleAccountMenu}><FontAwesomeIcon icon={faUser} /></div>
                     </div>
                 </div>
+                {accountMenuOpen && <div className={classes.accountMenu}>
+                    <a onClick={openProfile}>Profile</a>
+                    <a onClick={signOut}>Sign Out</a>
+                </div>}
             </header>
             <main>
                 <div className={classes.mainContent}>{children}</div>

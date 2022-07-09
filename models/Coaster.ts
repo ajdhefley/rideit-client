@@ -24,7 +24,7 @@ export class Coaster {
     insideSeatsPerRow: number;
     outsideSeatsPerRow: number;
     url: string;
-    imgList: CoasterImage[];
+    images: CoasterImage[];
 
     get totalRows() {
         return this.carsPerTrain * this.rowsPerCar;
