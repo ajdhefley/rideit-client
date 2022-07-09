@@ -41,33 +41,34 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
             return setValidationMessage('Password is required.')
         }
 
-        const client = new ApolloClient({
-            uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
-            cache: new InMemoryCache()
-        })
-    
-        client.mutate({
-            mutation: gql`
-                mutation login($input: LoginInput!) {
-                    login(loginData: $input) {
-                        access_token
-                    }
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password }),
+                credentials: 'include'
+            })
+            .then((res) => {
+                switch (res.status) {
+                    case 200:
+                        return res.json()
+                    case 401:
+                    case 403:
+                    case 404:
+                        throw new Error('Invalid username/password.')
+                    default:
+                        throw new Error('There was a problem contacting the server. Please try again later.')
                 }
-            `,
-            variables: {
-                input: { username, password }
-            }
-        })
-        .then(({ data }) => {
-            // TODO: store access token
-            console.log(data)
-            router.push('/dashboard')
-        })
-        .catch((err) => {
-            setPasswordError(true)
-            setUsernameError(true)
-            setValidationMessage('Invalid username/password.')
-        })
+            })
+            .then((res) => {
+                router.push('/dashboard')
+            })
+            .catch((err) => {
+                setPasswordError(true)
+                setUsernameError(true)
+                setValidationMessage(err.message)
+            })
     }
     
     return <>
