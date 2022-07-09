@@ -64,18 +64,19 @@ export async function getStaticProps({ params }) {
                     carsPerTrain,
                     rowsPerCar,
                     insideSeatsPerRow,
-                    outsideSeatsPerRow,
-                    imgList {
-                        coasterId,
-                        imageUrl,
-                        base64
-                    }
+                    outsideSeatsPerRow
+                }
+                coasterImages(coasterUrl: "${params.url}") {
+                    imageUrl,
+                    base64
                 }
             }
         `
     })
 
-    const age = (() => {
+    const coaster = { ...data.coaster, imgList: data.coasterImages }
+
+    const coasterAge = (() => {
         const opened = moment(data.coaster.openingDate, data.coaster.openingDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
         const closed = data.coaster.closeDate ? moment(data.coaster.closeDate, data.coaster.closeDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
         const duration = moment.duration(closed.diff(opened))
@@ -84,8 +85,8 @@ export async function getStaticProps({ params }) {
 
     return {
         props: {
-            coaster: data.coaster,
-            coasterAge: age
+            coaster,
+            coasterAge
         }
     }
 }
