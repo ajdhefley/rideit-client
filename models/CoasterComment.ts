@@ -1,17 +1,17 @@
 import moment from 'moment';
 
 export class CoasterComment {
-    CommentId: number;
-    Author: string;
-    Body: string;
-    Timestamp: Date;
-    LikeCount: number;
+    commentId: number;
+    author: string;
+    body: string;
+    timestamp: Date;
+    likeCount: number;
     
-    get TimestampFromNow() {
-        return moment(this.Timestamp).fromNow();
+    get timestampFromNow() {
+        return moment(this.timestamp).fromNow();
     }
 
-    get TimestampStr() {
-        return moment(this.Timestamp).format('MMMM Do, YYYY h:mma');
+    get timestampStr() {
+        return moment(this.timestamp).format('MMMM Do, YYYY h:mma');
     }
 }

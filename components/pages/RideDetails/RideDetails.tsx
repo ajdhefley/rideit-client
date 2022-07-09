@@ -1,7 +1,6 @@
-import Head from 'next/head'
+import moment from 'moment'
 import Image from 'next/image'
 import { NextPage } from 'next'
-import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUser, faComment } from '@fortawesome/free-solid-svg-icons'
 import { Coaster } from '../../../models/Coaster'
@@ -49,12 +48,12 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
     }
 
     return <>
-        <PageTitle>{`${coaster.Name} (${coaster.Park})`}</PageTitle>
+        <PageTitle>{`${coaster.name} (${coaster.park})`}</PageTitle>
         <div className={classes.coasterPageContainer}>
             <div className={classes.titleContainer}>
-                <p className={classes.titleLarge}>{coaster.Name}</p>
+                <p className={classes.titleLarge}>{coaster.name}</p>
                 <Separator />
-                <p className={classes.titleMedium}>{coaster.Park}</p>
+                <p className={classes.titleMedium}>{coaster.park}</p>
             </div>
             <div className={classes.subTitleContainer}>
                 <span className={classes.titleSmall} title={`Rated ${coaster.ratingAverage} out of 5`} onClick={scrollToRatings}>
@@ -79,9 +78,9 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 <div style={{ clear: 'both' }}></div>
             </div>
             <div className={classes.picsContainer}>
-                {coaster.ImgList.slice(0, 4).map((img) => (
+                {coaster.imgList.slice(0, 4).map((img) => (
                     <div key={img.ImageUrl} className={classes.pic}>
-                        <Image className={classes.pic} src={img.ImageUrl} blurDataURL={img.Base64} placeholder="blur" 
+                        <Image className={classes.pic} src={img.imageUrl} blurDataURL={img.base64} placeholder="blur" 
                         layout="fill"
                         width={250}
                         height={250} />
@@ -91,22 +90,22 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
             <div className={classes.mainPodContainer}>
                 <div className={`${classes.pod} ${classes.statPod}`}>
                     <div className={classes.statPodSeparator}>
-                        <InfoField label="Max Height" value={coaster.HeightInFt} unit="ft" />
-                        <InfoField label="Max Drop" value={coaster.DropInFt} unit="ft" />
-                        <InfoField label="Max Angle" value={coaster.AngleInDegrees} unit={String.fromCharCode(176)} />
+                        <InfoField label="Max Height" value={coaster.heightInFt} unit="ft" />
+                        <InfoField label="Max Drop" value={coaster.dropInFt} unit="ft" />
+                        <InfoField label="Max Angle" value={coaster.angleInDegrees} unit={String.fromCharCode(176)} />
                     </div>
                     <div className={classes.statPodSeparator}>
-                        <InfoField label="Total Length" value={coaster.LengthInFt} unit="ft" />
-                        <InfoField label="Top Speed" value={coaster.SpeedInMph} unit="mph" />
-                        <InfoField label="Inversions" value={coaster.Inversions} visible={coaster.Inversions > 0} />
+                        <InfoField label="Total Length" value={coaster.lengthInFt} unit="ft" />
+                        <InfoField label="Top Speed" value={coaster.speedInMph} unit="mph" />
+                        <InfoField label="Inversions" value={coaster.inversions} visible={coaster.inversions > 0} />
                     </div>
                 </div>
                 <div className={`${classes.pod} ${classes.infoPod}`}>
-                    <InfoField label="Type" value={coaster.Type} />
-                    <InfoField label="Manufacturer" value={coaster.Manufacturer} />
-                    <InfoField label="Model" value={coaster.Model} />
-                    <InfoField label="Location" value={coaster.Location} />
-                    <InfoField label="Opened" value={moment(coaster.OpeningDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
+                    <InfoField label="Type" value={coaster.type} />
+                    <InfoField label="Manufacturer" value={coaster.manufacturer} />
+                    <InfoField label="Model" value={coaster.model} />
+                    <InfoField label="Location" value={coaster.location} />
+                    <InfoField label="Opened" value={moment(coaster.openingDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
                     <InfoField label="Age" value={coasterAge} unit="years" />
                 </div>
                 {/* <div className={`${classes.pod} ${classes.othersLikedPod}`} style={{ display: coaster.park ? 'initial' : 'none' }}>
@@ -163,11 +162,11 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 </div>
             </div>
             <div className={`${classes.pod} ${classes.seatsPod}`}>
-                <CoasterTrainViewer coaster={coaster} primaryColor={coaster.ColorPrimary} secondaryColor={coaster.ColorSecondary} />
+                <CoasterTrainViewer coaster={coaster} primaryColor={coaster.colorPrimary} secondaryColor={coaster.colorSecondary} />
             </div>
             {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<a>Update</a></span> : <a>Review this coaster</a>}
             <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
-                <CoasterCommentSection coasterId={coaster.CoasterId} />
+                <CoasterCommentSection coasterId={coaster.coasterId} />
             </div>
         </div>
     </>

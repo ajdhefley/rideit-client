@@ -21,14 +21,14 @@ export const CoasterCommentSection: React.FC<CoasterCommentSectionProps> = ({ co
 
     return <>
         {comments?.map((comment) => (
-        <div className={classes.comment} key={comment.CommentId}>
+        <div className={classes.comment} key={comment.commentId}>
             <div className={classes.commentAvatar}></div>
             <div className={classes.fcommentTextWrapper}>
-                <div className={classes.commentUsername}>{comment.Author}</div>
-                <div className={classes.commentTimestamp} title={comment.TimestampStr}>{comment.TimestampFromNow}</div>
-                <div className={classes.commentText}>{comment.Body}</div>
+                <div className={classes.commentUsername}>{comment.author}</div>
+                <div className={classes.commentTimestamp} title={comment.timestampStr}>{comment.timestampFromNow}</div>
+                <div className={classes.commentText}>{comment.body}</div>
                 <div className={classes.commentFooter}>
-                    <FontAwesomeIcon icon={faThumbsUp} className={`${classes.commentLikeButton} ${classes.icon}`} /> {comment.LikeCount}
+                    <FontAwesomeIcon icon={faThumbsUp} className={`${classes.commentLikeButton} ${classes.icon}`} /> {comment.likeCount}
                     <span className={classes.commentReplyButton}>Reply</span>
                 </div>
             </div>
