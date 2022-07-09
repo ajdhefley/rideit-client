@@ -14,7 +14,7 @@ export const LoadingIndicator: React.FC<LoadingIndicatorProps> = () => {
     return <>
         <div className={classes.backdrop}>
             <div className={classes.loadingIndicator}>
-                Loading ...
+                Loading...
             </div>
         </div>
     </>

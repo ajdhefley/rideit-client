@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client'
 import { AuthFacebook } from '../../elements/AuthFacebook/AuthFacebook'
 import { AuthGoogle } from '../../elements/AuthGoogle/AuthGoogle'
-import classes from './SignIn.module.scss'
 import { PageTitle } from '../../elements/PageTitle/PageTitle'
-import { useRouter } from 'next/router'
+import { LoadingIndicator } from '../../elements/LoadingIndicator/LoadingIndicator'
+import classes from './SignIn.module.scss'
 
 /**
  * 
@@ -21,6 +21,7 @@ interface SignInPageProps {
 export const SignInPage: NextPage<SignInPageProps> = () => {
     const router = useRouter()
 
+    const [loading, setLoading] = useState(false)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [usernameError, setUsernameError] = useState(false)
@@ -40,6 +41,8 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
             setPasswordError(true)
             return setValidationMessage('Password is required.')
         }
+
+        setLoading(true)
 
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/account/login`, {
                 method: 'POST',
@@ -62,9 +65,10 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
                 }
             })
             .then((res) => {
-                router.push('/dashboard')
+                router.push('/dashboard').then(() => setLoading(false))
             })
             .catch((err) => {
+                setLoading(false)
                 setPasswordError(true)
                 setUsernameError(true)
                 setValidationMessage(err.message)
@@ -73,6 +77,7 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
     
     return <>
         <PageTitle>Sign In</PageTitle>
+        {loading && <LoadingIndicator />}
         <div className={classes.validationMessage} style={{ visibility: usernameError || passwordError ? 'visible' : 'hidden' }}>
             {validationMessage}
         </div>

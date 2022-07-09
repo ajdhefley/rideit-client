@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { LoadingIndicator } from '../../elements/LoadingIndicator/LoadingIndicator'
 import classes from './MainLayout.module.scss'
 
 /**
  * 
  **/
 function MainLayout({ children }) {
+    const [loading, setLoading] = useState(false)
     const [searchValue, setSearchValue] = useState('')
     const [searchFocused, setSearchFocused] = useState(false)
     const [searchClearVisible, setSearchClearVisible] = useState(false)
@@ -29,7 +31,8 @@ function MainLayout({ children }) {
 
     function executeSearch() {
         if (searchValue.length > 0) {
-            router.push(`/search-results?q=${searchValue}`)
+            setLoading(true)
+            router.push(`/search-results?q=${searchValue}`).then(() => setLoading(false))
         }
     }
 
@@ -43,13 +46,17 @@ function MainLayout({ children }) {
     }
 
     function signOut() {
-        setAccountMenuOpen(false);
+        setAccountMenuOpen(false)
+        setLoading(true)
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/account/logout`, { method: 'POST' })
-            .then(() => router.push('/signin'))
+            .then(() => {
+                router.push('/signin').then(() => setLoading(false))
+            })
     }
 
     return <>
         <div className="app">
+            {loading && <LoadingIndicator />}
             <header>
                 <div className={classes.headerContainer}>
                     <div className={classes.headerMenuContainer}>
