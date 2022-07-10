@@ -1,0 +1,36 @@
+$review-padding: 25px;
+
+.reviewWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -25px;
+}
+
+.review {
+    flex-grow: 0;
+    width: calc(50% - #{$review-padding});
+    margin-top: 50px;
+
+    &:nth-child(even) {
+        padding-left: $review-padding;
+    }
+
+    &:nth-child(odd) {
+        padding-right: $review-padding;
+    }
+}
+
+.reviewTitle {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.reviewAuthor {
+    opacity: 0.5;
+    font-weight: 700;
+}
+
+.reviewBody {
+    height: 110px;
+    overflow-y: hidden;
+}

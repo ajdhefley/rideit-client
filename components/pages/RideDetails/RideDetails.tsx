@@ -1,19 +1,17 @@
 import moment from 'moment'
 import Image from 'next/image'
 import { NextPage } from 'next'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faUser, faComment } from '@fortawesome/free-solid-svg-icons'
 import { Coaster } from '../../../models/Coaster'
 import { InfoField } from '../../elements/InfoField/InfoField'
-import { AsyncLoader } from '../../elements/AsyncLoader/AsyncLoader'
 import { Separator } from '../../elements/Separator/Separator'
 import { CoasterTrainViewer } from '../../elements/CoasterTrainViewer/CoasterTrainViewer'
-import classes from './RideDetails.module.scss'
 import { CoasterCommentSection } from '../../elements/CoasterCommentSection/CoasterCommentSection'
 import { CoasterComment } from '../../../models/CoasterComment'
 import { PageTitle } from '../../elements/PageTitle/PageTitle'
 import { CoasterReviewSummarySection } from '../../elements/CoasterReviewSummarySection/CoasterReviewSummarySection'
 import { CoasterReviewSummaryMiniSection } from '../../elements/CoasterReviewSummaryMiniSection/CoasterReviewSummaryMiniSection'
+import classes from './RideDetails.module.scss'
+import { CoasterReviewSection } from '../../elements/CoasterReviewSection/CoasterReviewSection'
 
 /**
  * 
@@ -119,6 +117,9 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 <CoasterTrainViewer coaster={coaster} primaryColor={coaster.colorPrimary} secondaryColor={coaster.colorSecondary} />
             </div>
             {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<a>Update</a></span> : <a>Review this coaster</a>}
+            <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
+                <CoasterReviewSection coasterUrl={coaster.url} />
+            </div>
             <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
                 <CoasterCommentSection coasterUrl={coaster.url} />
             </div>

@@ -80,7 +80,7 @@ export const CoasterReviewSummarySection: React.FC<CoasterReviewSummarySectionPr
                 {reviewCount > 0  && <>{reviewRatingAverage.toFixed(1)} <span className={classes.ratingStatsDescription}>out of 5</span></>}
                 {reviewCount == 0 && <span className={classes.ratingStatsDescription}>&nbsp;No Ratings</span>}
                 &nbsp;<Separator />&nbsp;
-                <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount} <span className={classes.ratingStatsDescription}>reviews</span>
+                <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()} <span className={classes.ratingStatsDescription}>reviews</span>
             </div>
             <div className={classes.reviewTagContainer}>
                 {reviewTags?.map((reviewTag) => (

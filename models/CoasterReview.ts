@@ -4,4 +4,5 @@ export class CoasterReview {
     userId: number;
     title: string;
     body: string;
+    author: { username: string };
 }

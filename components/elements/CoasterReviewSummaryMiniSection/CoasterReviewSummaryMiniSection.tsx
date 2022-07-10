@@ -79,11 +79,11 @@ export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniS
             <span className={classes.titleSmall} title={`Rated ${reviewRatingAverage.toFixed(1)} out of 5`} onClick={scrollToRatings}>
                 <FontAwesomeIcon icon={faStar} className={classes.icon} /> {reviewRatingAverage.toFixed(1)} 
             </span>
-            <span className={classes.titleSmall} title={`Based on ${reviewCount} ratings`} onClick={scrollToRatings}>
-                <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount}
+            <span className={classes.titleSmall} title={`Based on ${reviewCount.toLocaleString()} ratings`} onClick={scrollToRatings}>
+                <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()}
             </span>
-            <span className={classes.titleSmall} title={`${commentCount} comments`} onClick={scrollToComments}>
-                <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount}
+            <span className={classes.titleSmall} title={`${commentCount.toLocaleString()} comments`} onClick={scrollToComments}>
+                <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
             </span>
             <span className={classes.titleSmall}>
                 <Separator /> <a>Ranked #{rank}</a>
