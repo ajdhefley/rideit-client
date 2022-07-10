@@ -13,6 +13,7 @@ import { CoasterCommentSection } from '../../elements/CoasterCommentSection/Coas
 import { CoasterComment } from '../../../models/CoasterComment'
 import { PageTitle } from '../../elements/PageTitle/PageTitle'
 import { CoasterReviewSummarySection } from '../../elements/CoasterReviewSummarySection/CoasterReviewSummarySection'
+import { CoasterReviewSummaryMiniSection } from '../../elements/CoasterReviewSummaryMiniSection/CoasterReviewSummaryMiniSection'
 
 /**
  * 
@@ -38,14 +39,6 @@ interface RideDetailsPageProps {
  * 
  **/
 export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coasterAge }) => {
-    function scrollToRatings() {
-        document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
-    }
-
-    function scrollToComments() {
-        document.getElementById('commentsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
-    }
-
     return <>
         <PageTitle>{`${coaster.name} (${coaster.park})`}</PageTitle>
         <div className={classes.coasterPageContainer}>
@@ -55,26 +48,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 <p className={classes.titleMedium}>{coaster.park}</p>
             </div>
             <div className={classes.subTitleContainer}>
-                <span className={classes.titleSmall} title={`Rated ${coaster.ratingAverage} out of 5`} onClick={scrollToRatings}>
-                    <FontAwesomeIcon icon={faStar} className={classes.icon} /> {coaster.ratingAverage} 
-                </span>
-                <span className={classes.titleSmall} title={`Based on ${coaster.ratingCount} ratings`} onClick={scrollToRatings}>
-                    <FontAwesomeIcon icon={faUser} className={classes.icon} /> {coaster.ratingCount}
-                </span>
-                <span className={classes.titleSmall} title={`${coaster.comments?.length} comments`} onClick={scrollToComments}>
-                    <FontAwesomeIcon icon={faComment} className={classes.icon} /> {coaster.comments?.length}
-                </span>
-                <span className={classes.titleSmall}>
-                    <Separator /> <a>Ranked #{coaster.rank}</a>
-                </span>
-                { coaster.goldenTicketAwards!! &&
-                <span className={classes.titleSmall}>
-                    <Separator /> <a>Won {coaster.goldenTicketAwards} awards</a>
-                </span>}
-                <div style={{ float: 'right' }}>
-                    <a>Share</a>
-                </div>
-                <div style={{ clear: 'both' }}></div>
+                <CoasterReviewSummaryMiniSection coasterUrl={coaster.url} />
             </div>
             <div className={classes.picsContainer}>
                 {coaster.images.slice(0, 4).map((img) => (
