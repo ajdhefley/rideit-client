@@ -1,0 +1,42 @@
+.ratingStatsContainer {
+    font-size: 2rem;
+}
+
+.ratingStatsDescription {
+    font-size: 1rem;
+    margin-left: -2px;
+}
+
+.reviewTagContainer {
+    margin-top: 20px;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.reviewTag {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.reviewTagName {
+    display: inline-block;
+    width: 120px;
+}
+
+.reviewTagPerc {
+    display: inline-block;
+    width: 55px;
+}
+
+.reviewTagLine {
+    display: inline-block;
+    height: 3px;
+    background: #aaa;
+    box-shadow: 0px 0px 2px -1px #333;
+}
+
+.async {
+    color: #999;
+}

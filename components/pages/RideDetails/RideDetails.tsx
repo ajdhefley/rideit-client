@@ -12,6 +12,7 @@ import classes from './RideDetails.module.scss'
 import { CoasterCommentSection } from '../../elements/CoasterCommentSection/CoasterCommentSection'
 import { CoasterComment } from '../../../models/CoasterComment'
 import { PageTitle } from '../../elements/PageTitle/PageTitle'
+import { CoasterReviewSummarySection } from '../../elements/CoasterReviewSummarySection/CoasterReviewSummarySection'
 
 /**
  * 
@@ -37,8 +38,6 @@ interface RideDetailsPageProps {
  * 
  **/
 export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coasterAge }) => {
-    const RatingTagLineMaxWidth = 100
-
     function scrollToRatings() {
         document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
     }
@@ -140,26 +139,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 </div> */}
             </div>
             <div className={`${classes.pod} ${classes.ratingsPod}`} id="ratingsContainer">
-                <div className={classes.ratingStatsContainer}>
-                    <FontAwesomeIcon icon={faStar} className={classes.icon} /> {coaster.ratingAverage} <span className={classes.ratingStatsDescription}>out of 5</span>
-                    &nbsp;<Separator />&nbsp;
-                    <FontAwesomeIcon icon={faUser} className={classes.icon} /> {coaster.ratingCount} <span className={classes.ratingStatsDescription}>ratings</span>
-                </div>
-                <div className={classes.ratingTagContainer}>
-                    {[
-                        { name: 'Roughness', value: 67 },
-                        { name: 'Head Banging', value: 74 },
-                        { name: 'Laterals', value: 56 },
-                        { name: 'Air Time', value: 23 },
-                        { name: 'Low Capacity', value: 43 },
-                        { name: 'Head Choppers', value: 54 },
-                    ].map((ratingTag) => (
-                    <div className={classes.ratingTag} key={ratingTag.toString()}>
-                        <div className={classes.ratingTagName}>{ratingTag.name}</div>
-                        <div className={classes.ratingTagPerc}>({ratingTag.value}%)</div>
-                        <div className={classes.ratingTagLine} style={{ width: `${ratingTag.value / 100 * RatingTagLineMaxWidth}px` }}></div>
-                    </div>))}
-                </div>
+                <CoasterReviewSummarySection coasterUrl={coaster.url} />
             </div>
             <div className={`${classes.pod} ${classes.seatsPod}`}>
                 <CoasterTrainViewer coaster={coaster} primaryColor={coaster.colorPrimary} secondaryColor={coaster.colorSecondary} />

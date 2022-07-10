@@ -27,11 +27,11 @@ import classes from './CoasterTrainViewer.module.scss'
  **/
 export const CoasterTrainViewer: React.FC<CoasterTrainViewerProps> = ({ coaster, primaryColor, secondaryColor }) => {
     const carContainerStyle = { 
-        gridTemplateColumns: Array.from({ length: coaster?.carsPerTrain }).map(() => 'auto').join(' ')
+        gridTemplateColumns: Array.from({ length: coaster?.carsPerTrain ?? 1 }).map(() => 'auto').join(' ')
     }
 
     const rowContainerStyle = { 
-        gridTemplateColumns: Array.from({ length: coaster?.rowsPerCar }).map(() => 'auto').join(' ')
+        gridTemplateColumns: Array.from({ length: coaster?.rowsPerCar ?? 1 }).map(() => 'auto').join(' ')
     }
 
     const rowNumContainerStyle = { 
