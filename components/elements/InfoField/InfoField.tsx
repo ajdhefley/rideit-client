@@ -60,7 +60,7 @@ export const InfoField: React.FC<InfoFieldProps> = ({ icon, label, value, unit, 
     }
 
     function getLoadedField() {
-        if (!visible) {
+        if (visible == false) {
             return <></>
         }
 

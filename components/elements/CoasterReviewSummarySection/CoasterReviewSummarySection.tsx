@@ -31,18 +31,16 @@ export const CoasterReviewSummarySection: React.FC<CoasterReviewSummarySectionPr
     const [reviewTags, setReviewTags] = useState<any[]>()
     const [loaded, setLoaded] = useState<boolean>(false)
 
-    const { data } = useQuery(gql`
-        query {
-            reviews(coasterUrl: "${coasterUrl}") {
-                title,
-                body,
-                rating,
-                reviewTags {
-                    tag
-                }
+    const { data } = useQuery(gql`{
+        reviews(coasterUrl: "${coasterUrl}") {
+            title,
+            body,
+            rating,
+            reviewTags {
+                tag
             }
         }
-    `)
+    }`)
 
     useEffect(() => {
         if (!data)
@@ -84,7 +82,7 @@ export const CoasterReviewSummarySection: React.FC<CoasterReviewSummarySectionPr
             </div>
             <div className={classes.reviewTagContainer}>
                 {reviewTags?.map((reviewTag) => (
-                <div className={classes.reviewTag} key={reviewTag.name}>
+                <div className={classes.reviewTag} key={reviewTag.name} title={`${reviewTag.value}% of reviewers tagged ${reviewTag.name}`}>
                     <div className={classes.reviewTagName}>{reviewTag.name}</div>
                     <div className={classes.reviewTagPerc}>({reviewTag.value}%)</div>
                     <div className={classes.reviewTagLine} style={{ width: `${reviewTag.value / 100 * reviewTagLineMaxWidth}px` }}></div>

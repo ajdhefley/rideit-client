@@ -10,8 +10,8 @@ import { CoasterComment } from '../../../models/CoasterComment'
 import { PageTitle } from '../../elements/PageTitle/PageTitle'
 import { CoasterReviewSummarySection } from '../../elements/CoasterReviewSummarySection/CoasterReviewSummarySection'
 import { CoasterReviewSummaryMiniSection } from '../../elements/CoasterReviewSummaryMiniSection/CoasterReviewSummaryMiniSection'
-import classes from './RideDetails.module.scss'
 import { CoasterReviewSection } from '../../elements/CoasterReviewSection/CoasterReviewSection'
+import classes from './RideDetails.module.scss'
 
 /**
  * 
@@ -110,19 +110,19 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                     <AsyncLoader size={25} />
                 </div> */}
             </div>
-            <div className={`${classes.pod} ${classes.ratingsPod}`} id="ratingsContainer">
+            <div className={`${classes.pod} ${classes.reviewSummaryPod}`} id="ratingsContainer">
                 <CoasterReviewSummarySection coasterUrl={coaster.url} />
             </div>
             <div className={`${classes.pod} ${classes.seatsPod}`}>
                 <CoasterTrainViewer coaster={coaster} primaryColor={coaster.colorPrimary} secondaryColor={coaster.colorSecondary} />
             </div>
-            {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<a>Update</a></span> : <a>Review this coaster</a>}
-            <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
+            {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<button>Update</button></span> : <button>Review This Coaster</button>}
+            <div className={`${classes.pod} ${classes.reviewsPod}`} id="reviewsContainer">
                 <CoasterReviewSection coasterUrl={coaster.url} />
             </div>
-            <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
+            {/* <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
                 <CoasterCommentSection coasterUrl={coaster.url} />
-            </div>
+            </div> */}
         </div>
     </>
 }

@@ -13,34 +13,32 @@ export default SearchResultsPage
  **/
 export async function getServerSideProps({ query }) {
     const { data } = await GraphQLClient.query({
-        query: gql`
-            query {
-                coasterFilter(name: "${query.q}") {
-                    name,
-                    park,
-                    type,
-                    model,
-                    openingDate,
-                    manufacturer,
-                    heightInFt,
-                    dropInFt,
-                    lengthInFt,
-                    speedInMph,
-                    inversions,
-                    colorPrimary,
-                    colorSecondary,
-                    url,
-                    carsPerTrain,
-                    rowsPerCar,
-                    insideSeatsPerRow,
-                    outsideSeatsPerRow,
-                    images {
-                        imageUrl,
-                        base64
-                    }
+        query: gql`{
+            coasterFilter(name: "${query.q}") {
+                name,
+                park,
+                type,
+                model,
+                openingDate,
+                manufacturer,
+                heightInFt,
+                dropInFt,
+                lengthInFt,
+                speedInMph,
+                inversions,
+                colorPrimary,
+                colorSecondary,
+                url,
+                carsPerTrain,
+                rowsPerCar,
+                insideSeatsPerRow,
+                outsideSeatsPerRow,
+                images {
+                    imageUrl,
+                    base64
                 }
             }
-        `
+        }`
     })
 
     return {

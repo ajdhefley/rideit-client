@@ -4,5 +4,7 @@ export class CoasterReview {
     userId: number;
     title: string;
     body: string;
+    rating: number;
+    timestamp: string;
     author: { username: string };
 }

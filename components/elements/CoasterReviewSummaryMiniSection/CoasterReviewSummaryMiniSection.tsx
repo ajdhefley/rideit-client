@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
+import { StarRating } from '../StarRating/StarRating'
 import classes from './CoasterReviewSummaryMiniSection.module.scss'
 
 /**
@@ -26,27 +27,24 @@ export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniS
     const [reviewCount, setReviewCount] = useState<number>(0)
     const [reviewRatingAverage, setReviewRatingAverage] = useState<number>(0)
 
-    const reviewQuery = useQuery(gql`
-        query {
-            reviews(coasterUrl: "${coasterUrl}") {
-                title,
-                body,
-                rating,
-                reviewTags {
-                    tag
-                }
+    const reviewQuery = useQuery(gql`{
+        reviews(coasterUrl: "${coasterUrl}") {
+            title,
+            body,
+            rating,
+            reviewTags {
+                tag
             }
         }
-    `)
+    }`)
 
-    const commentQuery = useQuery(gql`
-        query {
-            comments(coasterUrl: "${coasterUrl}") {
-                body,
-                timestamp
-            }
+    const commentQuery = useQuery(gql`{
+        comments(coasterUrl: "${coasterUrl}") {
+            body,
+            timestamp
         }
-    `)
+    }`)
+
     const rank = 13 // TODO
 
     useEffect(() => {
@@ -62,7 +60,7 @@ export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniS
             return
             
         setReviewCount(reviewQuery.data.reviews.length)
-        setReviewRatingAverage(reviewQuery.data.reviews.reduce((sum, r) => sum + r.rating, 0) / reviewCount)
+        setReviewRatingAverage(reviewQuery.data.reviews.reduce((sum, r) => sum + r.rating, 0) / reviewQuery.data.reviews.length)
         setLoaded(reviewQuery.data && commentQuery.data)
     }, [reviewQuery])
 
@@ -76,20 +74,20 @@ export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniS
 
     return <>
         {loaded && <>
-            <span className={classes.titleSmall} title={`Rated ${reviewRatingAverage.toFixed(1)} out of 5`} onClick={scrollToRatings}>
-                <FontAwesomeIcon icon={faStar} className={classes.icon} /> {reviewRatingAverage.toFixed(1)} 
+            <span className={classes.summarySection} title={`Rated ${reviewRatingAverage.toFixed(1)} out of 5`} onClick={scrollToRatings}>
+                <StarRating rating={reviewRatingAverage} /> {reviewRatingAverage.toFixed(1)} 
             </span>
-            <span className={classes.titleSmall} title={`Based on ${reviewCount.toLocaleString()} ratings`} onClick={scrollToRatings}>
+            <span className={classes.summarySection} title={`Based on ${reviewCount.toLocaleString()} reviews`} onClick={scrollToRatings}>
                 <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()}
             </span>
-            <span className={classes.titleSmall} title={`${commentCount.toLocaleString()} comments`} onClick={scrollToComments}>
+            <span className={classes.summarySection} title={`${commentCount.toLocaleString()} comments`} onClick={scrollToComments}>
                 <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
             </span>
-            <span className={classes.titleSmall}>
+            <span className={classes.summarySection}>
                 <Separator /> <a>Ranked #{rank}</a>
             </span>
             {/* { coaster.goldenTicketAwards!! &&
-            <span className={classes.titleSmall}>
+            <span className={classes.summarySection}>
                 <Separator /> <a>Won {coaster.goldenTicketAwards} awards</a>
             </span>} */}
             <div style={{ float: 'right' }}>

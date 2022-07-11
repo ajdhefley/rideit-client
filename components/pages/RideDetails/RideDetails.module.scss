@@ -23,7 +23,7 @@ $pic-size: 250px;
 
 .picsContainer {
     margin: -$pic-margin;
-    padding: 50px 0px;
+    padding: 45px 0px;
     display: flex;
     flex-wrap: wrap;
     height: $pic-size;
@@ -48,11 +48,6 @@ $pic-size: 250px;
     opacity: 0.66;
     display: inline-block;
     vertical-align: middle;
-}
-
-.titleSmall {
-    padding-right: 10px;
-    cursor: pointer;
 }
 
 .pod {
@@ -89,7 +84,7 @@ $pic-size: 250px;
     width: 33.33%;
 }
 
-.ratingsPod, .seatsPod {
+.ratingsPod, .seatsPod, .reviewSummaryPod {
     width: 50%;
     display: inline-block;
 }
@@ -184,4 +179,8 @@ $pic-size: 250px;
         border-top-right-radius: $pic-border-radius;
         border-bottom-right-radius: $pic-border-radius;
     }
+}
+
+.reviewsPod {
+    margin-top: 35px;
 }

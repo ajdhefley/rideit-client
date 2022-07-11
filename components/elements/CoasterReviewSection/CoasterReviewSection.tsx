@@ -1,6 +1,10 @@
+import moment from 'moment'
 import { gql, useQuery } from '@apollo/client'
-import { useEffect, useState } from 'react';
-import { CoasterReview } from '../../../models/CoasterReview';
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect, useState } from 'react'
+import { CoasterReview } from '../../../models/CoasterReview'
+import { StarRating } from '../StarRating/StarRating'
 import classes from './CoasterReviewSection.module.scss'
 
 /**
@@ -17,21 +21,20 @@ interface CoasterReviewSectionProps {
  * 
  **/
 export const CoasterReviewSection: React.FC<CoasterReviewSectionProps> = ({ coasterUrl }) => {
-    const { data } = useQuery(gql`
-        query {
-            reviews(coasterUrl: "${coasterUrl}") {
-                title,
-                body,
-                rating,
-                reviewTags {
-                    tag
-                },
-                author {
-                    username
-                }
+    const { data } = useQuery(gql`{
+        reviews(coasterUrl: "${coasterUrl}") {
+            title,
+            body,
+            rating,
+            timestamp,
+            reviewTags {
+                tag
+            },
+            author {
+                username
             }
         }
-    `)
+    }`)
     const [loaded, setLoaded] = useState(false)
     const [reviews, setReviews] = useState(new Array<CoasterReview>())
     const [visibleReviews, setVisibleReviews] = useState(new Array<CoasterReview>())
@@ -54,15 +57,29 @@ export const CoasterReviewSection: React.FC<CoasterReviewSectionProps> = ({ coas
         setVisibleReviews(visibleReviews.concat(moreReviews))
     }
 
+    function getFriendlyTimestamp(timestamp) {
+        return moment.unix(timestamp / 1000).fromNow()
+    }
+
     return <>
         <div className={classes.reviewWrapper}>
-            {visibleReviews.map((review) => <div className={classes.review}>
-                <div className={classes.reviewTitle}>{review.title}</div>
-                <div className={classes.reviewAuthor}>{review.author.username}</div>
-                <div className={classes.reviewBody}>{review.body}</div>
-                {review.body.length > 480 && <div>See more</div>}
+            {visibleReviews.map((review) => <div className={classes.review} key={review.reviewId}>
+                <div className={classes.reviewPhoto}>
+                    <div className={classes.headerAccountIcon}><FontAwesomeIcon icon={faUser} /></div>
+                </div>
+                <div className={classes.reviewContent}>
+                    <div className={classes.reviewAuthor}>{review.author.username}</div>
+                    <div className={classes.reviewTimestamp}>{getFriendlyTimestamp(review.timestamp)}</div>
+                    <div className={classes.reviewHeader}>
+                        <div className={classes.reviewRating}><StarRating rating={review.rating} /></div>
+                        <div className={classes.reviewTitle}>{review.title}</div>
+                    </div>
+                    <div className={classes.reviewBody}>{review.body}</div>
+                    {review.body.length > 480 && <a className={classes.reviewBodySeeMore}>See More&nbsp;&raquo;</a>}
+                </div>
+                
             </div>)}
-            <button onClick={loadMoreReviews}>Load More Reviews</button>
+            {reviews.length > 0 && <button className={classes.moreReviewsButton} onClick={loadMoreReviews}>Load More Reviews</button>}
         </div>
     </>
 }

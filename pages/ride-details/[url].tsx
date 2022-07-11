@@ -13,13 +13,11 @@ export default RideDetailsPage
  **/
 export async function getStaticPaths() {
     const { data } = await GraphQLClient.query({
-        query: gql`
-            query {
-                coasters {
-                    url
-                }
+        query: gql`{
+            coasters {
+                url
             }
-        `
+        }`
     })
 
     return {
@@ -35,34 +33,32 @@ export async function getStaticPaths() {
  **/
 export async function getStaticProps({ params }) {
     const { data } = await GraphQLClient.query({
-        query: gql`
-            query {
-                coaster(url: "${params.url}") {
-                    name,
-                    park,
-                    type,
-                    model,
-                    openingDate,
-                    manufacturer,
-                    heightInFt,
-                    dropInFt,
-                    lengthInFt,
-                    speedInMph,
-                    inversions,
-                    colorPrimary,
-                    colorSecondary,
-                    url,
-                    carsPerTrain,
-                    rowsPerCar,
-                    insideSeatsPerRow,
-                    outsideSeatsPerRow,
-                    images {
-                        imageUrl,
-                        base64
-                    }
+        query: gql`{
+            coaster(url: "${params.url}") {
+                name,
+                park,
+                type,
+                model,
+                openingDate,
+                manufacturer,
+                heightInFt,
+                dropInFt,
+                lengthInFt,
+                speedInMph,
+                inversions,
+                colorPrimary,
+                colorSecondary,
+                url,
+                carsPerTrain,
+                rowsPerCar,
+                insideSeatsPerRow,
+                outsideSeatsPerRow,
+                images {
+                    imageUrl,
+                    base64
                 }
             }
-        `
+        }`
     })
 
     const age = (() => {

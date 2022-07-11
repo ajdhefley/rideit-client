@@ -1,0 +1,12 @@
+.starRating {
+    position: relative;
+    display: inline;
+}
+
+.starObscurer {
+    position: absolute;
+    background: #fff;
+    height: 100%;
+    right: 0;
+    top: 0;
+}
