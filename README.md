@@ -1,4 +1,4 @@
-Frontend web application [Next.js, React, GraphQL] for a roller coaster ranking platform.
+Frontend web application [Next.js, React, GraphQL] for a roller coaster enthusiast platform.
 
 # Getting started
 
@@ -20,24 +20,29 @@ Build the application:
     
     npm run build
 
-The [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) is required to be running at build time to serve static rendering.
+The [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) is required to be running at build time for static site generation.
     
 ----------
 
 ## NPM scripts
 
-- `npm run dev` - Run development server
-- `npm run lint` - Run linter
-- `npm run build` - Build application
-- `npm start` - Start application
+| Name | Description |
+| :--- | :--- |
+| `npm run build` | Builds application |
+| `npm start` | Starts application |
+| `npm run dev` | Starts application in development mode (hot reloading and errors reported on client) |
+| `npm run test` | Runs Cypress tests |
+| `npm run lint` | Runs linter (static code analysis) |
 
 ----------
 
 ## Environment variables
 
-Next.js natively supports the use of environment variables with a `.env.local` file. (see more [here](https://nextjs.org/docs/basic-features/environment-variables))
+Next.js natively supports development [environment variables](https://nextjs.org/docs/basic-features/environment-variables) with a `.env.local` file.
 
-- `NEXT_PUBLIC_API_URL` - The [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) host serving data used for static and server/client side rendering
+| Name | Description |
+| :--- | :--- |
+| `NEXT_PUBLIC_API_URL` | The [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) host serving data used for static site generation and server/client side rendering |
 
 ----------
 

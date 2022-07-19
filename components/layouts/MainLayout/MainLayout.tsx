@@ -48,7 +48,7 @@ function MainLayout({ children }) {
     function signOut() {
         setAccountMenuOpen(false)
         setLoading(true)
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/account/logout`, { method: 'POST' })
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/account/logout`, { method: 'POST', credentials: 'include' })
             .then(() => {
                 router.push('/signin').then(() => setLoading(false))
             })

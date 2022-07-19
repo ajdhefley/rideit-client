@@ -46,11 +46,11 @@ export const SignInPage: NextPage<SignInPageProps> = () => {
 
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/account/login`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, password }),
-                credentials: 'include'
+                body: JSON.stringify({ username, password })
             })
             .then((res) => {
                 switch (res.status) {

@@ -7,9 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "cypress run",
-    "test:ci": "cypress run",
-    "pretest:ci": "npm start & wait-on http://localhost:3000"
+    "test": "cypress run"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
