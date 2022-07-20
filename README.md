@@ -6,11 +6,11 @@ Frontend web application [Next.js, React, GraphQL] for a roller coaster enthusia
 
 Clone the repository:
 
-    git clone https://github.com/ajdhefley/coaster-ranker-client
+    git clone https://github.com/ajdhefley/rideit-client
 
 Open the repository folder:
 
-    cd coaster-ranker-client
+    cd rideit-client
     
 Install the dependencies:
     
@@ -20,7 +20,7 @@ Build the application:
     
     npm run build
 
-The [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) is required to be running at build time for static site generation.
+The [rideit-api](https://github.com/ajdhefley/rideit-api) is required to be running at build time for static site generation.
     
 ----------
 
@@ -42,11 +42,11 @@ Next.js natively supports development [environment variables](https://nextjs.org
 
 | Name | Description |
 | :--- | :--- |
-| `NEXT_PUBLIC_API_URL` | The [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) host serving data used for static site generation and server/client side rendering |
+| `NEXT_PUBLIC_API_URL` | The [host](https://github.com/ajdhefley/rideit-api) serving data used for static site generation and server/client side rendering |
 
 ----------
 
 ## Start application
 
 - `npm start`
-- Requires [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) to be running
+- Requires [rideit-api](https://github.com/ajdhefley/rideit-api) to be running
