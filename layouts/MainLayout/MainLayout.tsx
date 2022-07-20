@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { LoadingIndicator } from '../../elements/LoadingIndicator/LoadingIndicator'
+import { LoadingIndicator } from '../../components/LoadingIndicator/LoadingIndicator'
 import classes from './MainLayout.module.scss'
 
 /**

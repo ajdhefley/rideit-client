@@ -1,5 +1,5 @@
-import { getMainLayout } from '../../components/layouts/MainLayout/MainLayout'
-import { DashboardPage } from '../../components/pages/Dashboard/Dashboard'
+import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
+import { DashboardPage } from '../../components/DashboardPage/DashboardPage'
 
 DashboardPage.getLayout = getMainLayout
 

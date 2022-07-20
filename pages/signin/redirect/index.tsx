@@ -1,5 +1,5 @@
-import { getMainLayout } from '../../../components/layouts/MainLayout/MainLayout'
-import SignInRedirectPage from '../../../components/pages/SignInRedirect/SignInRedirect'
+import { getMainLayout } from '../../../layouts/MainLayout/MainLayout'
+import SignInRedirectPage from '../../../components/SignInRedirectPage/SignInRedirectPage'
 
 SignInRedirectPage.getLayout = getMainLayout
 

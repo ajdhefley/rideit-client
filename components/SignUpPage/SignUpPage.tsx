@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { PageTitle } from '../../elements/PageTitle/PageTitle'
+import { PageTitle } from '../PageTitle/PageTitle'
 
 /**
  * 

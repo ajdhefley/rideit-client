@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { useState } from 'react'
-import { Coaster } from '../../../models/Coaster'
-import { PageTitle } from '../../elements/PageTitle/PageTitle'
-import { LoadingIndicator } from '../../elements/LoadingIndicator/LoadingIndicator'
-import classes from './SearchResults.module.scss'
+import { Coaster } from '../../models/Coaster'
+import { PageTitle } from '../PageTitle/PageTitle'
+import { LoadingIndicator } from '../LoadingIndicator/LoadingIndicator'
+import classes from './SearchResultsPage.module.scss'
 
 /**
  * 

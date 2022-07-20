@@ -2,11 +2,11 @@ import Link from 'next/link'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { AuthFacebook } from '../../elements/AuthFacebook/AuthFacebook'
-import { AuthGoogle } from '../../elements/AuthGoogle/AuthGoogle'
-import { PageTitle } from '../../elements/PageTitle/PageTitle'
-import { LoadingIndicator } from '../../elements/LoadingIndicator/LoadingIndicator'
-import classes from './SignIn.module.scss'
+import { AuthFacebook } from '../AuthFacebook/AuthFacebook'
+import { AuthGoogle } from '../AuthGoogle/AuthGoogle'
+import { PageTitle } from '../PageTitle/PageTitle'
+import { LoadingIndicator } from '../LoadingIndicator/LoadingIndicator'
+import classes from './SignInPage.module.scss'
 
 /**
  * 

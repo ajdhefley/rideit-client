@@ -50,4 +50,3 @@ Next.js natively supports development [environment variables](https://nextjs.org
 
 - `npm start`
 - Requires [coaster-ranker-api](https://github.com/ajdhefley/coaster-ranker-api) to be running
-      

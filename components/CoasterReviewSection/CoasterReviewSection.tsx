@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
-import { CoasterReview } from '../../../models/CoasterReview'
+import { CoasterReview } from '../../models/CoasterReview'
 import { StarRating } from '../StarRating/StarRating'
 import classes from './CoasterReviewSection.module.scss'
 

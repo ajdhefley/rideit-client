@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
-import { getMainLayout } from '../../components/layouts/MainLayout/MainLayout'
-import { SearchResultsPage } from '../../components/pages/SearchResults/SearchResults'
+import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
+import { SearchResultsPage } from '../../components/SearchResultsPage/SearchResultsPage'
 import { GraphQLClient } from '../../graphql-client'
 
 SearchResultsPage.getLayout = getMainLayout

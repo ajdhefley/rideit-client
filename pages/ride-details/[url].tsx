@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { gql } from '@apollo/client'
-import { RideDetailsPage } from '../../components/pages/RideDetails/RideDetails'
-import { getMainLayout } from '../../components/layouts/MainLayout/MainLayout'
+import { RideDetailsPage } from '../../components/RideDetailsPage/RideDetailsPage'
+import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
 import { GraphQLClient } from '../../graphql-client'
 
 RideDetailsPage.getLayout = getMainLayout

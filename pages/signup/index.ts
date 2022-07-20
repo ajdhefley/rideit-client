@@ -1,5 +1,5 @@
-import { getMainLayout } from '../../components/layouts/MainLayout/MainLayout'
-import { SignUpPage } from '../../components/pages/SignUp/SignUp'
+import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
+import { SignUpPage } from '../../components/SignUpPage/SignUpPage'
 
 SignUpPage.getLayout = getMainLayout
 
