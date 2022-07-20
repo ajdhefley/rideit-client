@@ -9,7 +9,7 @@ interface AuthGoogleProps {
 }
 
 /**
- * 
+ * Sign In With Google button for third-party authentication.
  **/
 export const AuthGoogle: React.FC<AuthGoogleProps> = () => {
     return <>

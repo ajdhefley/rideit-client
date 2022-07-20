@@ -10,7 +10,7 @@ interface ProfilePageProps {
 }
 
 /**
- * 
+ * Contains user preferences and account settings.
  **/
 export const ProfilePage: NextPage<ProfilePageProps> = () => {
     return <>

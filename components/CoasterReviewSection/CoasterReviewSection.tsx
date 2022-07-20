@@ -12,13 +12,13 @@ import classes from './CoasterReviewSection.module.scss'
  **/
 interface CoasterReviewSectionProps {
     /**
-     * 
+     * Unique identifier for coaster whose reviews are to be displayed, also serving as coaster's URL subdirectory.
      **/
     coasterUrl: string;
 }
 
 /**
- * 
+ * Loads and renders paginated reviews for coaster with specified URL.
  **/
 export const CoasterReviewSection: React.FC<CoasterReviewSectionProps> = ({ coasterUrl }) => {
     const { data } = useQuery(gql`{

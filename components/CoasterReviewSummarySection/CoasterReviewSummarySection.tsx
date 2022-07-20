@@ -12,18 +12,19 @@ import classes from './CoasterReviewSummarySection.module.scss'
  **/
 interface CoasterReviewSummarySectionProps {
     /**
-     * 
+     * Unique identifier for coaster whose review summary data is to be displayed, also serving as coaster's URL subdirectory.
      **/
     coasterUrl: string;
 
     /**
-     * 
+     * Max width of tag/keyword progress bar.
+     * E.G. 100% of reviews mentioning a keyword means that keyword's progress bar will be 100% of the max width.
      **/
     reviewTagLineMaxWidth?: number;
 }
 
 /**
- * 
+ * Displays total number of reviewers, average rating, and common tags/keywords for coaster.
  **/
 export const CoasterReviewSummarySection: React.FC<CoasterReviewSummarySectionProps> = ({ coasterUrl, reviewTagLineMaxWidth = 100 }) => {
     const [reviewRatingAverage, setReviewRatingAverage] = useState<number>(0)

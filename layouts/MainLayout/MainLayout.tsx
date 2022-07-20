@@ -1,13 +1,13 @@
-import { faBars, faMagnifyingGlass, faUser, faX } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { faBars, faMagnifyingGlass, faUser, faX } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LoadingIndicator } from '../../components/LoadingIndicator/LoadingIndicator'
 import classes from './MainLayout.module.scss'
 
 /**
- * 
+ * Main layout for most pages containing search bar, hamburger menu, and user menu.
  **/
 function MainLayout({ children }) {
     const [loading, setLoading] = useState(false)

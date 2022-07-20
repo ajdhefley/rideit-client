@@ -10,7 +10,7 @@ interface DashboardPageProps {
 }
 
 /**
- * 
+ * Displays most recent reviews, comments, and uploaded images.
  **/
 export const DashboardPage: NextPage<DashboardPageProps> = () => {
     return <>

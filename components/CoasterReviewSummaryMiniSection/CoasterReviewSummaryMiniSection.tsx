@@ -13,13 +13,13 @@ import classes from './CoasterReviewSummaryMiniSection.module.scss'
  **/
 interface CoasterReviewSummaryMiniSectionProps {
     /**
-     * 
+     * Unique identifier for coaster whose mini review summary is to be displayed, also serving as coaster's URL subdirectory.
      **/
     coasterUrl: string;
 }
 
 /**
- * 
+ * Concisely displays total comments, total reviews, and average rating.
  **/
 export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniSectionProps> = ({ coasterUrl }) => {
     const [loaded, setLoaded] = useState(false)
@@ -45,7 +45,7 @@ export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniS
         }
     }`)
 
-    const rank = 13 // TODO
+    const rank = 13 // TODO: rank needs to be dynamically calculated on backend with scheduled job
 
     useEffect(() => {
         if (!commentQuery.data)

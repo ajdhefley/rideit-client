@@ -12,7 +12,7 @@ interface AuthFacebookProps {
 }
 
 /**
- * 
+ * Sign In With Facebook button for third-party authentication.
  **/
 export const AuthFacebook: React.FC<AuthFacebookProps> = () => {
     return <>

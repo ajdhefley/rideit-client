@@ -9,7 +9,7 @@ interface SignUpPageProps {
 }
 
 /**
- * 
+ * Sign up page.
  **/
 export const SignUpPage: NextPage<SignUpPageProps> = () => {
     return <>

@@ -7,23 +7,23 @@ import classes from './CoasterTrainViewer.module.scss'
  **/
  interface CoasterTrainViewerProps {
     /**
-     * 
+     * Contains train data for the coaster needed to determine number of rows and seats.
      **/
     coaster: Coaster;
 
     /**
-     * 
+     * Color of the train background.
      **/
     primaryColor: string;
     
     /**
-     * 
+     * Color of the train seats.
      **/
     secondaryColor: string;
 }
 
 /**
- * 
+ * Widget used to rate the best seat on a coaster. Dynamically renders train based on coaster model/manufacturer.
  **/
 export const CoasterTrainViewer: React.FC<CoasterTrainViewerProps> = ({ coaster, primaryColor, secondaryColor }) => {
     const carContainerStyle = { 

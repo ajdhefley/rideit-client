@@ -10,7 +10,7 @@ interface NotFoundPageProps {
 }
 
 /**
- * 
+ * Automatically displayed for unresolvable URLs.
  **/
 export const NotFoundPage: NextPage<NotFoundPageProps> = () => {
     return <>

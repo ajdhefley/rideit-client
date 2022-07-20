@@ -8,7 +8,7 @@ interface LoadingIndicatorProps {
 }
 
 /**
- * 
+ * Loading dialog (prevents user interactivity while visible.)
  **/
 export const LoadingIndicator: React.FC<LoadingIndicatorProps> = () => {
     return <>

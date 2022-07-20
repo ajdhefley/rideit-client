@@ -18,23 +18,18 @@ import classes from './RideDetailsPage.module.scss'
  **/
 interface RideDetailsPageProps {
     /**
-     * 
+     * The coaster data to be displayed on the details page.
      **/
     coaster: Coaster;
 
     /**
-     * 
+     * The coaster's age, calculated at build time as a prop.
      **/
     coasterAge: number;
-
-    /**
-     * 
-     **/
-    comments: CoasterComment[];
 }
 
 /**
- * 
+ * Page containing coaster information, comments, reviews, and images.
  **/
 export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coasterAge }) => {
     return <>

@@ -1,21 +1,21 @@
 import moment from 'moment'
+import { gql, useQuery } from '@apollo/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import classes from './CoasterCommentSection.module.scss'
-import { gql, useQuery } from '@apollo/client';
 
 /**
  * 
  **/
 interface CoasterCommentSectionProps {
     /**
-     * 
+     * Unique identifier for coaster whose comments are to be displayed, also serving as coaster's URL subdirectory.
      **/
     coasterUrl: string;
 }
 
 /**
- * 
+ * Loads and renders paginated comments for coaster with specified URL.
  **/
 export const CoasterCommentSection: React.FC<CoasterCommentSectionProps> = ({ coasterUrl }) => {
     const { loading, error, data } = useQuery(gql`{

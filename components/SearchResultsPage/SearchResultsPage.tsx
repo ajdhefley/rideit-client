@@ -13,13 +13,13 @@ import classes from './SearchResultsPage.module.scss'
  **/
 interface SearchResultsPageProps {
     /**
-     * 
+     * The coasters to be listed, returned by the search query.
      **/
     coasters: Coaster[];
 }
 
 /**
- * 
+ * Displays results for query entered into header search bar.
  **/
 export const SearchResultsPage: NextPage<SearchResultsPageProps> = ({ coasters }) => {
     const router = useRouter()
