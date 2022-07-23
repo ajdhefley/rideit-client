@@ -1,4 +1,4 @@
-Frontend web application [Next.js, React, GraphQL] for a roller coaster enthusiast platform.
+Frontend web application [Next.js, React, GraphQL] for a roller coaster enthusiast platform. :roller_coaster:
 
 # Getting started
 
