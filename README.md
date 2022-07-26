@@ -1,5 +1,7 @@
 Frontend web application [Next.js, React, GraphQL] for a roller coaster enthusiast platform. :roller_coaster:
 
+To run RideIt locally, see [here](https://github.com/ajdhefley/rideit).
+
 # Getting started
 
 ## Installation
