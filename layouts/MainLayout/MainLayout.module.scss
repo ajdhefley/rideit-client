@@ -1,9 +1,10 @@
 @import "../../styles/variables";
 
-$search-btn-color: #dadada;
+$search-btn-font-color: #fff;
+$search-btn-color: #347dc7;
 
 .mainContent {
-    background: #fff;
+    background: $background-color;
     min-height: calc(100vh - 150px);
     overflow: hidden;
     margin-top: $header-height;
@@ -42,8 +43,8 @@ $search-btn-color: #dadada;
 .headerAccountIcon {
     padding: 2.5px 10px;
     border-radius: 50%;
-    width: 35px;
-    font-size: 2rem;
+    width: 30px;
+    font-size: 1.75rem;
     color: #333;
     text-align: center;
     box-shadow: 0px 1px 6px -2px rgba(0, 0, 0, 0.5);
@@ -73,6 +74,10 @@ $search-btn-color: #dadada;
     &:active {
         background: darken($search-btn-color, 10%);
     }
+
+    svg {
+        color: $search-btn-font-color;
+    }
 }
 
 .headerSearchBar {
@@ -97,16 +102,22 @@ $search-btn-color: #dadada;
     position: fixed;
     display: flex;
     align-items: center;
+    color: #111;
+    z-index: 1;
     top: 0;
     width: 100%;
     height: $header-height;
-    z-index: 1;
-    background: $background-color;
+    background: $header-color;
+    box-shadow: 0px 1px 1px -1px #000;
 }
 
 .footerContainer {
+    font-family: $font-subtitle;
+    padding-top: 5px;
+    background: $footer-color;
     height: $footer-height;
     text-align: center;
+    color: #fff;
 
     ul > li {
         display: inline-block;
@@ -117,10 +128,6 @@ $search-btn-color: #dadada;
             padding: 0px 10px;
         }
     }
-}
-
-.headerContainer, .footerContainer {
-    color: #111;
 }
 
 .searchCancel {
