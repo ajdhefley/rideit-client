@@ -1,3 +1,6 @@
+/// All custom type definitions should go here.
+/// Should another type definition file be necessary, ensure it is included in the tsconfig.json file.
+
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
