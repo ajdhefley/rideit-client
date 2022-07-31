@@ -3,20 +3,21 @@ import { NextResponse, NextRequest } from 'next/server'
 export async function middleware(req) {
     const { nextUrl, cookies } = req
     const { pathname, origin, } = nextUrl
+    const authCookie = cookies['auth']
 
     switch (pathname) {
         case '/':
             return NextResponse.redirect(`${origin}/signin`)
 
         case '/signin':
-            if ((await verifyToken(cookies['auth'])).status == 200) {
+            if (authCookie && (await verifyToken(authCookie)).status == 200) {
                 return NextResponse.redirect(`${origin}/dashboard`)
             }
             break;
 
         case '/account': 
         case '/profile':
-            if ((await verifyToken(cookies['auth'])).status != 200) {
+            if (!authCookie || (await verifyToken(authCookie)).status != 200) {
                 return NextResponse.redirect(`${origin}/signin`)
             }
             break;
