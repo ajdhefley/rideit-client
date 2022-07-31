@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 $page-margin: 10vw;
 $pic-margin: 5px;
 $pic-border-radius: 10px;
@@ -27,6 +29,10 @@ $pic-size: 250px;
     display: flex;
     flex-wrap: wrap;
     height: $pic-size;
+
+    img {
+        object-fit: cover;
+    }
 }
 
 .mainPodContainer {
@@ -39,6 +45,7 @@ $pic-size: 250px;
     margin: 0 15px 0 0;
     display: inline-block;
     vertical-align: middle;
+    font-family: $font-title;
 }
 
 .titleMedium {
@@ -48,6 +55,7 @@ $pic-size: 250px;
     opacity: 0.66;
     display: inline-block;
     vertical-align: middle;
+    font-family: $font-subtitle;
 }
 
 .pod {
@@ -59,7 +67,15 @@ $pic-size: 250px;
 }
 
 .statPod {
-    width: 50%;
+    width: calc(50% - 10px);
+    
+    &:nth-child(even) {
+        margin-left: 10px;
+    }
+
+    &:nth-child(odd) {
+        margin-right: 10px;
+    }
 }
 
 .statPodSeparator {
@@ -160,7 +176,7 @@ $pic-size: 250px;
     cursor: pointer;
     flex-grow: 1;
     margin: $pic-margin;
-    box-shadow: 1px 2px 3px -2px rgb(0, 0, 0, 0.5), -1px -1px 3px -2px rgb(0, 0, 0, 0.5);
+    box-shadow: 1px 2px 3px -2px rgb(0, 0, 0, 0.3), -1px -1px 3px -2px rgb(0, 0, 0, 0.3);
     opacity: 0.9;
     width: $pic-size;
     height: $pic-size;

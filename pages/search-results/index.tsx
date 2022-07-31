@@ -12,9 +12,9 @@ export default SearchResultsPage
  * can be displayed with the rest of the content on page load.
  **/
 export async function getServerSideProps({ query }) {
-    const { data } = await GraphQLClient.query({
+    const { data, error } = await GraphQLClient.query({
         query: gql`{
-            coasterFilter(name: "${query.q}") {
+            filteredCoaster(filter: "${query.q}") {
                 name,
                 park,
                 type,
@@ -42,6 +42,6 @@ export async function getServerSideProps({ query }) {
     })
 
     return {
-        props: { coasters: data.coasterFilter }
+        props: { coasters: data?.filteredCoaster ?? [] }
     }
 }

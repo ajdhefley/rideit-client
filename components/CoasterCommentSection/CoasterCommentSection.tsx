@@ -18,23 +18,23 @@ interface CoasterCommentSectionProps {
  * Loads and renders paginated comments for coaster with specified URL.
  **/
 export const CoasterCommentSection: React.FC<CoasterCommentSectionProps> = ({ coasterUrl }) => {
-    const { loading, error, data } = useQuery(gql`{
-        comments(coasterUrl: "${coasterUrl}") {
-            author {
-                username
-            },
-            body,
-            likeCount,
-            timestamp
-        }
-    }`)
+    // const { loading, error, data } = useQuery(gql`{
+    //     comments(coasterUrl: "${coasterUrl}") {
+    //         author {
+    //             username
+    //         },
+    //         body,
+    //         likeCount,
+    //         timestamp
+    //     }
+    // }`)
 
     function getFriendlyTimestamp(timestamp) {
         return moment.unix(timestamp / 1000).fromNow()
     }
 
     return <>
-        {data?.comments?.map((comment) => (
+        {/* {data?.comments?.map((comment) => (
         <div className={classes.comment} key={comment.commentId}>
             <div className={classes.commentAvatar}></div>
             <div className={classes.fcommentTextWrapper}>
@@ -46,7 +46,7 @@ export const CoasterCommentSection: React.FC<CoasterCommentSectionProps> = ({ co
                     <span className={classes.commentReplyButton}>Reply</span>
                 </div>
             </div>
-        </div>))}
+        </div>))} */}
         <FontAwesomeIcon icon={faAngleDown} className={`${classes.showMoreComments} ${classes.icon}`} title="Show more comments" />
     </>
 }

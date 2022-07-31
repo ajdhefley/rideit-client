@@ -72,6 +72,7 @@ export async function getStaticProps({ params }) {
         props: {
             coaster: data.coaster,
             coasterAge: age
-        }
+        },
+        revalidate: 3600 // Re-render page every hour (once requested)
     }
 }

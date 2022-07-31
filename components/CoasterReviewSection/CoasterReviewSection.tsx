@@ -38,6 +38,7 @@ export const CoasterReviewSection: React.FC<CoasterReviewSectionProps> = ({ coas
     const [loaded, setLoaded] = useState(false)
     const [reviews, setReviews] = useState(new Array<CoasterReview>())
     const [visibleReviews, setVisibleReviews] = useState(new Array<CoasterReview>())
+    const signedIn = true // TODO
 
     useEffect(() => {
         if (data) {
@@ -62,24 +63,34 @@ export const CoasterReviewSection: React.FC<CoasterReviewSectionProps> = ({ coas
     }
 
     return <>
-        <div className={classes.reviewWrapper}>
-            {visibleReviews.map((review) => <div className={classes.review} key={review.reviewId}>
-                <div className={classes.reviewPhoto}>
-                    <div className={classes.headerAccountIcon}><FontAwesomeIcon icon={faUser} /></div>
-                </div>
-                <div className={classes.reviewContent}>
-                    <div className={classes.reviewAuthor}>{review.author.username}</div>
-                    <div className={classes.reviewTimestamp}>{getFriendlyTimestamp(review.timestamp)}</div>
-                    <div className={classes.reviewHeader}>
-                        <div className={classes.reviewRating}><StarRating rating={review.rating} /></div>
-                        <div className={classes.reviewTitle}>{review.title}</div>
+        {reviews.length > 0 && <>
+            <div className={classes.reviewWrapper}>
+                {visibleReviews.map((review) => <div className={classes.review} key={review.reviewId}>
+                    <div className={classes.reviewPhoto}>
+                        <div className={classes.headerAccountIcon}><FontAwesomeIcon icon={faUser} /></div>
                     </div>
-                    <div className={classes.reviewBody}>{review.body}</div>
-                    {review.body.length > 480 && <a className={classes.reviewBodySeeMore}>See More&nbsp;&raquo;</a>}
-                </div>
-                
-            </div>)}
-            {reviews.length > 0 && <button className={classes.moreReviewsButton} onClick={loadMoreReviews}>Load More Reviews</button>}
-        </div>
+                    <div className={classes.reviewContent}>
+                        <div className={classes.reviewAuthor}>{review.author.username}</div>
+                        <div className={classes.reviewTimestamp}>{getFriendlyTimestamp(review.timestamp)}</div>
+                        <div className={classes.reviewHeader}>
+                            <div className={classes.reviewRating}><StarRating rating={review.rating} /></div>
+                            <div className={classes.reviewTitle}>{review.title}</div>
+                        </div>
+                        <div className={classes.reviewBody}>{review.body}</div>
+                        {review.body.length > 480 && <a className={classes.reviewBodySeeMore}>See More&nbsp;&raquo;</a>}
+                    </div>
+                    
+                </div>)}
+                {reviews.length > 0 && <button className={classes.moreReviewsButton} onClick={loadMoreReviews}>Load More Reviews</button>}
+            </div>
+        </>}
+        {reviews.length == 0 && <>
+            <div>
+                <span>This coaster has not received any reviews.</span>
+                &nbsp;
+                {signedIn && <span>You could be the first one.</span>}
+            </div>
+            {signedIn && <button>Review It</button>}
+        </>}
     </>
 }

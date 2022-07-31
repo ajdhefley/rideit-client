@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+$section-border-color: #347dc7;
+
+.sectionBody {
+    box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.6);
+    border: 1px solid $section-border-color;
+    border-radius: 5px;
+    position: relative;
+    padding: 5px 25px;
+    font-weight: bold;
+
+    &::before {
+        font-family: $font-subtitle;
+        color: $section-border-color;
+        background: $background-color;
+        top: -10px;
+        left: 15px;
+        padding: 0px 10px;
+        position: absolute;
+        content: attr(data-title);
+    }
+}

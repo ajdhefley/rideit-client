@@ -12,6 +12,7 @@ import { CoasterReviewSummarySection } from '../CoasterReviewSummarySection/Coas
 import { CoasterReviewSummaryMiniSection } from '../CoasterReviewSummaryMiniSection/CoasterReviewSummaryMiniSection'
 import { CoasterReviewSection } from '../CoasterReviewSection/CoasterReviewSection'
 import classes from './RideDetailsPage.module.scss'
+import { RideDetailsSection } from '../RideDetailsSection/RideDetailsSection'
 
 /**
  * 
@@ -37,7 +38,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
         <div className={classes.coasterPageContainer}>
             <div className={classes.titleContainer}>
                 <p className={classes.titleLarge}>{coaster.name}</p>
-                <Separator />
+                <Separator verticalAlign="middle" />
                 <p className={classes.titleMedium}>{coaster.park}</p>
             </div>
             <div className={classes.subTitleContainer}>
@@ -46,7 +47,7 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
             <div className={classes.picsContainer}>
                 {coaster.images.slice(0, 4).map((img) => (
                     <div key={img.ImageUrl} className={classes.pic}>
-                        <Image className={classes.pic} src={img.imageUrl} blurDataURL={img.base64} placeholder="blur" 
+                        <Image className={classes.pic} src={img.imageUrl} placeholder="blur" blurDataURL={img.base64}
                         layout="fill"
                         width={250}
                         height={250} />
@@ -55,24 +56,28 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
             </div>
             <div className={classes.mainPodContainer}>
                 <div className={`${classes.pod} ${classes.statPod}`}>
-                    <div className={classes.statPodSeparator}>
-                        <InfoField label="Max Height" value={coaster.heightInFt} unit="ft" />
-                        <InfoField label="Max Drop" value={coaster.dropInFt} unit="ft" />
-                        <InfoField label="Max Angle" value={coaster.angleInDegrees} unit={String.fromCharCode(176)} />
-                    </div>
-                    <div className={classes.statPodSeparator}>
-                        <InfoField label="Total Length" value={coaster.lengthInFt} unit="ft" />
-                        <InfoField label="Top Speed" value={coaster.speedInMph} unit="mph" />
-                        <InfoField label="Inversions" value={coaster.inversions} visible={coaster.inversions > 0} />
-                    </div>
+                    <RideDetailsSection title="Stats">
+                        <div className={classes.statPodSeparator}>
+                            <InfoField label="Max Height" value={coaster.heightInFt} unit="ft" />
+                            <InfoField label="Max Drop" value={coaster.dropInFt} unit="ft" />
+                            <InfoField label="Max Angle" value={coaster.angleInDegrees} unit={String.fromCharCode(176)} />
+                        </div>
+                        <div className={classes.statPodSeparator}>
+                            <InfoField label="Total Length" value={coaster.lengthInFt} unit="ft" />
+                            <InfoField label="Top Speed" value={coaster.speedInMph} unit="mph" />
+                            <InfoField label="Inversions" value={coaster.inversions} visible={coaster.inversions > 0} />
+                        </div>
+                    </RideDetailsSection>
                 </div>
                 <div className={`${classes.pod} ${classes.infoPod}`}>
-                    <InfoField label="Type" value={coaster.type} />
-                    <InfoField label="Manufacturer" value={coaster.manufacturer} />
-                    <InfoField label="Model" value={coaster.model} />
-                    <InfoField label="Location" value={coaster.location} />
-                    <InfoField label="Opened" value={moment(coaster.openingDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
-                    <InfoField label="Age" value={coasterAge} unit="years" />
+                    <RideDetailsSection title="Facts">
+                        <InfoField label="Type" value={coaster.type} />
+                        <InfoField label="Manufacturer" value={coaster.manufacturer} />
+                        <InfoField label="Model" value={coaster.model} />
+                        <InfoField label="Location" value={coaster.location} />
+                        <InfoField label="Opened" value={moment(coaster.openingDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
+                        <InfoField label="Age" value={coasterAge} unit="years" />
+                    </RideDetailsSection>
                 </div>
                 {/* <div className={`${classes.pod} ${classes.othersLikedPod}`} style={{ display: coaster.park ? 'initial' : 'none' }}>
                     <div className={classes.podHeader}>Others who liked this also liked</div>

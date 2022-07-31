@@ -18,7 +18,7 @@ interface CoasterReviewSummarySectionProps {
 
     /**
      * Max width of tag/keyword progress bar.
-     * E.G. 100% of reviews mentioning a keyword means that keyword's progress bar will be 100% of the max width.
+     * E.G. 90% of reviews mentioning a keyword means that keyword's progress bar width will be 90% of the max width.
      **/
     reviewTagLineMaxWidth?: number;
 }
@@ -78,7 +78,7 @@ export const CoasterReviewSummarySection: React.FC<CoasterReviewSummarySectionPr
                 <FontAwesomeIcon icon={faStar} className={classes.icon} />
                 {reviewCount > 0  && <>{reviewRatingAverage.toFixed(1)} <span className={classes.ratingStatsDescription}>out of 5</span></>}
                 {reviewCount == 0 && <span className={classes.ratingStatsDescription}>&nbsp;No Ratings</span>}
-                &nbsp;<Separator />&nbsp;
+                &nbsp;&nbsp;<Separator />&nbsp;&nbsp;
                 <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()} <span className={classes.ratingStatsDescription}>reviews</span>
             </div>
             <div className={classes.reviewTagContainer}>
@@ -94,8 +94,9 @@ export const CoasterReviewSummarySection: React.FC<CoasterReviewSummarySectionPr
         {!loaded && <div className={classes.async}>
             <div className={classes.ratingStatsContainer}>
                 <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                <AsyncLoader size={4} />
-                &nbsp;<Separator />&nbsp;
+                <AsyncLoader size={3} />
+                &nbsp;&nbsp;<Separator />&nbsp;&nbsp;
+                <FontAwesomeIcon icon={faUser} className={classes.icon} />
                 <AsyncLoader size={3} />
             </div>
             <div className={classes.reviewTagContainer}>
