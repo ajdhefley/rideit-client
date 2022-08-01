@@ -13,7 +13,7 @@ interface SignInRedirectPageProps {
  * Redirected to after user authenticates with Google.
  * Sends authorization code to Google and retrieves access token.
  **/
-export const SignInRedirectPage: NextPage<SignInRedirectPageProps> = () => {
+export const SignInRedirectPage: NextPage = ({}: SignInRedirectPageProps) => {
     const router = useRouter()
 
     useEffect(() => {

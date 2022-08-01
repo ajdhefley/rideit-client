@@ -11,8 +11,8 @@ import { PageTitle } from '../PageTitle/PageTitle'
 import { CoasterReviewSummarySection } from '../CoasterReviewSummarySection/CoasterReviewSummarySection'
 import { CoasterReviewSummaryMiniSection } from '../CoasterReviewSummaryMiniSection/CoasterReviewSummaryMiniSection'
 import { CoasterReviewSection } from '../CoasterReviewSection/CoasterReviewSection'
-import classes from './RideDetailsPage.module.scss'
 import { RideDetailsSection } from '../RideDetailsSection/RideDetailsSection'
+import classes from './RideDetailsPage.module.scss'
 
 /**
  * 
@@ -32,7 +32,7 @@ interface RideDetailsPageProps {
 /**
  * Page containing coaster information, comments, reviews, and images.
  **/
-export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coasterAge }) => {
+export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPageProps) => {
     return <>
         <PageTitle>{`${coaster.name} (${coaster.park})`}</PageTitle>
         <div className={classes.coasterPageContainer}>
@@ -42,15 +42,21 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                 <p className={classes.titleMedium}>{coaster.park}</p>
             </div>
             <div className={classes.subTitleContainer}>
+                {coaster.location || 'Todo City, Todo State, United States'}
+            </div>
+            <div className={classes.subTitleContainer}>
                 <CoasterReviewSummaryMiniSection coasterUrl={coaster.url} />
             </div>
             <div className={classes.picsContainer}>
-                {coaster.images.slice(0, 4).map((img) => (
-                    <div key={img.ImageUrl} className={classes.pic}>
-                        <Image className={classes.pic} src={img.imageUrl} placeholder="blur" blurDataURL={img.base64}
-                        layout="fill"
-                        width={250}
-                        height={250} />
+                {coaster.images.slice(0, 4).map((img, imgIndex) => (
+                    <div key={img.imageUrl} className={classes.pic + ' ' + (imgIndex == 0 ? classes.picFirst : imgIndex == 3 ? classes.picLast : '')}>
+                        <Image
+                            className={classes.pic}
+                            src={img.imageUrl}
+                            blurDataURL={img.base64}
+                            placeholder="blur" 
+                            layout="fill"
+                        />
                     </div>
                 ))}
             </div>
@@ -74,7 +80,6 @@ export const RideDetailsPage: NextPage<RideDetailsPageProps> = ({ coaster, coast
                         <InfoField label="Type" value={coaster.type} />
                         <InfoField label="Manufacturer" value={coaster.manufacturer} />
                         <InfoField label="Model" value={coaster.model} />
-                        <InfoField label="Location" value={coaster.location} />
                         <InfoField label="Opened" value={moment(coaster.openingDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
                         <InfoField label="Age" value={coasterAge} unit="years" />
                     </RideDetailsSection>

@@ -5,6 +5,7 @@ export class Coaster {
     coasterId: number;
     name: string;
     park: string;
+    location: string;
     heightInFt: number;
     dropInFt: number;
     lengthInFt: number;

@@ -19,7 +19,7 @@ interface SignInPageProps {
  * Unauthenticated users can search and view coasters, but cannot
  * leave reviews or comments without signing in with this page.
  **/
-export const SignInPage: NextPage<SignInPageProps> = () => {
+export const SignInPage: NextPage = ({}: SignInPageProps) => {
     const router = useRouter()
 
     const [loading, setLoading] = useState(false)

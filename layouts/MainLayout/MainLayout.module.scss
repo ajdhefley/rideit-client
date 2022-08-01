@@ -7,7 +7,7 @@ $search-btn-color: #347dc7;
     background: $background-color;
     min-height: calc(100vh - 150px);
     overflow: hidden;
-    margin-top: $header-height;
+    margin-top: 5px;
 }
 
 .headerSearchContainer {
@@ -99,7 +99,6 @@ $search-btn-color: #347dc7;
 }
 
 .headerContainer {
-    position: fixed;
     display: flex;
     align-items: center;
     color: #111;
@@ -107,8 +106,6 @@ $search-btn-color: #347dc7;
     top: 0;
     width: 100%;
     height: $header-height;
-    background: $header-color;
-    box-shadow: 0px 1px 1px -1px #000;
 }
 
 .footerContainer {

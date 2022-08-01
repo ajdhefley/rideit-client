@@ -37,6 +37,7 @@ export async function getStaticProps({ params }) {
             coaster(url: "${params.url}") {
                 name,
                 park,
+                location,
                 type,
                 model,
                 openingDate,

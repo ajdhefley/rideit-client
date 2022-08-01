@@ -21,7 +21,7 @@ interface SearchResultsPageProps {
 /**
  * Displays results for query entered into header search bar.
  **/
-export const SearchResultsPage: NextPage<SearchResultsPageProps> = ({ coasters }) => {
+export const SearchResultsPage: NextPage = ({ coasters }: SearchResultsPageProps) => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
 

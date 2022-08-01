@@ -12,7 +12,7 @@ interface NotFoundPageProps {
 /**
  * Automatically displayed for unresolvable URLs.
  **/
-export const NotFoundPage: NextPage<NotFoundPageProps> = () => {
+export const NotFoundPage: NextPage = ({}: NotFoundPageProps) => {
     return <>
         <PageTitle>Requested Resource Not Found</PageTitle>
     </>

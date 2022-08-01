@@ -1,6 +1,6 @@
 
 import { gql, useQuery } from '@apollo/client'
-import { faComment, faStar, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faShare, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
@@ -91,7 +91,7 @@ export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniS
                 <Separator /> <a>Won {coaster.goldenTicketAwards} awards</a>
             </span>} */}
             <div style={{ float: 'right' }}>
-                <a>Share</a>
+                <FontAwesomeIcon icon={faShare} /> Share
             </div>
             <div style={{ clear: 'both' }}></div>
         </>}

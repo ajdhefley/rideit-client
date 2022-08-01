@@ -12,7 +12,7 @@ interface DashboardPageProps {
 /**
  * Displays most recent reviews, comments, and uploaded images.
  **/
-export const DashboardPage: NextPage<DashboardPageProps> = () => {
+export const DashboardPage: NextPage = ({}: DashboardPageProps) => {
     return <>
         <PageTitle>Dashboard</PageTitle>
         <div>Welcome to the Dashboard</div>

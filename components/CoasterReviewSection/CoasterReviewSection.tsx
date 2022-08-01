@@ -21,31 +21,31 @@ interface CoasterReviewSectionProps {
  * Loads and renders paginated reviews for coaster with specified URL.
  **/
 export const CoasterReviewSection: React.FC<CoasterReviewSectionProps> = ({ coasterUrl }) => {
-    const { data } = useQuery(gql`{
-        reviews(coasterUrl: "${coasterUrl}") {
-            title,
-            body,
-            rating,
-            timestamp,
-            reviewTags {
-                tag
-            },
-            author {
-                username
-            }
-        }
-    }`)
+    // const { data } = useQuery(gql`{
+    //     reviews(coasterUrl: "${coasterUrl}") {
+    //         title,
+    //         body,
+    //         rating,
+    //         timestamp,
+    //         reviewTags {
+    //             tag
+    //         },
+    //         author {
+    //             username
+    //         }
+    //     }
+    // }`)
     const [loaded, setLoaded] = useState(false)
     const [reviews, setReviews] = useState(new Array<CoasterReview>())
     const [visibleReviews, setVisibleReviews] = useState(new Array<CoasterReview>())
     const signedIn = true // TODO
 
-    useEffect(() => {
-        if (data) {
-            setReviews(data.reviews)
-            setLoaded(true)
-        }
-    }, [data])
+    // useEffect(() => {
+    //     if (data) {
+    //         setReviews(data.reviews)
+    //         setLoaded(true)
+    //     }
+    // }, [data])
 
     useEffect(() => {
         loadMoreReviews() // Show initial reviews for display

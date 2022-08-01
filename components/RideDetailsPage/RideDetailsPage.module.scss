@@ -1,9 +1,10 @@
 @import "../../styles/variables";
 
-$page-margin: 10vw;
+$page-margin: 12vw;
 $pic-margin: 5px;
 $pic-border-radius: 10px;
-$pic-size: 250px;
+$pic-width: calc(25vw - #{$page-margin / 2} - #{$pic-margin * 2});
+$pic-height: calc(24vw - #{$page-margin / 2} - #{$pic-margin * 2});
 
 .icon {
     width: 25px;
@@ -15,8 +16,8 @@ $pic-size: 250px;
 }
 
 .titleContainer {
-    padding: 20px 10vw 0px;
-    margin: 0% (-$page-margin);
+    padding: 15px 0;
+    margin-bottom: -10px;
 }
 
 .subTitleContainer {
@@ -28,7 +29,9 @@ $pic-size: 250px;
     padding: 45px 0px;
     display: flex;
     flex-wrap: wrap;
-    height: $pic-size;
+    justify-content: center;
+    height: $pic-height;
+    width: 100%;
 
     img {
         object-fit: cover;
@@ -174,27 +177,31 @@ $pic-size: 250px;
 
 .pic {
     cursor: pointer;
-    flex-grow: 1;
     margin: $pic-margin;
     box-shadow: 1px 2px 3px -2px rgb(0, 0, 0, 0.3), -1px -1px 3px -2px rgb(0, 0, 0, 0.3);
     opacity: 0.9;
-    width: $pic-size;
-    height: $pic-size;
+    width: $pic-width;
+    height: $pic-height;
     position: relative;
+    flex: 0 0 auto;
 
     &:hover {
         opacity: 1;
     }
+}
 
-    &:first-child {
+.picFirst {
+    span {
         border-top-left-radius: $pic-border-radius;
         border-bottom-left-radius: $pic-border-radius;
     }
+}
 
-    &:last-child {
+.picLast {
+    span {
         border-top-right-radius: $pic-border-radius;
         border-bottom-right-radius: $pic-border-radius;
-    }
+    }   
 }
 
 .reviewsPod {
