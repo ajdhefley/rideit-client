@@ -104,13 +104,15 @@ $search-btn-color: #347dc7;
     color: #111;
     z-index: 1;
     top: 0;
+    padding-top: 5px;
     width: 100%;
     height: $header-height;
 }
 
 .footerContainer {
-    font-family: $font-subtitle;
     padding-top: 5px;
+    margin-top: 10px;
+    font-family: $font-subtitle;
     background: $footer-color;
     height: $footer-height;
     text-align: center;

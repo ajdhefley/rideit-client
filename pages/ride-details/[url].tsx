@@ -2,7 +2,7 @@ import moment from 'moment'
 import { gql } from '@apollo/client'
 import { RideDetailsPage } from '../../components/RideDetailsPage/RideDetailsPage'
 import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
-import { GraphQLClient } from '../../graphql-client'
+import { ServerGraphQLClient } from '../../graphql-client'
 
 RideDetailsPage.getLayout = getMainLayout
 
@@ -12,7 +12,7 @@ export default RideDetailsPage
  * Determines all coaster detail pages, at build time.
  **/
 export async function getStaticPaths() {
-    const { data } = await GraphQLClient.query({
+    const { data } = await ServerGraphQLClient.query({
         query: gql`{
             coasters {
                 url
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
  * Fetches static data and pre-renders each coaster detail page, at build time.
  **/
 export async function getStaticProps({ params }) {
-    const { data } = await GraphQLClient.query({
+    const { data } = await ServerGraphQLClient.query({
         query: gql`{
             coaster(url: "${params.url}") {
                 name,

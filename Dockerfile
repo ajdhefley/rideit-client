@@ -13,6 +13,8 @@ RUN npm install
 FROM node:lts-alpine AS builder
 
 ENV NODE_ENV=production
+ENV NEXT_PUBLIC_API_URL=http://0.0.0.0:5000/api
+ENV NEXT_SERVER_API_URL=http://host.docker.internal:5000/api
 WORKDIR /opt/app
 COPY . .
 COPY --from=deps /opt/app/node_modules ./node_modules
@@ -28,4 +30,5 @@ COPY --from=builder /opt/app/next.config.js ./
 COPY --from=builder /opt/app/public ./public
 COPY --from=builder /opt/app/.next ./.next
 COPY --from=builder /opt/app/node_modules ./node_modules
+
 CMD ["node_modules/.bin/next", "start"]
