@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import { CoasterReview } from '../../models/CoasterReview'
 import { StarRating } from '../StarRating/StarRating'
-import classes from './CoasterReviewSection.module.scss'
+import classes from './RideDetailsReviewSection.module.scss'
 
 /**
  * 
  **/
-interface CoasterReviewSectionProps {
+interface RideDetailsReviewSectionProps {
     /**
      * Unique identifier for coaster whose reviews are to be displayed, also serving as coaster's URL subdirectory.
      **/
@@ -20,32 +20,32 @@ interface CoasterReviewSectionProps {
 /**
  * Loads and renders paginated reviews for coaster with specified URL.
  **/
-export const CoasterReviewSection: React.FC<CoasterReviewSectionProps> = ({ coasterUrl }) => {
-    // const { data } = useQuery(gql`{
-    //     reviews(coasterUrl: "${coasterUrl}") {
-    //         title,
-    //         body,
-    //         rating,
-    //         timestamp,
-    //         reviewTags {
-    //             tag
-    //         },
-    //         author {
-    //             username
-    //         }
-    //     }
-    // }`)
+export const RideDetailsReviewSection: React.FC<RideDetailsReviewSectionProps> = ({ coasterUrl }) => {
+    const { data } = useQuery(gql`{
+        reviews(coasterUrl: "${coasterUrl}") {
+            title,
+            body,
+            rating,
+            timestamp,
+            reviewTags {
+                tag
+            },
+            author {
+                username
+            }
+        }
+    }`)
     const [loaded, setLoaded] = useState(false)
     const [reviews, setReviews] = useState(new Array<CoasterReview>())
     const [visibleReviews, setVisibleReviews] = useState(new Array<CoasterReview>())
     const signedIn = true // TODO
 
-    // useEffect(() => {
-    //     if (data) {
-    //         setReviews(data.reviews)
-    //         setLoaded(true)
-    //     }
-    // }, [data])
+    useEffect(() => {
+        if (data) {
+            setReviews(data.reviews)
+            setLoaded(true)
+        }
+    }, [data])
 
     useEffect(() => {
         loadMoreReviews() // Show initial reviews for display

@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
-import classes from './CoasterReviewSummarySection.module.scss'
+import classes from './RideDetailsReviewSummarySection.module.scss'
 
 /**
  * 
  **/
-interface CoasterReviewSummarySectionProps {
+interface RideDetailsReviewSummarySectionProps {
     /**
      * Unique identifier for coaster whose review summary data is to be displayed, also serving as coaster's URL subdirectory.
      **/
@@ -26,7 +26,7 @@ interface CoasterReviewSummarySectionProps {
 /**
  * Displays total number of reviewers, average rating, and common tags/keywords for coaster.
  **/
-export const CoasterReviewSummarySection: React.FC<CoasterReviewSummarySectionProps> = ({ coasterUrl, reviewTagLineMaxWidth = 100 }) => {
+export const RideDetailsReviewSummarySection: React.FC<RideDetailsReviewSummarySectionProps> = ({ coasterUrl, reviewTagLineMaxWidth = 100 }) => {
     const [reviewRatingAverage, setReviewRatingAverage] = useState<number>(0)
     const [reviewCount, setReviewCount] = useState<number>(0)
     const [reviewTags, setReviewTags] = useState<any[]>()

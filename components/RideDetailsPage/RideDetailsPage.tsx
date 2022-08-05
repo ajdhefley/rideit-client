@@ -5,12 +5,12 @@ import { Coaster } from '../../models/Coaster'
 import { InfoField } from '../InfoField/InfoField'
 import { Separator } from '../Separator/Separator'
 import { CoasterTrainViewer } from '../CoasterTrainViewer/CoasterTrainViewer'
-import { CoasterCommentSection } from '../CoasterCommentSection/CoasterCommentSection'
+import { RideDetailsCommentSection } from '../RideDetailsCommentSection/RideDetailsCommentSection'
 import { CoasterComment } from '../../models/CoasterComment'
 import { PageTitle } from '../PageTitle/PageTitle'
-import { CoasterReviewSummarySection } from '../CoasterReviewSummarySection/CoasterReviewSummarySection'
-import { CoasterReviewSummaryMiniSection } from '../CoasterReviewSummaryMiniSection/CoasterReviewSummaryMiniSection'
-import { CoasterReviewSection } from '../CoasterReviewSection/CoasterReviewSection'
+import { RideDetailsReviewSummarySection } from '../RideDetailsReviewSummarySection/RideDetailsReviewSummarySection'
+import { RideDetailsReviewSummaryMiniSection } from '../RideDetailsReviewSummaryMiniSection/RideDetailsReviewSummaryMiniSection'
+import { RideDetailsReviewSection } from '../RideDetailsReviewSection/RideDetailsReviewSection'
 import { RideDetailsSection } from '../RideDetailsSection/RideDetailsSection'
 import classes from './RideDetailsPage.module.scss'
 
@@ -45,7 +45,7 @@ export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPa
                 {coaster.location || 'Todo City, Todo State, United States'}
             </div>
             <div className={classes.subTitleContainer}>
-                <CoasterReviewSummaryMiniSection coasterUrl={coaster.url} />
+                <RideDetailsReviewSummaryMiniSection coasterUrl={coaster.url} />
             </div>
             <div className={classes.picsContainer}>
                 {coaster.images.slice(0, 4).map((img, imgIndex) => (
@@ -116,17 +116,17 @@ export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPa
                 </div> */}
             </div>
             <div className={`${classes.pod} ${classes.reviewSummaryPod}`} id="ratingsContainer">
-                <CoasterReviewSummarySection coasterUrl={coaster.url} />
+                <RideDetailsReviewSummarySection coasterUrl={coaster.url} />
             </div>
             <div className={`${classes.pod} ${classes.seatsPod}`}>
                 <CoasterTrainViewer coaster={coaster} primaryColor={coaster.colorPrimary} secondaryColor={coaster.colorSecondary} />
             </div>
             {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<button>Update</button></span> : <button>Review This Coaster</button>}
             <div className={`${classes.pod} ${classes.reviewsPod}`} id="reviewsContainer">
-                <CoasterReviewSection coasterUrl={coaster.url} />
+                <RideDetailsReviewSection coasterUrl={coaster.url} />
             </div>
             {/* <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
-                <CoasterCommentSection coasterUrl={coaster.url} />
+                <RideDetailsCommentSection coasterUrl={coaster.url} />
             </div> */}
         </div>
     </>

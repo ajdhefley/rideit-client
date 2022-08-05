@@ -6,12 +6,12 @@ import { useEffect, useState } from 'react'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
 import { StarRating } from '../StarRating/StarRating'
-import classes from './CoasterReviewSummaryMiniSection.module.scss'
+import classes from './RideDetailsReviewSummaryMiniSection.module.scss'
 
 /**
  * 
  **/
-interface CoasterReviewSummaryMiniSectionProps {
+interface RideDetailsReviewSummaryMiniSectionProps {
     /**
      * Unique identifier for coaster whose mini review summary is to be displayed, also serving as coaster's URL subdirectory.
      **/
@@ -21,7 +21,7 @@ interface CoasterReviewSummaryMiniSectionProps {
 /**
  * Concisely displays total comments, total reviews, and average rating.
  **/
-export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniSectionProps> = ({ coasterUrl }) => {
+export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSummaryMiniSectionProps> = ({ coasterUrl }) => {
     const [loaded, setLoaded] = useState(false)
     const [commentCount, setCommentCount] = useState<number>(0)
     const [reviewCount, setReviewCount] = useState<number>(0)
@@ -78,10 +78,10 @@ export const CoasterReviewSummaryMiniSection: React.FC<CoasterReviewSummaryMiniS
                 <StarRating rating={reviewRatingAverage} /> {reviewRatingAverage.toFixed(1)} 
             </span>
             <span className={classes.summarySection} title={`Based on ${reviewCount.toLocaleString()} reviews`} onClick={scrollToRatings}>
-                <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()}
+            <Separator /> <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()}
             </span>
             <span className={classes.summarySection} title={`${commentCount.toLocaleString()} comments`} onClick={scrollToComments}>
-                <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
+            <Separator /> <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
             </span>
             <span className={classes.summarySection}>
                 <Separator /> <a>Ranked #{rank}</a>
