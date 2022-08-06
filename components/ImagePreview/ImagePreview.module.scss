@@ -1,0 +1,36 @@
+@import "../../styles/variables";
+
+.imagePreviewContainer {
+    background: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    img {
+        z-index: 2;
+    }
+}
+
+.imageSelectorLeft {
+    position: absolute;
+    left: 20%;
+    top: 45%;
+}
+
+.imageSelectorRight {
+    position: absolute;
+    right: 20%;
+    top: 45%;
+}
+
+.imageClose {
+    font-family: $font-subtitle;
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    color: #fff;
+}
