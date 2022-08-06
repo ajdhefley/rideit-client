@@ -36,8 +36,8 @@ interface InfoFieldProps {
 /**
  * A single piece of coaster information with a label and value.
  **/
-export const InfoField: React.FC<InfoFieldProps> = ({ icon, label, value, unit = '', visible = true }) => {
-    const finalValue = !value || value === 0 ? '-' : `${value} ${unit}`
+export const InfoField: React.FC<InfoFieldProps> = ({ icon, label, value, unit = '', visible = true }: InfoFieldProps) => {
+    const finalValue = !value || value === 0 ? '-' : `${!isNaN(value as any) ? value.toLocaleString() : value} ${unit}`
 
     return <>
         <div className={classes.statSection} hidden={!visible}>
