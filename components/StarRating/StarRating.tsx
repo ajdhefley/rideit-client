@@ -22,17 +22,17 @@ interface StarRatingProps {
 /**
  * 
  **/
-export const StarRating: React.FC<StarRatingProps> = ({ rating, starObscurerMaxWidth = 19 }) => {
-    const ratingFloor = Math.floor(rating)
-    const ratingDiff = (rating - ratingFloor) / 1
+export const StarRating: React.FC<StarRatingProps> = ({ rating, starObscurerMaxWidth = 90 }: StarRatingProps) => {
+    const maxRating = 5
+    const ratingDiff = (maxRating - rating) / maxRating
 
     return <>
         <div className={classes.starRating}>
-            {[...Array(ratingFloor)].map((x, i) =>
+            {[...Array(maxRating-1)].map((x, i) =>
                 <FontAwesomeIcon icon={faStar} className={classes.icon} key={i} />
             )}
             <FontAwesomeIcon icon={faStar} className={classes.icon} />
-            <div className={classes.starObscurer} style={{ width: `${starObscurerMaxWidth - ratingDiff * starObscurerMaxWidth}px` }}></div>
+            <div className={classes.starObscurer} style={{ width: `${ratingDiff * starObscurerMaxWidth}px` }}></div>
         </div>
     </>
 }
