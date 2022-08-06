@@ -1,6 +1,7 @@
 import moment from 'moment'
 import Image from 'next/image'
 import { NextPage } from 'next'
+import { useEffect, useState } from 'react'
 import { Coaster } from '../../models/Coaster'
 import { InfoField } from '../InfoField/InfoField'
 import { Separator } from '../Separator/Separator'
@@ -11,7 +12,12 @@ import { PageTitle } from '../PageTitle/PageTitle'
 import { RideDetailsReviewSummarySection } from '../RideDetailsReviewSummarySection/RideDetailsReviewSummarySection'
 import { RideDetailsReviewSummaryMiniSection } from '../RideDetailsReviewSummaryMiniSection/RideDetailsReviewSummaryMiniSection'
 import { RideDetailsReviewSection } from '../RideDetailsReviewSection/RideDetailsReviewSection'
+import { RideDetailsOthersLikedSection } from '../RideDetailsOthersLikedSection/RideDetailsOthersLikedSection';
+import { RideDetailsRelatedSection } from '../RideDetailsRelatedSection/RideDetailsRelatedSection'
 import { RideDetailsSection } from '../RideDetailsSection/RideDetailsSection'
+import { Button } from '../Button/Button'
+import { ImagePreview } from '../ImagePreview/ImagePreview'
+import { CoasterImage } from '../../models/CoasterImage'
 import classes from './RideDetailsPage.module.scss'
 
 /**
@@ -33,8 +39,13 @@ interface RideDetailsPageProps {
  * Page containing coaster information, comments, reviews, and images.
  **/
 export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPageProps) => {
+    const MaxImageOnMainDisplay = 4
+    const [allImagesVisible, setAllImagesVisible] = useState(false)
+    const [previewedImage, setPreviewedImage] = useState<CoasterImage>()
+
     return <>
         <PageTitle>{`${coaster.name} (${coaster.park})`}</PageTitle>
+
         <div className={classes.coasterPageContainer}>
             <div className={classes.titleContainer}>
                 <p className={classes.titleLarge}>{coaster.name}</p>
@@ -47,87 +58,92 @@ export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPa
             <div className={classes.subTitleContainer}>
                 <RideDetailsReviewSummaryMiniSection coasterUrl={coaster.url} />
             </div>
-            <div className={classes.picsContainer}>
-                {coaster.images.slice(0, 4).map((img, imgIndex) => (
-                    <div key={img.imageUrl} className={classes.pic + ' ' + (imgIndex == 0 ? classes.picFirst : imgIndex == 3 ? classes.picLast : '')}>
-                        <Image
-                            className={classes.pic}
-                            src={img.imageUrl}
-                            blurDataURL={img.base64}
-                            placeholder="blur" 
-                            layout="fill"
-                        />
+
+            <ImagePreview image={previewedImage} visible={!!previewedImage} />
+
+            {allImagesVisible && <>
+                <div className={classes.moreImagesExit} onClick={() => setAllImagesVisible(false)}>x</div>
+                <div className={classes.moreImagesContainer}>
+                    {coaster.images.map((img, imgIndex) => (
+                        <div key={img.imageUrl} className={classes.pic + ' ' + (imgIndex == 0 ? classes.picFirst : imgIndex == 3 ? classes.picLast : '')}>
+                            <Image
+                                onClick={() => setPreviewedImage(img)}
+                                className={classes.pic}
+                                src={img.imageUrl}
+                                blurDataURL={img.base64}
+                                placeholder="blur" 
+                                layout="fill"
+                            />
+                        </div>
+                    ))}
+                </div>
+                <Button className={classes.backToDetailsBtn} onClick={() => setAllImagesVisible(false)}>Back To Details</Button>
+            </>}
+
+            {!allImagesVisible && <>
+                <div className={classes.picsContainer}>
+                    {coaster.images.slice(0, MaxImageOnMainDisplay).map((img, imgIndex) => (
+                        <div key={img.imageUrl} className={classes.pic + ' ' + (imgIndex == 0 ? classes.picFirst : imgIndex == 3 ? classes.picLast : '')}>
+                            <Image
+                                onClick={() => setPreviewedImage(img)}
+                                className={classes.pic}
+                                src={img.imageUrl}
+                                blurDataURL={img.base64}
+                                placeholder="blur" 
+                                layout="fill"
+                            />
+                        </div>
+                    ))}
+                    {coaster.images.length > MaxImageOnMainDisplay && <>
+                        <div className={classes.moreImagesBtnContainer}>
+                            <Button onClick={() => setAllImagesVisible(true)}>See {coaster.images.length - MaxImageOnMainDisplay} More</Button>
+                        </div>
+                    </>}
+                </div>
+                <div className={classes.mainPodContainer}>
+                    <div className={`${classes.pod} ${classes.statPod}`}>
+                        <RideDetailsSection title="Stats">
+                            <div className={classes.statPodSeparator}>
+                                <InfoField label="Max Height" value={coaster.heightInFt} unit="ft" />
+                                <InfoField label="Max Drop" value={coaster.dropInFt} unit="ft" />
+                                <InfoField label="Max Angle" value={coaster.angleInDegrees} unit={String.fromCharCode(176)} />
+                            </div>
+                            <div className={classes.statPodSeparator}>
+                                <InfoField label="Total Length" value={coaster.lengthInFt} unit="ft" />
+                                <InfoField label="Top Speed" value={coaster.speedInMph} unit="mph" />
+                                <InfoField label="Inversions" value={coaster.inversions} visible={coaster.inversions > 0} />
+                            </div>
+                        </RideDetailsSection>
                     </div>
-                ))}
-            </div>
-            <div className={classes.mainPodContainer}>
-                <div className={`${classes.pod} ${classes.statPod}`}>
-                    <RideDetailsSection title="Stats">
-                        <div className={classes.statPodSeparator}>
-                            <InfoField label="Max Height" value={coaster.heightInFt} unit="ft" />
-                            <InfoField label="Max Drop" value={coaster.dropInFt} unit="ft" />
-                            <InfoField label="Max Angle" value={coaster.angleInDegrees} unit={String.fromCharCode(176)} />
-                        </div>
-                        <div className={classes.statPodSeparator}>
-                            <InfoField label="Total Length" value={coaster.lengthInFt} unit="ft" />
-                            <InfoField label="Top Speed" value={coaster.speedInMph} unit="mph" />
-                            <InfoField label="Inversions" value={coaster.inversions} visible={coaster.inversions > 0} />
-                        </div>
-                    </RideDetailsSection>
+                    <div className={`${classes.pod} ${classes.infoPod}`}>
+                        <RideDetailsSection title="Facts">
+                            <InfoField label="Type" value={coaster.type} />
+                            <InfoField label="Manufacturer" value={coaster.manufacturer} />
+                            <InfoField label="Model" value={coaster.model} />
+                            <InfoField label="Opened" value={moment(coaster.openingDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
+                            <InfoField label="Age" value={coasterAge} unit="years" />
+                        </RideDetailsSection>
+                    </div>
                 </div>
-                <div className={`${classes.pod} ${classes.infoPod}`}>
-                    <RideDetailsSection title="Facts">
-                        <InfoField label="Type" value={coaster.type} />
-                        <InfoField label="Manufacturer" value={coaster.manufacturer} />
-                        <InfoField label="Model" value={coaster.model} />
-                        <InfoField label="Opened" value={moment(coaster.openingDate, 'MM/DD/YYYY').format('MMM D, YYYY')} />
-                        <InfoField label="Age" value={coasterAge} unit="years" />
-                    </RideDetailsSection>
+
+                <RideDetailsRelatedSection coaster={coaster} />
+
+                <div className={`${classes.pod} ${classes.reviewSummaryPod}`} id="ratingsContainer">
+                    <RideDetailsReviewSummarySection coasterUrl={coaster.url} />
                 </div>
-                {/* <div className={`${classes.pod} ${classes.othersLikedPod}`} style={{ display: coaster.park ? 'initial' : 'none' }}>
-                    <div className={classes.podHeader}>Others who liked this also liked</div>
-                    <a>Top Thrill Dragster</a> | <a>Millennium Force</a> | <a>Superman: Ride of Steel</a>
+                <div className={`${classes.pod} ${classes.othersLikedPod}`}>
+                    <RideDetailsOthersLikedSection coaster={coaster} />
                 </div>
-                <div className={`${classes.pod} ${classes.otherParkPod}`} style={{ display: coaster.park ? 'initial' : 'none' }}>
-                    <div className={classes.podHeader}>Other rides at {coaster.park}</div>
-                    <a>Goliath</a> | <a>Raging Bull</a> | <a>Maxx Force</a>
+                {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<button>Update</button></span> : <Button>Review This Coaster</Button>}
+                <div className={`${classes.pod} ${classes.reviewsPod}`} id="reviewsContainer">
+                    <RideDetailsReviewSection coasterUrl={coaster.url} />
                 </div>
-                <div className={`${classes.pod} ${classes.similarRidesPod}`} style={{ display: coaster.park ? 'initial' : 'none' }}>
-                    <div className={classes.podHeader}>Similar rides</div>
-                    <a>Top Thrill Dragster</a> | <a>Millennium Force</a> | <a>Superman: Ride of Steel</a>
-                </div>
-                <div className={`${classes.pod} ${classes.othersLikedPod}`} style={{ display: coaster.park ? 'none' : 'initial' }}>
-                    <AsyncLoader size={20} />
-                    <br />
-                    <br />
-                    <AsyncLoader size={25} />
-                </div>
-                <div className={`${classes.pod} ${classes.otherParkPod}`} style={{ display: coaster.park ? 'none' : 'initial' }}>
-                    <AsyncLoader size={20} />
-                    <br />
-                    <br />
-                    <AsyncLoader size={25} />
-                </div>
-                <div className={`${classes.pod} ${classes.similarRidesPod}`} style={{ display: coaster.park ? 'none' : 'initial' }}>
-                    <AsyncLoader size={20} />
-                    <br />
-                    <br />
-                    <AsyncLoader size={25} />
+                {/* <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
+                    <RideDetailsCommentSection coasterUrl={coaster.url} />
                 </div> */}
-            </div>
-            <div className={`${classes.pod} ${classes.reviewSummaryPod}`} id="ratingsContainer">
-                <RideDetailsReviewSummarySection coasterUrl={coaster.url} />
-            </div>
-            <div className={`${classes.pod} ${classes.seatsPod}`}>
-                <CoasterTrainViewer coaster={coaster} primaryColor={coaster.colorPrimary} secondaryColor={coaster.colorSecondary} />
-            </div>
-            {coaster.userRating ? <span>Your rating: {coaster.userRating}&nbsp;<button>Update</button></span> : <button>Review This Coaster</button>}
-            <div className={`${classes.pod} ${classes.reviewsPod}`} id="reviewsContainer">
-                <RideDetailsReviewSection coasterUrl={coaster.url} />
-            </div>
-            {/* <div className={`${classes.pod} ${classes.commentsPod}`} id="commentsContainer">
-                <RideDetailsCommentSection coasterUrl={coaster.url} />
-            </div> */}
+            
+            </>}
+            
         </div>
     </>
 }

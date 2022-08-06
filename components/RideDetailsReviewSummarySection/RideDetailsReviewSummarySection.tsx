@@ -26,7 +26,7 @@ interface RideDetailsReviewSummarySectionProps {
 /**
  * Displays total number of reviewers, average rating, and common tags/keywords for coaster.
  **/
-export const RideDetailsReviewSummarySection: React.FC<RideDetailsReviewSummarySectionProps> = ({ coasterUrl, reviewTagLineMaxWidth = 100 }) => {
+export const RideDetailsReviewSummarySection: React.FC<RideDetailsReviewSummarySectionProps> = ({ coasterUrl, reviewTagLineMaxWidth = 100 }: RideDetailsReviewSummarySectionProps) => {
     const [reviewRatingAverage, setReviewRatingAverage] = useState<number>(0)
     const [reviewCount, setReviewCount] = useState<number>(0)
     const [reviewTags, setReviewTags] = useState<any[]>()

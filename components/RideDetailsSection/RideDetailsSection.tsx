@@ -18,7 +18,7 @@ interface RideDetailsSectionProps {
 /**
  * 
  **/
-export const RideDetailsSection: React.FC<RideDetailsSectionProps> = ({ title, children }) => {
+export const RideDetailsSection: React.FC<RideDetailsSectionProps> = ({ title, children }: RideDetailsSectionProps) => {
     return <>
         <div className={classes.sectionBody} data-title={title}>
             {children}

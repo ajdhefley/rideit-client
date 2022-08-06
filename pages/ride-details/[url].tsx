@@ -12,7 +12,7 @@ export default RideDetailsPage
  * Determines all coaster detail pages, at build time.
  **/
 export async function getStaticPaths() {
-    const { data } = await ServerGraphQLClient.query({
+    const { error, data } = await ServerGraphQLClient.query({
         query: gql`{
             coasters {
                 url
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
  * Fetches static data and pre-renders each coaster detail page, at build time.
  **/
 export async function getStaticProps({ params }) {
-    const { data } = await ServerGraphQLClient.query({
+    const { error, data } = await ServerGraphQLClient.query({
         query: gql`{
             coaster(url: "${params.url}") {
                 name,
@@ -56,7 +56,9 @@ export async function getStaticProps({ params }) {
                 outsideSeatsPerRow,
                 images {
                     imageUrl,
-                    base64
+                    base64,
+                    width,
+                    height
                 }
             }
         }`
