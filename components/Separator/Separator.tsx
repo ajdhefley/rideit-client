@@ -22,6 +22,6 @@ interface SeparatorProps {
 /**
  * Inline symbol separating unrelated pieces of information on the same line.
  **/
-export const Separator: React.FC<SeparatorProps> = ({ verticalAlign }) => {
+export const Separator: React.FC<SeparatorProps> = ({ verticalAlign }: SeparatorProps) => {
     return <span className={classes.separator} style={{ verticalAlign }}>{String.fromCharCode(124)}</span>
 }

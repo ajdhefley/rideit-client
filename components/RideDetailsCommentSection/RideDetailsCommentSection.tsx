@@ -17,7 +17,7 @@ interface RideDetailsCommentSectionProps {
 /**
  * Loads and renders paginated comments for coaster with specified URL.
  **/
-export const RideDetailsCommentSection: React.FC<RideDetailsCommentSectionProps> = ({ coasterUrl }) => {
+export const RideDetailsCommentSection: React.FC<RideDetailsCommentSectionProps> = ({ coasterUrl }: RideDetailsCommentSectionProps) => {
     // const { loading, error, data } = useQuery(gql`{
     //     comments(coasterUrl: "${coasterUrl}") {
     //         author {

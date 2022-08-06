@@ -25,7 +25,7 @@ import classes from './CoasterTrainViewer.module.scss'
 /**
  * Widget used to rate the best seat on a coaster. Dynamically renders train based on coaster model/manufacturer.
  **/
-export const CoasterTrainViewer: React.FC<CoasterTrainViewerProps> = ({ coaster, primaryColor, secondaryColor }) => {
+export const CoasterTrainViewer: React.FC<CoasterTrainViewerProps> = ({ coaster, primaryColor, secondaryColor }: CoasterTrainViewerProps) => {
     const carContainerStyle = { 
         gridTemplateColumns: Array.from({ length: coaster?.carsPerTrain ?? 1 }).map(() => 'auto').join(' ')
     }

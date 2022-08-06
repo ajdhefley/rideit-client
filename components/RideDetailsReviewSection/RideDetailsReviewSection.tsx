@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
 import { CoasterReview } from '../../models/CoasterReview'
 import { StarRating } from '../StarRating/StarRating'
+import { Button } from '../Button/Button'
 import classes from './RideDetailsReviewSection.module.scss'
 
 /**
@@ -20,7 +21,7 @@ interface RideDetailsReviewSectionProps {
 /**
  * Loads and renders paginated reviews for coaster with specified URL.
  **/
-export const RideDetailsReviewSection: React.FC<RideDetailsReviewSectionProps> = ({ coasterUrl }) => {
+export const RideDetailsReviewSection: React.FC<RideDetailsReviewSectionProps> = ({ coasterUrl }: RideDetailsReviewSectionProps) => {
     const { data } = useQuery(gql`{
         reviews(coasterUrl: "${coasterUrl}") {
             title,
@@ -90,7 +91,7 @@ export const RideDetailsReviewSection: React.FC<RideDetailsReviewSectionProps> =
                 &nbsp;
                 {signedIn && <span>You could be the first one.</span>}
             </div>
-            {signedIn && <button>Review It</button>}
+            {signedIn && <Button>Review It</Button>}
         </>}
     </>
 }

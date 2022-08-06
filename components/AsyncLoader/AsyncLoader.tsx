@@ -15,7 +15,7 @@ interface AsyncLoaderProps {
  * Horizontal width is controlled by "size" prop. Vertical height is determined by "font-size"
  * CSS property of parent element.
  **/
-export const AsyncLoader: React.FC<AsyncLoaderProps> = ({ size }) => {
+export const AsyncLoader: React.FC<AsyncLoaderProps> = ({ size }: AsyncLoaderProps) => {
     return <>
         <span className={classes.asyncLoaderBlock}>
             {[...Array(size)].map(() => String.fromCharCode(9608)).join('')}

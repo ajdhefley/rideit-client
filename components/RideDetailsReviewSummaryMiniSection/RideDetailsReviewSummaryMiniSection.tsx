@@ -21,7 +21,7 @@ interface RideDetailsReviewSummaryMiniSectionProps {
 /**
  * Concisely displays total comments, total reviews, and average rating.
  **/
-export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSummaryMiniSectionProps> = ({ coasterUrl }) => {
+export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSummaryMiniSectionProps> = ({ coasterUrl }: RideDetailsReviewSummaryMiniSectionProps) => {
     const [loaded, setLoaded] = useState(false)
     const [commentCount, setCommentCount] = useState<number>(0)
     const [reviewCount, setReviewCount] = useState<number>(0)
@@ -78,10 +78,10 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
                 <StarRating rating={reviewRatingAverage} /> {reviewRatingAverage.toFixed(1)} 
             </span>
             <span className={classes.summarySection} title={`Based on ${reviewCount.toLocaleString()} reviews`} onClick={scrollToRatings}>
-            <Separator /> <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()}
+                <Separator /> <FontAwesomeIcon icon={faUser} className={classes.icon} /> {reviewCount.toLocaleString()}
             </span>
             <span className={classes.summarySection} title={`${commentCount.toLocaleString()} comments`} onClick={scrollToComments}>
-            <Separator /> <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
+                <Separator /> <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
             </span>
             <span className={classes.summarySection}>
                 <Separator /> <a>Ranked #{rank}</a>
