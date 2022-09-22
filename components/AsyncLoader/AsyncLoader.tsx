@@ -1,14 +1,5 @@
 import classes from './AsyncLoader.module.scss'
-
-/**
- * 
- **/
-interface AsyncLoaderProps {
-    /**
-     * The width of the placeholder element.
-     **/
-    size: number;
-}
+import { AsyncLoaderProps } from './AsyncLoader.props'
 
 /**
  * Placeholder element that temporarily appears in place of element that is still loading data.

@@ -9,17 +9,10 @@ import { LoadingIndicator } from '../LoadingIndicator/LoadingIndicator'
 import classes from './SignInPage.module.scss'
 
 /**
- * 
- **/
-interface SignInPageProps {
-
-}
-
-/**
  * Unauthenticated users can search and view coasters, but cannot
  * leave reviews or comments without signing in with this page.
  **/
-export const SignInPage: NextPage = ({}: SignInPageProps) => {
+export const SignInPage: NextPage = () => {
     const router = useRouter()
 
     const [loading, setLoading] = useState(false)

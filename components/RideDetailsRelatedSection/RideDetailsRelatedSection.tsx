@@ -1,20 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Coaster } from '../../models/Coaster'
 import { Separator } from '../Separator/Separator'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { StarRating } from '../StarRating/StarRating'
+import { RideDetailsRelatedSectionProps } from './RideDetailsRelatedSection.props'
 import classes from './RideDetailsRelatedSection.module.scss'
-
-/**
- * 
- **/
-interface RideDetailsRelatedSectionProps {
-    /**
-     * 
-     **/
-    coaster: Coaster;
-}
 
 /**
  * 

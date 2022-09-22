@@ -1,19 +1,5 @@
 import classes from './RideDetailsSection.module.scss'
-
-/**
- * 
- **/
-interface RideDetailsSectionProps {
-    /**
-     * Required title of the section.
-     **/
-    title: string;
-
-    /**
-     * Inner JSX.
-     **/
-    children: React.ReactNode;
-}
+import { RideDetailsSectionProps } from './RideDetailsSection.props'
 
 /**
  * 

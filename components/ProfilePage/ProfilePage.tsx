@@ -3,16 +3,9 @@ import { PageTitle } from '../PageTitle/PageTitle'
 import classes from './ProfilePage.module.scss'
 
 /**
- * 
- **/
-interface ProfilePageProps {
-
-}
-
-/**
  * Contains user preferences and account settings.
  **/
-export const ProfilePage: NextPage<ProfilePageProps> = () => {
+export const ProfilePage: NextPage = () => {
     return <>
         <PageTitle>Profile</PageTitle>
     </>

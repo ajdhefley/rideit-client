@@ -3,23 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import { CoasterImage } from '../../models/CoasterImage'
-import { Button } from '../Button/Button';
+import { Button } from '../Button/Button'
 import classes from './ImagePreview.module.scss'
-
-/**
- * 
- **/
-interface ImagePreviewProps {
-    /**
-     * 
-     **/
-    image?: CoasterImage;
-
-    /**
-     * 
-     **/
-    visible: boolean;
-}
+import { ImagePreviewProps } from './ImagePreview.props'
 
 /**
  *

@@ -1,20 +1,6 @@
-import { Button } from '../Button/Button';
+import { Button } from '../Button/Button'
 import classes from './ButtonLink.module.scss'
-
-/**
- * 
- **/
-interface ButtonLinkProps {
-    /**
-     * 
-     **/
-    href: string;
-
-    /**
-     * Inner JSX.
-     **/
-    children: React.ReactNode;
-}
+import { ButtonLinkProps } from './ButtonLink.props'
 
 /**
  * 

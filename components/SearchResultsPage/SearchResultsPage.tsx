@@ -3,20 +3,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { useState } from 'react'
-import { Coaster } from '../../models/Coaster'
 import { PageTitle } from '../PageTitle/PageTitle'
 import { LoadingIndicator } from '../LoadingIndicator/LoadingIndicator'
 import classes from './SearchResultsPage.module.scss'
-
-/**
- * 
- **/
-interface SearchResultsPageProps {
-    /**
-     * The coasters to be listed, returned by the search query.
-     **/
-    coasters: Coaster[];
-}
+import { SearchResultsPageProps } from './SearchResultsPage.props'
 
 /**
  * Displays results for query entered into header search bar.

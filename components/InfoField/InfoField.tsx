@@ -1,37 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import classes from './InfoField.module.scss'
-
-/**
- * 
- **/
-interface InfoFieldProps {
-    /**
-     * Icon displayed next to the label.
-     **/
-    icon?: IconProp;
-
-    /**
-     * The field's bolded label.
-     **/
-    label: string;
-
-    /**
-     * The field's value.
-     **/
-    value: string | number;
-
-    /**
-     * The field's unit (if applicable.)
-     **/
-    unit?: string;
-
-    /**
-     * Should display the field.
-     **/
-    visible?: boolean;
-}
+import { InfoFieldProps } from './InfoField.props'
 
 /**
  * A single piece of coaster information with a label and value.

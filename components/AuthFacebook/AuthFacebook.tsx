@@ -5,16 +5,9 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 import classes from './AuthFacebook.module.scss'
 
 /**
- * 
- **/
-interface AuthFacebookProps {
-
-}
-
-/**
  * Sign In With Facebook button for third-party authentication.
  **/
-export const AuthFacebook: React.FC<AuthFacebookProps> = () => {
+export const AuthFacebook: React.FC = () => {
     return <>
         <ReactFacebookLoginWithButton
             appId={process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}
@@ -23,6 +16,6 @@ export const AuthFacebook: React.FC<AuthFacebookProps> = () => {
             textButton="Sign in with Facebook"
             icon={<FontAwesomeIcon icon={faFacebook} />}
             cssClass={classes.fbButton}
-             />
+         />
     </>
 }

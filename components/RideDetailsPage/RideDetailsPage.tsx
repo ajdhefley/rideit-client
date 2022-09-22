@@ -2,38 +2,20 @@ import moment from 'moment'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import { Coaster } from '../../models/Coaster'
 import { InfoField } from '../InfoField/InfoField'
 import { Separator } from '../Separator/Separator'
-import { CoasterTrainViewer } from '../CoasterTrainViewer/CoasterTrainViewer'
-import { RideDetailsCommentSection } from '../RideDetailsCommentSection/RideDetailsCommentSection'
-import { CoasterComment } from '../../models/CoasterComment'
 import { PageTitle } from '../PageTitle/PageTitle'
 import { RideDetailsReviewSummarySection } from '../RideDetailsReviewSummarySection/RideDetailsReviewSummarySection'
 import { RideDetailsReviewSummaryMiniSection } from '../RideDetailsReviewSummaryMiniSection/RideDetailsReviewSummaryMiniSection'
 import { RideDetailsReviewSection } from '../RideDetailsReviewSection/RideDetailsReviewSection'
-import { RideDetailsOthersLikedSection } from '../RideDetailsOthersLikedSection/RideDetailsOthersLikedSection';
+import { RideDetailsOthersLikedSection } from '../RideDetailsOthersLikedSection/RideDetailsOthersLikedSection'
 import { RideDetailsRelatedSection } from '../RideDetailsRelatedSection/RideDetailsRelatedSection'
 import { RideDetailsSection } from '../RideDetailsSection/RideDetailsSection'
 import { Button } from '../Button/Button'
 import { ImagePreview } from '../ImagePreview/ImagePreview'
 import { CoasterImage } from '../../models/CoasterImage'
+import { RideDetailsPageProps } from './RideDetails.props'
 import classes from './RideDetailsPage.module.scss'
-
-/**
- * 
- **/
-interface RideDetailsPageProps {
-    /**
-     * The coaster data to be displayed on the details page.
-     **/
-    coaster: Coaster;
-
-    /**
-     * The coaster's age, calculated at build time as a prop.
-     **/
-    coasterAge: number;
-}
 
 /**
  * Page containing coaster information, comments, reviews, and images.

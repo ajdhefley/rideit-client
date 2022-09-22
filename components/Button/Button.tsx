@@ -1,24 +1,5 @@
 import classes from './Button.module.scss'
-
-/**
- * 
- **/
-interface ButtonProps {
-    /**
-     * Inner JSX.
-     **/
-    children: React.ReactNode;
-    
-    /**
-     * 
-     **/
-    className?: string;
-
-    /**
-     * 
-     **/
-    onClick?: () => void;
-}
+import { ButtonProps } from './Button.props'
 
 /**
  * 

@@ -6,23 +6,8 @@ import { useEffect, useState } from 'react'
 import { GET_REVIEW_STATS_BY_URL } from '../../queries/get-review-stats-by-url'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
+import { RideDetailsReviewSummarySectionProps } from './RideDetailsReviewSummarySection.props'
 import classes from './RideDetailsReviewSummarySection.module.scss'
-
-/**
- * 
- **/
-interface RideDetailsReviewSummarySectionProps {
-    /**
-     * Unique identifier for coaster whose review summary data is to be displayed, also serving as coaster's URL subdirectory.
-     **/
-    coasterUrl: string;
-
-    /**
-     * Max width of tag/keyword progress bar.
-     * E.G. 90% of reviews mentioning a keyword means that keyword's progress bar width will be 90% of the max width.
-     **/
-    reviewTagLineMaxWidth?: number;
-}
 
 /**
  * Displays total number of reviewers, average rating, and common tags/keywords for coaster.

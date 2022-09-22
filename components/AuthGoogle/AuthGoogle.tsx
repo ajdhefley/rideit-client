@@ -2,16 +2,9 @@ import Script from 'next/script'
 import classes from './AuthGoogle.module.scss'
 
 /**
- * 
- **/
-interface AuthGoogleProps {
-
-}
-
-/**
  * Sign In With Google button for third-party authentication.
  **/
-export const AuthGoogle: React.FC<AuthGoogleProps> = () => {
+export const AuthGoogle: React.FC = () => {
     return <>
         <Script src="https://accounts.google.com/gsi/client" async defer />
         <div id="g_id_onload"

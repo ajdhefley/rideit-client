@@ -8,17 +8,8 @@ import { GET_REVIEW_STATS_BY_URL } from '../../queries/get-review-stats-by-url'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
 import { StarRating } from '../StarRating/StarRating'
+import { RideDetailsReviewSummaryMiniSectionProps } from './RideDetailsReviewSummaryMiniSection.props'
 import classes from './RideDetailsReviewSummaryMiniSection.module.scss'
-
-/**
- * 
- **/
-interface RideDetailsReviewSummaryMiniSectionProps {
-    /**
-     * Unique identifier for coaster whose mini review summary is to be displayed, also serving as coaster's URL subdirectory.
-     **/
-    coasterUrl: string;
-}
 
 /**
  * Concisely displays total comments, total reviews, and average rating.

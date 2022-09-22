@@ -6,18 +6,9 @@ import { useEffect, useState } from 'react'
 import { CoasterReview } from '../../models/CoasterReview'
 import { StarRating } from '../StarRating/StarRating'
 import { Button } from '../Button/Button'
-import classes from './RideDetailsReviewSection.module.scss'
 import { GET_REVIEWS_BY_URL } from '../../queries/get-reviews-by-url'
-
-/**
- * 
- **/
-interface RideDetailsReviewSectionProps {
-    /**
-     * Unique identifier for coaster whose reviews are to be displayed, also serving as coaster's URL subdirectory.
-     **/
-    coasterUrl: string;
-}
+import { RideDetailsReviewSectionProps } from './RideDetailsReviewSection.props'
+import classes from './RideDetailsReviewSection.module.scss'
 
 /**
  * Loads and renders paginated reviews for coaster with specified URL.

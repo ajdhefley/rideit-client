@@ -1,8 +1,5 @@
 import Head from 'next/head'
-
-interface PageTitleProps {
-    children: string;
-}
+import { PageTitleProps } from './PageTitle.props'
 
 export const PageTitle: React.FC<PageTitleProps> = ({ children }: PageTitleProps) => {
     return <>
