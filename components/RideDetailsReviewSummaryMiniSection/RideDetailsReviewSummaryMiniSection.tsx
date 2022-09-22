@@ -27,42 +27,31 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
     const [reviewCount, setReviewCount] = useState<number>(0)
     const [reviewRatingAverage, setReviewRatingAverage] = useState<number>(0)
 
-    const reviewQuery = useQuery(gql`{
-        reviews(coasterUrl: "${coasterUrl}") {
-            title,
-            body,
-            rating,
-            reviewTags {
-                tag
+    const { data } = useQuery(gql`{
+        coaster(url: "${coasterUrl}") {
+            rank,
+            comments {
+                body,
+                timestamp
+            },
+            reviews {
+                title,
+                body,
+                rating,
+                reviewTags {
+                    tag
+                }
             }
         }
     }`)
 
-    const commentQuery = useQuery(gql`{
-        comments(coasterUrl: "${coasterUrl}") {
-            body,
-            timestamp
-        }
-    }`)
-
-    const rank = 13 // TODO: rank needs to be dynamically calculated on backend with scheduled job
-
     useEffect(() => {
-        if (!commentQuery.data)
-            return
-            
-        setCommentCount(commentQuery.data.comments.length)
-        setLoaded(reviewQuery.data && commentQuery.data)
-    }, [commentQuery])
-
-    useEffect(() => {
-        if (!reviewQuery.data)
-            return
-            
-        setReviewCount(reviewQuery.data.reviews.length)
-        setReviewRatingAverage(reviewQuery.data.reviews.reduce((sum, r) => sum + r.rating, 0) / reviewQuery.data.reviews.length)
-        setLoaded(reviewQuery.data && commentQuery.data)
-    }, [reviewQuery])
+        if (!data) return;
+        setCommentCount(data.coaster.comments.length)
+        setReviewCount(data.coaster.reviews.length)
+        setReviewRatingAverage(data.coaster.reviews.reduce((sum, r) => sum + r.rating, 0) / data.coaster.reviews.length)
+        setLoaded(true)
+    }, [data])
 
     function scrollToRatings() {
         document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
@@ -84,7 +73,7 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
                 <Separator /> <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
             </span>
             <span className={classes.summarySection}>
-                <Separator /> <a>Ranked #{rank}</a>
+                <Separator /> <a>Ranked #{data.coaster.rank.toLocaleString()}</a>
             </span>
             {/* { coaster.goldenTicketAwards!! &&
             <span className={classes.summarySection}>

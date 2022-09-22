@@ -6,6 +6,26 @@ $pic-border-radius: 10px;
 $pic-width: calc(25vw - #{$page-margin / 2} - #{$pic-margin * 2});
 $pic-height: calc(24vw - #{$page-margin / 2} - #{$pic-margin * 2});
 
+@keyframes animate-show-photo {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@mixin photo-mixin($max) {
+    @for $i from 1 to $max {
+        &.photoAnimated#{$i} {
+            animation-name: animate-show-photo;
+            animation-delay: #{100 * $i}ms;
+            animation-duration: 100ms;
+        }
+    }
+}
+
 .icon {
     width: 25px;
     height: 25px;
@@ -182,6 +202,13 @@ $pic-height: calc(24vw - #{$page-margin / 2} - #{$pic-margin * 2});
     height: $pic-height;
     position: relative;
     flex: 0 0 auto;
+    @include photo-mixin(20);
+}
+
+.photoAnimated {
+    animation-name: animate-show-photo;
+    animation-delay: 200ms;
+    animation-duration: 100ms;
 }
 
 .picFirst {

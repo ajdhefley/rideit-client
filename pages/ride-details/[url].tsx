@@ -50,6 +50,7 @@ export async function getStaticProps({ params }) {
                 colorPrimary,
                 colorSecondary,
                 url,
+                rank,
                 carsPerTrain,
                 rowsPerCar,
                 insideSeatsPerRow,

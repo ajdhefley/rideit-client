@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import { PageTitle } from '../PageTitle/PageTitle'
+import { PageDescription } from '../PageDescription/PageDescription'
 import classes from './DashboardPage.module.scss'
 
 /**

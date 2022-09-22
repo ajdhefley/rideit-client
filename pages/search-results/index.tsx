@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
 import { SearchResultsPage } from '../../components/SearchResultsPage/SearchResultsPage'
-import { ServerGraphQLClient } from '../../graphql-client'
+import { PublicGraphQLClient } from '../../graphql-client'
 
 SearchResultsPage.getLayout = getMainLayout
 
@@ -12,7 +12,7 @@ export default SearchResultsPage
  * can be displayed with the rest of the content on page load.
  **/
 export async function getServerSideProps({ query }) {
-    const { data, error } = await ServerGraphQLClient.query({
+    const { data } = await PublicGraphQLClient.query({
         query: gql`{
             filteredCoaster(filter: "${query.q}") {
                 name,
