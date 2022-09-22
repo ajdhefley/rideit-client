@@ -24,6 +24,7 @@ export class Coaster {
     insideSeatsPerRow: number;
     outsideSeatsPerRow: number;
     url: string;
+    rank: number;
     images: CoasterImage[];
 
     get totalRows() {
@@ -38,7 +39,6 @@ export class Coaster {
     angleInDegrees: number;
     ratingAverage: number;
     ratingCount: number;
-    rank: number;
     goldenTicketAwards: string;
     userRating: number;
     comments: CoasterComment[];

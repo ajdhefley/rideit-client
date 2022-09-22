@@ -38,13 +38,12 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
     }, [commentQuery])
 
     useEffect(() => {
-        if (!reviewQuery.data)
-            return
-            
-        setReviewCount(reviewQuery.data.reviews.length)
-        setReviewRatingAverage(reviewQuery.data.reviews.reduce((sum, r) => sum + r.rating, 0) / reviewQuery.data.reviews.length)
-        setLoaded(reviewQuery.data && commentQuery.data)
-    }, [reviewQuery])
+        if (!data) return;
+        setCommentCount(data.coaster.comments.length)
+        setReviewCount(data.coaster.reviews.length)
+        setReviewRatingAverage(data.coaster.reviews.reduce((sum, r) => sum + r.rating, 0) / data.coaster.reviews.length)
+        setLoaded(true)
+    }, [data])
 
     function scrollToRatings() {
         document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
@@ -66,7 +65,7 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
                 <Separator /> <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
             </span>
             <span className={classes.summarySection}>
-                <Separator /> <a>Ranked #{rank}</a>
+                <Separator /> <a>Ranked #{data.coaster.rank.toLocaleString()}</a>
             </span>
             {/* { coaster.goldenTicketAwards!! &&
             <span className={classes.summarySection}>

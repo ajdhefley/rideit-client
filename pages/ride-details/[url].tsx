@@ -18,8 +18,8 @@ export async function getStaticPaths() {
     })
 
     return {
-        paths: data.coasters.map(c => ({
-            params: { url: c.url.toString() }
+        paths: data.coasters.map(coaster => ({
+            params: { url: coaster.url.toString() }
         })),
         fallback: false
     }
@@ -34,18 +34,16 @@ export async function getStaticProps({ params }) {
         variables: { coasterUrl: params.url }
     })
 
-    const age = (() => {
-        const opened = moment(data.coaster.openingDate, data.coaster.openingDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
-        const closed = data.coaster.closeDate ? moment(data.coaster.closeDate, data.coaster.closeDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
-        const duration = moment.duration(closed.diff(opened))
-        return Math.floor(duration.asYears())
-    })()
+    const { coaster } = data
+    const { openingDate, closeDate } = coaster
+
+    let opened = moment(openingDate, openingDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY')
+    let closed = closeDate ? moment(closeDate, closeDate.length == 4 ? 'YYYY' : 'MM/dd/YYYY') : moment()
+    let duration = moment.duration(closed.diff(opened))
+    const coasterAge = Math.floor(duration.asYears())
 
     return {
-        props: {
-            coaster: data.coaster,
-            coasterAge: age
-        },
-        revalidate: 3600 // Re-render page every hour (once requested)
+        revalidate: 3600, // Re-render page every hour
+        props: { coaster, coasterAge }
     }
 }

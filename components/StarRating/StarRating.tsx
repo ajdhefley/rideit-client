@@ -6,7 +6,7 @@ import classes from './StarRating.module.scss'
 /**
  * 
  **/
-export const StarRating: React.FC<StarRatingProps> = ({ rating, starObscurerMaxWidth = 90 }: StarRatingProps) => {
+export const StarRating: React.FC<StarRatingProps> = ({ rating }: StarRatingProps) => {
     const maxRating = 5
     const ratingDiff = (maxRating - rating) / maxRating
 
@@ -16,7 +16,7 @@ export const StarRating: React.FC<StarRatingProps> = ({ rating, starObscurerMaxW
                 <FontAwesomeIcon icon={faStar} className={classes.icon} key={i} />
             )}
             <FontAwesomeIcon icon={faStar} className={classes.icon} />
-            <div className={classes.starObscurer} style={{ width: `${ratingDiff * starObscurerMaxWidth}px` }}></div>
+            <div className={classes.starObscurer} style={{ width: `${ratingDiff * 100}%` }}></div>
         </div>
     </>
 }

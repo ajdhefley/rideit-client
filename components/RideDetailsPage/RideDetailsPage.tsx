@@ -21,9 +21,10 @@ import classes from './RideDetailsPage.module.scss'
  * Page containing coaster information, comments, reviews, and images.
  **/
 export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPageProps) => {
-    const MaxImageOnMainDisplay = 4
     const [allImagesVisible, setAllImagesVisible] = useState(false)
     const [previewedImage, setPreviewedImage] = useState<CoasterImage>()
+
+    const MaxImagesOnMainDisplay = 4
 
     return <>
         <PageTitle>{`${coaster.name} (${coaster.park})`}</PageTitle>
@@ -64,8 +65,8 @@ export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPa
 
             {!allImagesVisible && <>
                 <div className={classes.picsContainer}>
-                    {coaster.images.slice(0, MaxImageOnMainDisplay).map((img, imgIndex) => (
-                        <div key={img.imageUrl} className={classes.pic + ' ' + (imgIndex == 0 ? classes.picFirst : imgIndex == 3 ? classes.picLast : '')}>
+                    {coaster.images.slice(0, MaxImagesOnMainDisplay).map((img, imgIndex) => (
+                        <div key={img.imageUrl} className={classes.pic + ' ' + classes.photoAnimated + ' ' + (imgIndex == 0 ? classes.picFirst : imgIndex == 3 ? classes.picLast : '')}>
                             <Image
                                 onClick={() => setPreviewedImage(img)}
                                 className={classes.pic}
@@ -76,10 +77,15 @@ export const RideDetailsPage: NextPage = ({ coaster, coasterAge }: RideDetailsPa
                             />
                         </div>
                     ))}
-                    {coaster.images.length > MaxImageOnMainDisplay && <>
+                    {coaster.images.length > MaxImagesOnMainDisplay && <>
                         <div className={classes.moreImagesBtnContainer}>
-                            <Button onClick={() => setAllImagesVisible(true)}>See {coaster.images.length - MaxImageOnMainDisplay} More</Button>
+                            <Button onClick={() => setAllImagesVisible(true)}>See {coaster.images.length - MaxImagesOnMainDisplay} More</Button>
                         </div>
+                    </>}
+                    {coaster.images.length == 0 && <>
+                        No photos have been uploaded for this coaster yet.
+                        <br />
+                        <Button>Upload Photo</Button>
                     </>}
                 </div>
                 <div className={classes.mainPodContainer}>
