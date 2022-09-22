@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
@@ -7,6 +7,7 @@ import { CoasterReview } from '../../models/CoasterReview'
 import { StarRating } from '../StarRating/StarRating'
 import { Button } from '../Button/Button'
 import classes from './RideDetailsReviewSection.module.scss'
+import { GET_REVIEWS_BY_URL } from '../../queries/get-reviews-by-url'
 
 /**
  * 
@@ -24,22 +25,30 @@ interface RideDetailsReviewSectionProps {
 export const RideDetailsReviewSection: React.FC<RideDetailsReviewSectionProps> = ({ coasterUrl }: RideDetailsReviewSectionProps) => {
     const [loaded, setLoaded] = useState(false)
     const [reviews, setReviews] = useState(new Array<CoasterReview>())
-    const [reviewPageCount, setReviewPageCount] = useState(0)
+    const [visibleReviews, setVisibleReviews] = useState(new Array<CoasterReview>())
     const signedIn = true // TODO
 
-    const { data } = useQuery(gql`{
-        reviews(coasterUrl: "${coasterUrl}") {
-            title,
-            body,
-            rating,
-            timestamp,
-            author {
-                username
-            }
-        }
-    }`)
+    const { data } = useQuery(GET_REVIEWS_BY_URL, {
+        variables: { coasterUrl }
+    })
 
-    // TODO: paginate reviews
+    useEffect(() => {
+        if (data) {
+            setReviews(data.reviews)
+            setLoaded(true)
+        }
+    }, [data])
+
+    useEffect(() => {
+        loadMoreReviews() // Show initial reviews for display
+    }, [loaded])
+
+    function loadMoreReviews() {
+        const reviewsCopy = [...reviews]
+        const moreReviews = reviewsCopy.splice(0, 6)
+        setReviews(reviewsCopy)
+        setVisibleReviews(visibleReviews.concat(moreReviews))
+    }
 
     function getFriendlyTimestamp(timestamp) {
         const time = new Date(timestamp).getTime()

@@ -1,8 +1,9 @@
 
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { faStar, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
+import { GET_REVIEW_STATS_BY_URL } from '../../queries/get-review-stats-by-url'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
 import classes from './RideDetailsReviewSummarySection.module.scss'
@@ -32,16 +33,9 @@ export const RideDetailsReviewSummarySection: React.FC<RideDetailsReviewSummaryS
     const [reviewTags, setReviewTags] = useState<any[]>()
     const [loaded, setLoaded] = useState<boolean>(false)
 
-    const { data } = useQuery(gql`{
-        reviews(coasterUrl: "${coasterUrl}") {
-            title,
-            body,
-            rating,
-            reviewTags {
-                tag
-            }
-        }
-    }`)
+    const { data } = useQuery(GET_REVIEW_STATS_BY_URL, {
+        variables: { coasterUrl }
+    })
 
     useEffect(() => {
         if (!data)

@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
-import { gql, useQuery } from '@apollo/client'
 import { Coaster } from '../../models/Coaster'
 import { Separator } from '../Separator/Separator'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
