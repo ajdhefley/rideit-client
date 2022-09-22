@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client'
 import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
 import { SearchResultsPage } from '../../components/SearchResultsPage/SearchResultsPage'
 import { ServerGraphQLClient } from '../../graphql-client'
+import { GET_COASTERS_BY_FILTER } from '../../queries/get-coasters-by-filter'
 
 SearchResultsPage.getLayout = getMainLayout
 
@@ -13,32 +13,8 @@ export default SearchResultsPage
  **/
 export async function getServerSideProps({ query }) {
     const { data, error } = await ServerGraphQLClient.query({
-        query: gql`{
-            filteredCoaster(filter: "${query.q}") {
-                name,
-                park,
-                type,
-                model,
-                openingDate,
-                manufacturer,
-                heightInFt,
-                dropInFt,
-                lengthInFt,
-                speedInMph,
-                inversions,
-                colorPrimary,
-                colorSecondary,
-                url,
-                carsPerTrain,
-                rowsPerCar,
-                insideSeatsPerRow,
-                outsideSeatsPerRow,
-                images {
-                    imageUrl,
-                    base64
-                }
-            }
-        }`
+        query: GET_COASTERS_BY_FILTER,
+        variables: { filter: query }
     })
 
     return {

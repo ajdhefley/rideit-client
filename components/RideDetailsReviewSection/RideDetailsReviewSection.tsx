@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
@@ -7,6 +7,7 @@ import { CoasterReview } from '../../models/CoasterReview'
 import { StarRating } from '../StarRating/StarRating'
 import { Button } from '../Button/Button'
 import classes from './RideDetailsReviewSection.module.scss'
+import { GET_REVIEWS_BY_URL } from '../../queries/get-reviews-by-url'
 
 /**
  * 
@@ -22,24 +23,14 @@ interface RideDetailsReviewSectionProps {
  * Loads and renders paginated reviews for coaster with specified URL.
  **/
 export const RideDetailsReviewSection: React.FC<RideDetailsReviewSectionProps> = ({ coasterUrl }: RideDetailsReviewSectionProps) => {
-    const { data } = useQuery(gql`{
-        reviews(coasterUrl: "${coasterUrl}") {
-            title,
-            body,
-            rating,
-            timestamp,
-            reviewTags {
-                tag
-            },
-            author {
-                username
-            }
-        }
-    }`)
     const [loaded, setLoaded] = useState(false)
     const [reviews, setReviews] = useState(new Array<CoasterReview>())
     const [visibleReviews, setVisibleReviews] = useState(new Array<CoasterReview>())
     const signedIn = true // TODO
+
+    const { data } = useQuery(GET_REVIEWS_BY_URL, {
+        variables: { coasterUrl }
+    })
 
     useEffect(() => {
         if (data) {

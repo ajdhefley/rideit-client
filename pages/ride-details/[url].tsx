@@ -1,8 +1,9 @@
 import moment from 'moment'
-import { gql } from '@apollo/client'
 import { RideDetailsPage } from '../../components/RideDetailsPage/RideDetailsPage'
 import { getMainLayout } from '../../layouts/MainLayout/MainLayout'
 import { ServerGraphQLClient } from '../../graphql-client'
+import { GET_ALL_COASTERS } from '../../queries/get-all-coasters'
+import { GET_COASTER_BY_URL } from '../../queries/get-coaster-by-url'
 
 RideDetailsPage.getLayout = getMainLayout
 
@@ -13,11 +14,7 @@ export default RideDetailsPage
  **/
 export async function getStaticPaths() {
     const { error, data } = await ServerGraphQLClient.query({
-        query: gql`{
-            coasters {
-                url
-            }
-        }`
+        query: GET_ALL_COASTERS
     })
 
     return {
@@ -33,35 +30,8 @@ export async function getStaticPaths() {
  **/
 export async function getStaticProps({ params }) {
     const { error, data } = await ServerGraphQLClient.query({
-        query: gql`{
-            coaster(url: "${params.url}") {
-                name,
-                park,
-                location,
-                type,
-                model,
-                openingDate,
-                manufacturer,
-                heightInFt,
-                dropInFt,
-                lengthInFt,
-                speedInMph,
-                inversions,
-                colorPrimary,
-                colorSecondary,
-                url,
-                carsPerTrain,
-                rowsPerCar,
-                insideSeatsPerRow,
-                outsideSeatsPerRow,
-                images {
-                    imageUrl,
-                    base64,
-                    width,
-                    height
-                }
-            }
-        }`
+        query: GET_COASTER_BY_URL,
+        variables: { coasterUrl: params.url }
     })
 
     const age = (() => {

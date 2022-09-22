@@ -1,8 +1,10 @@
 
-import { gql, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { faComment, faShare, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
+import { GET_COMMENTS_BY_URL } from '../../queries/get-comments-by-url'
+import { GET_REVIEW_STATS_BY_URL } from '../../queries/get-review-stats-by-url'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
 import { StarRating } from '../StarRating/StarRating'
@@ -27,23 +29,12 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
     const [reviewCount, setReviewCount] = useState<number>(0)
     const [reviewRatingAverage, setReviewRatingAverage] = useState<number>(0)
 
-    const reviewQuery = useQuery(gql`{
-        reviews(coasterUrl: "${coasterUrl}") {
-            title,
-            body,
-            rating,
-            reviewTags {
-                tag
-            }
-        }
-    }`)
-
-    const commentQuery = useQuery(gql`{
-        comments(coasterUrl: "${coasterUrl}") {
-            body,
-            timestamp
-        }
-    }`)
+    const reviewQuery = useQuery(GET_REVIEW_STATS_BY_URL, {
+        variables: { coasterUrl }
+    })
+    const commentQuery = useQuery(GET_COMMENTS_BY_URL, {
+        variables: { coasterUrl }
+    })
 
     const rank = 13 // TODO: rank needs to be dynamically calculated on backend with scheduled job
 
