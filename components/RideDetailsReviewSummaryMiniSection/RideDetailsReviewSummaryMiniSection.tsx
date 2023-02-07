@@ -8,8 +8,17 @@ import { GET_REVIEW_STATS_BY_URL } from '../../queries/get-review-stats-by-url'
 import { AsyncLoader } from '../AsyncLoader/AsyncLoader'
 import { Separator } from '../Separator/Separator'
 import { StarRating } from '../StarRating/StarRating'
-import { RideDetailsReviewSummaryMiniSectionProps } from './RideDetailsReviewSummaryMiniSection.props'
 import classes from './RideDetailsReviewSummaryMiniSection.module.scss'
+
+/**
+ * 
+ **/
+interface RideDetailsReviewSummaryMiniSectionProps {
+    /**
+     * Unique identifier for coaster whose mini review summary is to be displayed, also serving as coaster's URL subdirectory.
+     **/
+    coasterUrl: string;
+}
 
 /**
  * Concisely displays total comments, total reviews, and average rating.
@@ -38,12 +47,11 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
     }, [commentQuery])
 
     useEffect(() => {
-        if (!data) return;
-        setCommentCount(data.coaster.comments.length)
-        setReviewCount(data.coaster.reviews.length)
-        setReviewRatingAverage(data.coaster.reviews.reduce((sum, r) => sum + r.rating, 0) / data.coaster.reviews.length)
+        if (!reviewQuery.data) return;
+        setReviewCount(reviewQuery.data.coaster.reviews.length)
+        setReviewRatingAverage(reviewQuery.data.coaster.reviews.reduce((sum, r) => sum + r.rating, 0) / reviewQuery.data.coaster.reviews.length)
         setLoaded(true)
-    }, [data])
+    }, [reviewQuery])
 
     function scrollToRatings() {
         document.getElementById('ratingsContainer')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
@@ -65,7 +73,7 @@ export const RideDetailsReviewSummaryMiniSection: React.FC<RideDetailsReviewSumm
                 <Separator /> <FontAwesomeIcon icon={faComment} className={classes.icon} /> {commentCount.toLocaleString()}
             </span>
             <span className={classes.summarySection}>
-                <Separator /> <a>Ranked #{data.coaster.rank.toLocaleString()}</a>
+                <Separator /> <a>Ranked #{rank.toLocaleString()}</a>
             </span>
             {/* { coaster.goldenTicketAwards!! &&
             <span className={classes.summarySection}>
