@@ -37,7 +37,7 @@ function MainLayout({ children }) {
     }
 
     function toggleAccountMenu() {
-        setAccountMenuOpen(!accountMenuOpen);
+        //setAccountMenuOpen(!accountMenuOpen);
     }
 
     function openProfile() {
@@ -91,12 +91,13 @@ function MainLayout({ children }) {
             </main>
             <footer>
                 <div className={classes.footerContainer}>
-                    <ul>
+                    {/* <ul>
                         <li><a>About</a></li>
                         <li><a>Terms</a></li>
                         <li><a>Contact</a></li>
                     </ul>
-                    <p>&copy; 2022 Ashton Hefley. All Rights Reserved.</p>
+                    <p>&copy; 2022 Ashton Hefley. All Rights Reserved.</p> */}
+                    <p>Footer</p>
                 </div>
             </footer>
         </div>
