@@ -29,6 +29,8 @@ export async function getStaticPaths() {
  * Fetches static data and pre-renders each coaster detail page, at build time.
  **/
 export async function getStaticProps({ params }) {
+    console.info(`Rendering ${params.url}`)
+
     const { error, data } = await ServerGraphQLClient.query({
         query: GET_COASTER_BY_URL,
         variables: { coasterUrl: params.url }

@@ -14,7 +14,7 @@ export default SearchResultsPage
 export async function getServerSideProps({ query }) {
     const { data, error } = await ServerGraphQLClient.query({
         query: GET_COASTERS_BY_FILTER,
-        variables: { filter: query }
+        variables: { filter: query.q }
     })
 
     return {

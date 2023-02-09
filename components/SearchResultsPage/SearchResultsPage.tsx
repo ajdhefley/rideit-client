@@ -29,13 +29,13 @@ export const SearchResultsPage: NextPage = ({ coasters }: SearchResultsPageProps
                 <Link key={coaster.coasterId} href={`/ride-details/${coaster.url}`}>
                     <a onClick={clickResult} className={classes.searchResult}>
                         <div className={classes.searchResultImg}>
-                            <Image
+                            {coaster.images.length > 0 && <Image
                                 className={classes.pic} src={coaster.images[0].imageUrl} blurDataURL={coaster.images[0].base64}
                                 placeholder="blur" 
                                 layout="fill"
                                 width={250}
                                 height={250}
-                            />
+                            />}
                         </div>
                         <div className={classes.searchResultText}>
                             <div className={classes.searchResultTitle}>{coaster.name}</div>
